@@ -14,11 +14,12 @@ public class LoginController extends HttpServlet {
     AccountService accountService = new AccountService();
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request,
+                          HttpServletResponse response)
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -35,7 +36,7 @@ public class LoginController extends HttpServlet {
 
         } else {
 
-            request.setAttribute("error", "Sai tài khoản hoặc mật khẩu!");
+            request.setAttribute("error", "sai tai khoan hoac mat khau");
 
             request.getRequestDispatcher("login.jsp")
                     .forward(request, response);

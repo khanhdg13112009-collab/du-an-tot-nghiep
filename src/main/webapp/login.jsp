@@ -3,33 +3,51 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <meta charset="UTF-8">
+
     <title>Đăng nhập</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 <body>
 
-<h2>ĐĂNG NHẬP</h2>
+<div class="login-box">
 
-<form action="login" method="post">
+    <h1>SHOP QUẦN ÁO</h1>
 
-    <label>Tên đăng nhập</label><br>
-    <input type="text" name="username" required>
+    <h3>Đăng nhập hệ thống</h3>
 
-    <br><br>
+    <form action="login" method="post">
 
-    <label>Mật khẩu</label><br>
-    <input type="password" name="password" required>
+        <label>Tên đăng nhập</label>
 
-    <br><br>
+        <input type="text"
+               name="username"
+               placeholder="Nhập tên đăng nhập"
+               required>
 
-    <button type="submit">Đăng nhập</button>
+        <label>Mật khẩu</label>
 
-</form>
+        <input type="password"
+               name="password"
+               placeholder="Nhập mật khẩu"
+               required>
 
-<c:if test="${not empty error}">
-    <p style="color:red">${error}</p>
-</c:if>
+        <button type="submit">Đăng nhập</button>
+
+    </form>
+
+    <c:if test="${not empty error}">
+        <p class="error">${error}</p>
+    </c:if>
+
+</div>
 
 </body>
+
 </html>
