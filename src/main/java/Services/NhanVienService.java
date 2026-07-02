@@ -9,7 +9,6 @@ public class NhanVienService {
 
     ConnectService connect = new ConnectService();
 
-    // Lấy toàn bộ nhân viên
     public ArrayList<NhanVien> getAllNhanVien() {
 
         ArrayList<NhanVien> list = new ArrayList<>();
@@ -30,10 +29,12 @@ public class NhanVienService {
 
                 nv.setMaNV(rs.getInt("MaNV"));
                 nv.setHoTen(rs.getString("HoTen"));
+                nv.setCccd(rs.getString("CCCD"));
                 nv.setNgaySinh(rs.getDate("NgaySinh"));
                 nv.setGioiTinh(rs.getBoolean("GioiTinh"));
                 nv.setSoDienThoai(rs.getString("SoDienThoai"));
                 nv.setEmail(rs.getString("Email"));
+                nv.setCoSo(rs.getString("CoSo"));
                 nv.setDiaChi(rs.getString("DiaChi"));
                 nv.setTrangThaiID(rs.getInt("TrangThaiID"));
 
@@ -45,13 +46,14 @@ public class NhanVienService {
             conn.close();
 
         } catch (Exception e) {
+
             e.printStackTrace();
+
         }
 
         return list;
     }
 
-    // Lấy thông tin nhân viên theo mã
     public NhanVien getNhanVienById(int maNV) {
 
         NhanVien nv = null;
@@ -74,12 +76,15 @@ public class NhanVienService {
 
                 nv.setMaNV(rs.getInt("MaNV"));
                 nv.setHoTen(rs.getString("HoTen"));
+                nv.setCccd(rs.getString("CCCD"));
                 nv.setNgaySinh(rs.getDate("NgaySinh"));
                 nv.setGioiTinh(rs.getBoolean("GioiTinh"));
                 nv.setSoDienThoai(rs.getString("SoDienThoai"));
                 nv.setEmail(rs.getString("Email"));
+                nv.setCoSo(rs.getString("CoSo"));
                 nv.setDiaChi(rs.getString("DiaChi"));
                 nv.setTrangThaiID(rs.getInt("TrangThaiID"));
+
             }
 
             rs.close();
@@ -87,9 +92,105 @@ public class NhanVienService {
             conn.close();
 
         } catch (Exception e) {
+
             e.printStackTrace();
+
         }
 
         return nv;
     }
+
+    public void addNhanVien(NhanVien nv) {
+
+        String sql = "INSERT INTO NhanVien(HoTen,CCCD,NgaySinh,GioiTinh,SoDienThoai,Email,CoSo,DiaChi,TrangThaiID) VALUES(?,?,?,?,?,?,?,?,?)";
+
+        try {
+
+            Connection conn = connect.myConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, nv.getHoTen());
+            ps.setString(2, nv.getCccd());
+            ps.setDate(3, nv.getNgaySinh());
+            ps.setBoolean(4, nv.isGioiTinh());
+            ps.setString(5, nv.getSoDienThoai());
+            ps.setString(6, nv.getEmail());
+            ps.setString(7, nv.getCoSo());
+            ps.setString(8, nv.getDiaChi());
+            ps.setInt(9, nv.getTrangThaiID());
+
+            ps.executeUpdate();
+
+            ps.close();
+            conn.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+
+
+    public void updateNhanVien(NhanVien nv) {
+
+        String sql = "UPDATE NhanVien SET HoTen=?,CCCD=?,NgaySinh=?,GioiTinh=?,SoDienThoai=?,Email=?,CoSo=?,DiaChi=?,TrangThaiID=? WHERE MaNV=?";
+
+        try {
+
+            Connection conn = connect.myConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, nv.getHoTen());
+            ps.setString(2, nv.getCccd());
+            ps.setDate(3, nv.getNgaySinh());
+            ps.setBoolean(4, nv.isGioiTinh());
+            ps.setString(5, nv.getSoDienThoai());
+            ps.setString(6, nv.getEmail());
+            ps.setString(7, nv.getCoSo());
+            ps.setString(8, nv.getDiaChi());
+            ps.setInt(9, nv.getTrangThaiID());
+            ps.setInt(10, nv.getMaNV());
+
+            ps.executeUpdate();
+
+            ps.close();
+            conn.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+
+    public void deleteNhanVien(int maNV) {
+
+        String sql = "DELETE FROM NhanVien WHERE MaNV=?";
+
+        try {
+
+            Connection conn = connect.myConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, maNV);
+
+            ps.executeUpdate();
+
+            ps.close();
+            conn.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+
 }

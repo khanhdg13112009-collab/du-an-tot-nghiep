@@ -1,0 +1,421 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#eef4ff;
+    padding:30px;
+}
+
+.login-box,
+.home-box,
+.profile-box,
+.nhanvien-box,
+.form-box{
+
+    width:95%;
+    max-width:1200px;
+
+    margin:auto;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:0 0 20px rgba(0,0,0,.15);
+
+}
+
+.logo{
+
+    font-size:55px;
+
+    text-align:center;
+
+    margin-bottom:10px;
+
+}
+
+h1{
+
+    text-align:center;
+
+    color:#2563eb;
+
+    margin-bottom:10px;
+
+    font-size:40px;
+
+}
+
+h2{
+
+    text-align:center;
+
+    color:#334155;
+
+    margin-bottom:30px;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+table th{
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+}
+
+table td{
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+}
+
+table tr:nth-child(even){
+
+    background:#f8fafc;
+
+}
+
+table tr:hover{
+
+    background:#dbeafe;
+
+}
+
+input,
+select{
+
+    width:100%;
+
+    padding:10px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+    outline:none;
+
+}
+
+input:focus,
+select:focus{
+
+    border:2px solid #2563eb;
+
+}
+
+button{
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+}
+
+button:hover{
+
+    background:#1d4ed8;
+
+}
+
+.menu-btn{
+
+    display:block;
+
+    width:350px;
+
+    margin:20px auto;
+
+    padding:18px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:#2563eb;
+
+    background:white;
+
+    border:2px solid #2563eb;
+
+    border-radius:15px;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+    transition:.3s;
+
+}
+
+.menu-btn:hover{
+
+    background:#2563eb;
+
+    color:white;
+
+    transform:translateY(-3px);
+
+}
+
+.logout-btn{
+
+    display:block;
+
+    width:350px;
+
+    margin:20px auto;
+
+    padding:18px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:white;
+
+    background:#dc2626;
+
+    border-radius:15px;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+    transition:.3s;
+
+}
+
+.logout-btn:hover{
+
+    background:#b91c1c;
+
+    transform:translateY(-3px);
+
+}
+
+.add-btn{
+
+    display:inline-block;
+
+    margin-bottom:20px;
+
+    padding:12px 18px;
+
+    background:#16a34a;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:8px;
+
+    font-weight:bold;
+
+}
+
+.add-btn:hover{
+
+    background:#15803d;
+
+}
+
+.action-btn{
+
+    display:inline-block;
+
+    padding:8px 12px;
+
+    border-radius:6px;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    margin:2px;
+
+}
+
+.edit-btn{
+
+    background:#2563eb;
+
+}
+
+.edit-btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+.delete-btn{
+
+    background:#dc2626;
+
+}
+
+.delete-btn:hover{
+
+    background:#b91c1c;
+
+}
+
+.back-btn{
+
+    display:inline-block;
+
+    padding:10px 18px;
+
+    background:#64748b;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:8px;
+
+    margin-top:20px;
+
+}
+
+.back-btn:hover{
+
+    background:#475569;
+
+}
+
+.footer{
+
+    margin-top:30px;
+
+    padding-top:20px;
+
+    border-top:1px solid #ddd;
+
+    text-align:center;
+
+    color:#64748b;
+
+}
+
+.error{
+
+    color:#dc2626;
+
+    text-align:center;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+.success{
+
+    color:#16a34a;
+
+    text-align:center;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+hr{
+
+    border:none;
+
+    border-top:2px solid #e2e8f0;
+
+    margin:25px 0;
+
+}
+
+@media(max-width:900px){
+
+    body{
+
+        padding:15px;
+
+    }
+
+    .login-box,
+    .home-box,
+    .profile-box,
+    .nhanvien-box,
+    .form-box{
+
+        width:100%;
+
+        padding:20px;
+
+    }
+
+    .menu-btn,
+    .logout-btn{
+
+        width:100%;
+
+    }
+
+    table{
+
+        display:block;
+
+        overflow-x:auto;
+
+    }
+
+}
+
+body{
+    background:red !important;
+}
+
+h1{
+    color:blue !important;
+}
+
+.nhanvien-box{
+    border:10px solid green !important;
+}

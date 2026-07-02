@@ -1,17 +1,15 @@
 package Controllers;
 
 import Models.Account;
-import Models.NhanVien;
 import Services.NhanVienService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.util.ArrayList;
 
-@WebServlet("/nhanvien")
-public class NhanVienController extends HttpServlet {
+@WebServlet("/deleteNhanVien")
+public class DeleteNhanVienController extends HttpServlet {
 
     NhanVienService service = new NhanVienService();
 
@@ -22,30 +20,28 @@ public class NhanVienController extends HttpServlet {
 
         HttpSession session = request.getSession(false);
 
-        if(session == null){
+        if (session == null) {
             response.sendRedirect("login.jsp");
             return;
         }
 
         Account account = (Account) session.getAttribute("account");
 
-        if(account == null){
+        if (account == null) {
             response.sendRedirect("login.jsp");
             return;
         }
 
-        if(account.getRoleID() != 1){
+        if (account.getRoleID() != 1) {
             response.sendRedirect("403.jsp");
             return;
         }
 
-        ArrayList<NhanVien> list = service.getAllNhanVien();
+        int maNV = Integer.parseInt(request.getParameter("maNV"));
 
-        request.setAttribute("list", list);
+        service.deleteNhanVien(maNV);
 
-        request.getRequestDispatcher("nhanvien.jsp")
-                .forward(request,response);
-
+        response.sendRedirect("nhanvien");
     }
 
 }

@@ -3,7 +3,7 @@ import java.sql.*;
 
 public class ConnectService {
     private final String URL =
-            "jdbc:sqlserver://localhost:1433;databaseName=ShopQuanAo;encrypt=true;trustServerCertificate=true";
+            "jdbc:sqlserver://localhost:1433;databaseName=DATN_NHOM7;encrypt=true;trustServerCertificate=true";
 
     private final String USER = "sa";
 
