@@ -20,6 +20,7 @@ public class LoginController extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -36,7 +37,7 @@ public class LoginController extends HttpServlet {
 
         } else {
 
-            request.setAttribute("error", "sai tai khoan hoac mat khau");
+            request.setAttribute("error", "sai tài khoản hoặc mật khẩu");
 
             request.getRequestDispatcher("login.jsp")
                     .forward(request, response);

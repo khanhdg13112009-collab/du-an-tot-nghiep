@@ -6,9 +6,9 @@
 
 <head>
 
- <meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-    <title>Trang chủ</title>
+    <title>Đăng nhập</title>
 
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/style.css">
@@ -35,16 +35,14 @@
 
             <tr>
 
-                <td>Tên đăng nhập</td>
+                <td width="35%">Tên đăng nhập</td>
 
                 <td>
-
                     <input
                             type="text"
                             name="username"
                             placeholder="Nhập tên đăng nhập"
                             required>
-
                 </td>
 
             </tr>
@@ -54,13 +52,11 @@
                 <td>Mật khẩu</td>
 
                 <td>
-
                     <input
                             type="password"
                             name="password"
                             placeholder="Nhập mật khẩu"
                             required>
-
                 </td>
 
             </tr>
@@ -76,6 +72,19 @@
         </button>
 
     </form>
+
+    <br>
+
+    <div style="text-align:center;">
+
+        <a class="forgot-link"
+           href="forgotPassword.jsp">
+
+            Quên mật khẩu?
+
+        </a>
+
+    </div>
 
     <div class="footer">
 
