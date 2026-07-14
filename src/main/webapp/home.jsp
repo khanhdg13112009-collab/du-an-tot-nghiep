@@ -8,10 +8,9 @@
 
     <meta charset="UTF-8">
 
-       <title>Trang chủ</title>
+    <title>Trang chủ</title>
 
-       <link rel="stylesheet"
-             href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -19,43 +18,52 @@
 
 <div class="home-box">
 
-    <div class="logo">👔</div>
+    <h1>👔 SHOP ÁO CHO NAM</h1>
 
-    <h1>SHOP ÁO CHO NAM</h1>
+    <h2>Xin chào,
+        ${sessionScope.account.username}
+    </h2>
 
-    <h2>Xin chào, ${sessionScope.account.username}</h2>
+    <div class="menu">
 
-    <hr>
+        <a class="menu-btn"
+           href="profile">
 
-    <a class="menu-btn" href="profile">
-
-        👤 Thông tin cá nhân
-
-    </a>
-
-    <c:if test="${sessionScope.account.roleID == 1}">
-
-        <a class="menu-btn" href="nhanvien">
-
-            👥 Quản lý nhân viên
+            👤 Thông tin cá nhân
 
         </a>
 
-    </c:if>
+        <c:if test="${sessionScope.account.roleID == 1}">
 
-    <a class="logout-btn" href="logout">
+            <a class="menu-btn"
+               href="nhanvien">
 
-        🚪 Đăng xuất
+                👔 Quản lý nhân viên
 
-    </a>
+            </a>
 
-    <div class="footer">
+            <a class="menu-btn"
+               href="sanpham">
 
-        © 2026 SHOP ÁO CHO NAM
+                👕 Quản lý sản phẩm
 
-        <br>
+            </a>
 
-        FPT PolySchool - Nhóm 7
+            <a class="menu-btn"
+               href="khachhang">
+
+                🛒 Quản lý khách hàng
+
+            </a>
+
+        </c:if>
+
+        <a class="menu-btn logout"
+           href="logout">
+
+            🚪 Đăng xuất
+
+        </a>
 
     </div>
 
