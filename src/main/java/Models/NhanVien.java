@@ -15,11 +15,11 @@ public class NhanVien {
     private String diaChi;
     private int trangThaiID;
 
-    // Constructor rỗng
+
     public NhanVien() {
     }
 
-    // Constructor đầy đủ
+
     public NhanVien(int maNV, String hoTen, String cccd,
                     Date ngaySinh, boolean gioiTinh,
                     String soDienThoai, String email,
