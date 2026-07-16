@@ -6,12 +6,12 @@
 
 <head>
 
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-     <title>Trang chủ</title>
+    <title>Trang chủ</title>
 
-     <link rel="stylesheet"
-           href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/css/style.css">
 
 </head>
 
@@ -61,6 +61,74 @@
 
         <tr>
 
+            <td>CCCD mặt trước</td>
+
+            <td>
+
+                <c:choose>
+
+                    <c:when test="${not empty nv.anhCCCDTruoc}">
+
+                        <span style="color:green;font-weight:bold;">
+
+                            ✅ Đã cập nhật
+
+                        </span>
+
+                    </c:when>
+
+                    <c:otherwise>
+
+                        <span style="color:red;">
+
+                            Chưa cập nhật
+
+                        </span>
+
+                    </c:otherwise>
+
+                </c:choose>
+
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>CCCD mặt sau</td>
+
+            <td>
+
+                <c:choose>
+
+                    <c:when test="${not empty nv.anhCCCDSau}">
+
+                        <span style="color:green;font-weight:bold;">
+
+                            ✅ Đã cập nhật
+
+                        </span>
+
+                    </c:when>
+
+                    <c:otherwise>
+
+                        <span style="color:red;">
+
+                            Chưa cập nhật
+
+                        </span>
+
+                    </c:otherwise>
+
+                </c:choose>
+
+            </td>
+
+        </tr>
+
+        <tr>
+
             <td>Ngày sinh</td>
 
             <td>${nv.ngaySinh}</td>
@@ -76,11 +144,15 @@
                 <c:choose>
 
                     <c:when test="${nv.gioiTinh}">
+
                         Nam
+
                     </c:when>
 
                     <c:otherwise>
+
                         Nữ
+
                     </c:otherwise>
 
                 </c:choose>
@@ -130,11 +202,15 @@
                 <c:choose>
 
                     <c:when test="${nv.trangThaiID == 1}">
+
                         Đang làm
+
                     </c:when>
 
                     <c:otherwise>
+
                         Nghỉ việc
+
                     </c:otherwise>
 
                 </c:choose>

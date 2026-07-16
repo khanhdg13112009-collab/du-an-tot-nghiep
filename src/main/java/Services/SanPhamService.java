@@ -17,22 +17,9 @@ public class SanPhamService {
         ArrayList<SanPham> list = new ArrayList<>();
 
         String sql =
-                "SELECT " +
-                        "sp.MaSP, " +
-                        "sp.TenSP, " +
-                        "sp.ThuongHieu, " +
-                        "sp.ChatLieu, " +
-                        "sp.MoTa, " +
-                        "sp.TrangThai, " +
-                        "ms.TenMau, " +
-                        "kc.TenSize, " +
-                        "spct.Gia, " +
-                        "spct.SoLuong " +
-                        "FROM SanPham sp " +
-                        "INNER JOIN SanPhamChiTiet spct ON sp.MaSP = spct.MaSP " +
-                        "INNER JOIN MauSac ms ON spct.MaMau = ms.MaMau " +
-                        "INNER JOIN KichCo kc ON spct.MaSize = kc.MaSize " +
-                        "ORDER BY sp.MaSP";
+                "SELECT * " +
+                        "FROM SanPham " +
+                        "ORDER BY MaSP";
 
         try {
 
@@ -53,11 +40,6 @@ public class SanPhamService {
                 sp.setMoTa(rs.getString("MoTa"));
                 sp.setTrangThai(rs.getBoolean("TrangThai"));
 
-                sp.setTenMau(rs.getString("TenMau"));
-                sp.setTenSize(rs.getString("TenSize"));
-                sp.setGia(rs.getDouble("Gia"));
-                sp.setSoLuong(rs.getInt("SoLuong"));
-
                 list.add(sp);
 
             }
@@ -76,6 +58,58 @@ public class SanPhamService {
 
     }
 
+
+    public ArrayList<SanPham> search(String keyword) {
+
+        ArrayList<SanPham> list = new ArrayList<>();
+
+        String sql =
+                "SELECT * " +
+                        "FROM SanPham " +
+                        "WHERE CAST(MaSP AS NVARCHAR) LIKE ? " +
+                        "OR TenSP LIKE ? " +
+                        "ORDER BY MaSP";
+
+        try {
+
+            Connection conn = connect.myConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, "%" + keyword + "%");
+            ps.setString(2, "%" + keyword + "%");
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                SanPham sp = new SanPham();
+
+                sp.setMaSP(rs.getInt("MaSP"));
+                sp.setTenSP(rs.getString("TenSP"));
+                sp.setThuongHieu(rs.getString("ThuongHieu"));
+                sp.setChatLieu(rs.getString("ChatLieu"));
+                sp.setMoTa(rs.getString("MoTa"));
+                sp.setTrangThai(rs.getBoolean("TrangThai"));
+
+                list.add(sp);
+
+            }
+
+            rs.close();
+            ps.close();
+            conn.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return list;
+
+    }
+    //===================== LẤY THEO ID =====================
 
     public SanPham getById(int id) {
 
@@ -121,6 +155,7 @@ public class SanPhamService {
 
     }
 
+
     public void addSanPham(SanPham sp) {
 
         String sql =
@@ -151,6 +186,7 @@ public class SanPhamService {
         }
 
     }
+
 
     public void updateSanPham(SanPham sp) {
 
@@ -185,28 +221,4 @@ public class SanPhamService {
 
     }
 
-    public void deleteSanPham(int id) {
-
-        String sql = "DELETE FROM SanPham WHERE MaSP=?";
-
-        try {
-
-            Connection conn = connect.myConnection();
-
-            PreparedStatement ps = conn.prepareStatement(sql);
-
-            ps.setInt(1, id);
-
-            ps.executeUpdate();
-
-            ps.close();
-            conn.close();
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-
-    }
 }

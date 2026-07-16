@@ -64,7 +64,7 @@
         <textarea
                 name="moTa"
                 rows="5"
-                required>${sp.moTa}</textarea>
+                style="width:100%;resize:vertical;">${sp.moTa}</textarea>
 
         <br><br>
 

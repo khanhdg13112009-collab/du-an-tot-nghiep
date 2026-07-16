@@ -2,18 +2,22 @@ package Services;
 
 import Models.KhachHang;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class KhachHangService {
 
     ConnectService connect = new ConnectService();
 
+    //===================== LẤY DANH SÁCH =====================
+
     public ArrayList<KhachHang> getAll() {
 
         ArrayList<KhachHang> list = new ArrayList<>();
 
-        String sql = "SELECT * FROM KhachHang";
+        String sql = "SELECT * FROM KhachHang ORDER BY MaKH";
 
         try {
 
@@ -50,6 +54,8 @@ public class KhachHangService {
         return list;
 
     }
+
+    //===================== LẤY THEO ID =====================
 
     public KhachHang getById(int id) {
 
@@ -92,9 +98,14 @@ public class KhachHangService {
         return kh;
 
     }
+
+    //===================== THÊM =====================
+
     public void addKhachHang(KhachHang kh) {
 
-        String sql = "INSERT INTO KhachHang(HoTen,SoDienThoai,Email,DiaChi) VALUES(?,?,?,?)";
+        String sql =
+                "INSERT INTO KhachHang(HoTen,SoDienThoai,Email,DiaChi) " +
+                        "VALUES(?,?,?,?)";
 
         try {
 
@@ -120,9 +131,14 @@ public class KhachHangService {
 
     }
 
+    //===================== SỬA =====================
+
     public void updateKhachHang(KhachHang kh) {
 
-        String sql = "UPDATE KhachHang SET HoTen=?, SoDienThoai=?, Email=?, DiaChi=? WHERE MaKH=?";
+        String sql =
+                "UPDATE KhachHang " +
+                        "SET HoTen=?,SoDienThoai=?,Email=?,DiaChi=? " +
+                        "WHERE MaKH=?";
 
         try {
 
@@ -135,31 +151,6 @@ public class KhachHangService {
             ps.setString(3, kh.getEmail());
             ps.setString(4, kh.getDiaChi());
             ps.setInt(5, kh.getMaKH());
-
-            ps.executeUpdate();
-
-            ps.close();
-            conn.close();
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-
-    }
-
-    public void deleteKhachHang(int id) {
-
-        String sql = "DELETE FROM KhachHang WHERE MaKH=?";
-
-        try {
-
-            Connection conn = connect.myConnection();
-
-            PreparedStatement ps = conn.prepareStatement(sql);
-
-            ps.setInt(1, id);
 
             ps.executeUpdate();
 

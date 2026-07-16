@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -28,8 +29,11 @@
         <h3 style="margin-bottom:20px;">
 
             Sản phẩm:
+
             <span style="color:#2563eb;">
+
                 ${list[0].tenSP}
+
             </span>
 
         </h3>
@@ -67,7 +71,15 @@
 
                 <td>${spct.tenSize}</td>
 
-                <td>${spct.gia}</td>
+                <td style="text-align:right;">
+
+                    <fmt:formatNumber
+                            value="${spct.gia}"
+                            pattern="#,##0"/>
+
+                    VNĐ
+
+                </td>
 
                 <td>${spct.soLuong}</td>
 
@@ -76,15 +88,7 @@
                     <a class="action-btn edit-btn"
                        href="editSanPhamChiTiet?id=${spct.maSPCT}">
 
-                        Sửa
-
-                    </a>
-
-                    <a class="action-btn delete-btn"
-                       href="deleteSanPhamChiTiet?id=${spct.maSPCT}"
-                       onclick="return confirm('Bạn có chắc muốn xóa?')">
-
-                        Xóa
+                        ✏️ Sửa
 
                     </a>
 

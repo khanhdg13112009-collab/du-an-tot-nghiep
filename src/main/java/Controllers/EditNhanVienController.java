@@ -71,6 +71,12 @@ public class EditNhanVienController extends HttpServlet {
         String diaChi = request.getParameter("diaChi");
         String trangThaiID = request.getParameter("trangThaiID");
 
+        String anhCCCDTruoc =
+                request.getParameter("anhCCCDTruoc");
+
+        String anhCCCDSau =
+                request.getParameter("anhCCCDSau");
+
         if (!cccd.matches("\\d{12}")) {
 
             request.setAttribute("error",
@@ -116,7 +122,8 @@ public class EditNhanVienController extends HttpServlet {
 
         LocalDate birth = LocalDate.parse(ngaySinh);
 
-        int tuoi = Period.between(birth,
+        int tuoi = Period.between(
+                birth,
                 LocalDate.now()).getYears();
 
         if (tuoi < 16) {
@@ -133,8 +140,10 @@ public class EditNhanVienController extends HttpServlet {
             return;
         }
 
-        NhanVien nv = new NhanVien();
+        NhanVien old =
+                service.getNhanVienById(Integer.parseInt(maNV));
 
+        NhanVien nv = new NhanVien();
         nv.setMaNV(Integer.parseInt(maNV));
         nv.setHoTen(hoTen);
         nv.setCccd(cccd);
@@ -144,11 +153,26 @@ public class EditNhanVienController extends HttpServlet {
         nv.setEmail(email);
         nv.setCoSo(coSo);
         nv.setDiaChi(diaChi);
-        nv.setTrangThaiID(Integer.parseInt(trangThaiID));
+
+        nv.setAnhCCCDTruoc(anhCCCDTruoc);
+        nv.setAnhCCCDSau(anhCCCDSau);
+
+        if (old.getRoleID() == 1) {
+
+            nv.setTrangThaiID(1);
+
+        } else {
+
+            nv.setTrangThaiID(Integer.parseInt(trangThaiID));
+
+        }
+
+        nv.setRoleID(old.getRoleID());
 
         service.updateNhanVien(nv);
 
         response.sendRedirect("nhanvien");
+
     }
 
 }

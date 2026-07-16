@@ -25,7 +25,6 @@ public class SanPhamController extends HttpServlet {
         if (session == null) {
 
             response.sendRedirect("login.jsp");
-
             return;
 
         }
@@ -35,14 +34,26 @@ public class SanPhamController extends HttpServlet {
         if (account == null) {
 
             response.sendRedirect("login.jsp");
-
             return;
 
         }
 
-        ArrayList<SanPham> list = service.getAll();
+        String keyword = request.getParameter("keyword");
+
+        ArrayList<SanPham> list;
+
+        if (keyword == null || keyword.trim().isEmpty()) {
+
+            list = service.getAll();
+
+        } else {
+
+            list = service.search(keyword.trim());
+
+        }
 
         request.setAttribute("list", list);
+        request.setAttribute("keyword", keyword);
 
         request.getRequestDispatcher("sanpham.jsp")
                 .forward(request, response);

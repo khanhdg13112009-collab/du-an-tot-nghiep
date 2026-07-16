@@ -76,6 +76,36 @@
 
             <tr>
 
+                <td>CCCD mặt trước</td>
+
+                <td>
+
+                    <input type="text"
+                           name="anhCCCDTruoc"
+                           value="${nv.anhCCCDTruoc}"
+                           placeholder="images/cccd/lam_front.jpg">
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>CCCD mặt sau</td>
+
+                <td>
+
+                    <input type="text"
+                           name="anhCCCDSau"
+                           value="${nv.anhCCCDSau}"
+                           placeholder="images/cccd/lam_back.jpg">
+
+                </td>
+
+            </tr>
+
+            <tr>
+
                 <td>Ngày sinh</td>
 
                 <td>
@@ -197,34 +227,53 @@
 
             </tr>
 
-            <tr>
+<tr>
 
-                <td>Trạng thái</td>
+    <td>Trạng thái</td>
 
-                <td>
+    <td>
 
-                    <select name="trangThaiID">
+        <c:choose>
 
-                        <option value="1"
-                            ${nv.trangThaiID == 1 ? 'selected' : ''}>
+            <c:when test="${nv.roleID == 1}">
 
-                            Đang làm
+                <input type="text"
+                       value="Đang làm"
+                       readonly>
 
-                        </option>
+                <input type="hidden"
+                       name="trangThaiID"
+                       value="1">
 
-                        <option value="2"
-                            ${nv.trangThaiID == 2 ? 'selected' : ''}>
+            </c:when>
 
-                            Nghỉ việc
+            <c:otherwise>
 
-                        </option>
+                <select name="trangThaiID">
 
-                    </select>
+                    <option value="1"
+                        ${nv.trangThaiID == 1 ? 'selected' : ''}>
 
-                </td>
+                        Đang làm
 
-            </tr>
+                    </option>
 
+                    <option value="2"
+                        ${nv.trangThaiID == 2 ? 'selected' : ''}>
+
+                        Nghỉ việc
+
+                    </option>
+
+                </select>
+
+            </c:otherwise>
+
+        </c:choose>
+
+    </td>
+
+</tr>
         </table>
 
         <br>

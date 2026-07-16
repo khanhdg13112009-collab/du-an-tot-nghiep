@@ -30,6 +30,39 @@
 
     </a>
 
+    <br><br>
+
+    <form action="sanpham" method="get">
+
+        <input type="text"
+               name="keyword"
+               value="${keyword}"
+               placeholder="Nhập mã hoặc tên sản phẩm..."
+               style="width:300px;
+                      padding:10px;
+                      border-radius:8px;
+                      border:1px solid #ccc;">
+
+        <button type="submit"
+                class="add-btn"
+                style="padding:10px 18px;">
+
+            🔍 Tìm
+
+        </button>
+
+        <a href="sanpham"
+           class="back-btn"
+           style="padding:10px 18px;">
+
+            Hiển thị tất cả
+
+        </a>
+
+    </form>
+
+    <br>
+
     <table>
 
         <tr>
@@ -70,13 +103,21 @@
 
                         <c:when test="${sp.trangThai}">
 
-                            Đang bán
+                            <span style="color:green;font-weight:bold;">
+
+                                🟢 Đang bán
+
+                            </span>
 
                         </c:when>
 
                         <c:otherwise>
 
-                            Ngừng bán
+                            <span style="color:red;font-weight:bold;">
+
+                                🔴 Ngừng bán
+
+                            </span>
 
                         </c:otherwise>
 
@@ -98,14 +139,6 @@
                        href="sanphamchitiet?id=${sp.maSP}">
 
                         📦 Chi tiết
-
-                    </a>
-
-                    <a class="action-btn delete-btn"
-                       href="deleteSanPham?id=${sp.maSP}"
-                       onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?')">
-
-                        🗑️ Xóa
 
                     </a>
 

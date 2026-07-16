@@ -15,16 +15,29 @@ public class NhanVien {
     private String diaChi;
     private int trangThaiID;
 
+    // Mới
+    private String tenTrangThai;
+    private int roleID;
+    private String anhCCCDTruoc;
+    private String anhCCCDSau;
 
     public NhanVien() {
     }
 
-
-    public NhanVien(int maNV, String hoTen, String cccd,
-                    Date ngaySinh, boolean gioiTinh,
-                    String soDienThoai, String email,
-                    String coSo, String diaChi,
-                    int trangThaiID) {
+    public NhanVien(int maNV,
+                    String hoTen,
+                    String cccd,
+                    Date ngaySinh,
+                    boolean gioiTinh,
+                    String soDienThoai,
+                    String email,
+                    String coSo,
+                    String diaChi,
+                    int trangThaiID,
+                    String tenTrangThai,
+                    int roleID,
+                    String anhCCCDTruoc,
+                    String anhCCCDSau) {
 
         this.maNV = maNV;
         this.hoTen = hoTen;
@@ -36,6 +49,10 @@ public class NhanVien {
         this.coSo = coSo;
         this.diaChi = diaChi;
         this.trangThaiID = trangThaiID;
+        this.tenTrangThai = tenTrangThai;
+        this.roleID = roleID;
+        this.anhCCCDTruoc = anhCCCDTruoc;
+        this.anhCCCDSau = anhCCCDSau;
     }
 
     public int getMaNV() {
@@ -116,6 +133,38 @@ public class NhanVien {
 
     public void setTrangThaiID(int trangThaiID) {
         this.trangThaiID = trangThaiID;
+    }
+
+    public String getTenTrangThai() {
+        return tenTrangThai;
+    }
+
+    public void setTenTrangThai(String tenTrangThai) {
+        this.tenTrangThai = tenTrangThai;
+    }
+
+    public int getRoleID() {
+        return roleID;
+    }
+
+    public void setRoleID(int roleID) {
+        this.roleID = roleID;
+    }
+
+    public String getAnhCCCDTruoc() {
+        return anhCCCDTruoc;
+    }
+
+    public void setAnhCCCDTruoc(String anhCCCDTruoc) {
+        this.anhCCCDTruoc = anhCCCDTruoc;
+    }
+
+    public String getAnhCCCDSau() {
+        return anhCCCDSau;
+    }
+
+    public void setAnhCCCDSau(String anhCCCDSau) {
+        this.anhCCCDSau = anhCCCDSau;
     }
 
 }

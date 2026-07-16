@@ -64,6 +64,34 @@
 
                 </td>
 
+                <tr>
+
+                    <td>CCCD mặt trước</td>
+
+                    <td>
+
+                        <input type="text"
+                               name="anhCCCDTruoc"
+                               placeholder="images/cccd/front.jpg">
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>CCCD mặt sau</td>
+
+                    <td>
+
+                        <input type="text"
+                               name="anhCCCDSau"
+                               placeholder="images/cccd/back.jpg">
+
+                    </td>
+
+                </tr>
+
             </tr>
 
             <tr>

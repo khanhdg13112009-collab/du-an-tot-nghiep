@@ -41,7 +41,8 @@ public class AddNhanVienController extends HttpServlet {
             return;
         }
 
-        request.getRequestDispatcher("addNhanVien.jsp").forward(request, response);
+        request.getRequestDispatcher("addNhanVien.jsp")
+                .forward(request, response);
     }
 
     @Override
@@ -63,43 +64,59 @@ public class AddNhanVienController extends HttpServlet {
         String diaChi = request.getParameter("diaChi");
         String trangThai = request.getParameter("trangThaiID");
 
+        String anhCCCDTruoc =
+                request.getParameter("anhCCCDTruoc");
+
+        String anhCCCDSau =
+                request.getParameter("anhCCCDSau");
+
         if (!cccd.matches("\\d{12}")) {
 
-            request.setAttribute("error", "CCCD phải gồm đúng 12 chữ số.");
+            request.setAttribute("error",
+                    "CCCD phải gồm đúng 12 chữ số.");
 
-            request.getRequestDispatcher("addNhanVien.jsp").forward(request, response);
+            request.getRequestDispatcher("addNhanVien.jsp")
+                    .forward(request, response);
 
             return;
         }
 
-        if (!(soDienThoai.matches("0\\d{9}") ||
-                soDienThoai.matches("\\+84\\d{9}"))) {
+        if (!(soDienThoai.matches("0\\d{9}")
+                || soDienThoai.matches("\\+84\\d{9}"))) {
 
-            request.setAttribute("error", "Số điện thoại không hợp lệ.");
+            request.setAttribute("error",
+                    "Số điện thoại không hợp lệ.");
 
-            request.getRequestDispatcher("addNhanVien.jsp").forward(request, response);
+            request.getRequestDispatcher("addNhanVien.jsp")
+                    .forward(request, response);
 
             return;
         }
 
         if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
 
-            request.setAttribute("error", "Email không hợp lệ.");
+            request.setAttribute("error",
+                    "Email không hợp lệ.");
 
-            request.getRequestDispatcher("addNhanVien.jsp").forward(request, response);
+            request.getRequestDispatcher("addNhanVien.jsp")
+                    .forward(request, response);
 
             return;
         }
 
         LocalDate birth = LocalDate.parse(ngaySinh);
 
-        int tuoi = Period.between(birth, LocalDate.now()).getYears();
+        int tuoi = Period.between(
+                birth,
+                LocalDate.now()).getYears();
 
         if (tuoi < 16) {
 
-            request.setAttribute("error", "Nhân viên phải từ 16 tuổi trở lên.");
+            request.setAttribute("error",
+                    "Nhân viên phải từ 16 tuổi trở lên.");
 
-            request.getRequestDispatcher("addNhanVien.jsp").forward(request, response);
+            request.getRequestDispatcher("addNhanVien.jsp")
+                    .forward(request, response);
 
             return;
         }
@@ -114,11 +131,16 @@ public class AddNhanVienController extends HttpServlet {
         nv.setEmail(email);
         nv.setCoSo(coSo);
         nv.setDiaChi(diaChi);
+
+        nv.setAnhCCCDTruoc(anhCCCDTruoc);
+        nv.setAnhCCCDSau(anhCCCDSau);
+
         nv.setTrangThaiID(Integer.parseInt(trangThai));
 
         service.addNhanVien(nv);
 
         response.sendRedirect("nhanvien");
+
     }
 
 }

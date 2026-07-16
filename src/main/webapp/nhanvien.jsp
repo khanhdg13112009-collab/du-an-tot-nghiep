@@ -6,9 +6,9 @@
 
 <head>
 
- <meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-    <title>Trang chủ</title>
+    <title>Quản lý nhân viên</title>
 
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/style.css">
@@ -25,7 +25,8 @@
 
     <h2>QUẢN LÝ NHÂN VIÊN</h2>
 
-    <a class="add-btn" href="addNhanVien">
+    <a class="add-btn"
+       href="addNhanVien">
 
         ➕ Thêm nhân viên
 
@@ -41,6 +42,10 @@
 
             <th>CCCD</th>
 
+            <th>CCCD trước</th>
+
+            <th>CCCD sau</th>
+
             <th>Ngày sinh</th>
 
             <th>Giới tính</th>
@@ -52,6 +57,8 @@
             <th>Cơ sở</th>
 
             <th>Địa chỉ</th>
+
+            <th>Trạng thái</th>
 
             <th>Thao tác</th>
 
@@ -67,6 +74,62 @@
 
                 <td>${nv.cccd}</td>
 
+                <td>
+
+                    <c:choose>
+
+                        <c:when test="${not empty nv.anhCCCDTruoc}">
+
+                            <span style="color:green;font-weight:bold;">
+
+                                ✅ Đã có
+
+                            </span>
+
+                        </c:when>
+
+                        <c:otherwise>
+
+                            <span style="color:red;">
+
+                                ❌ Chưa có
+
+                            </span>
+
+                        </c:otherwise>
+
+                    </c:choose>
+
+                </td>
+
+                <td>
+
+                    <c:choose>
+
+                        <c:when test="${not empty nv.anhCCCDSau}">
+
+                            <span style="color:green;font-weight:bold;">
+
+                                ✅ Đã có
+
+                            </span>
+
+                        </c:when>
+
+                        <c:otherwise>
+
+                            <span style="color:red;">
+
+                                ❌ Chưa có
+
+                            </span>
+
+                        </c:otherwise>
+
+                    </c:choose>
+
+                </td>
+
                 <td>${nv.ngaySinh}</td>
 
                 <td>
@@ -74,15 +137,11 @@
                     <c:choose>
 
                         <c:when test="${nv.gioiTinh}">
-
                             Nam
-
                         </c:when>
 
                         <c:otherwise>
-
                             Nữ
-
                         </c:otherwise>
 
                     </c:choose>
@@ -99,18 +158,34 @@
 
                 <td>
 
+                    <c:choose>
+
+                        <c:when test="${nv.trangThaiID == 1}">
+
+                            <span style="color:green;font-weight:bold;">
+                                🟢 Đang làm
+                            </span>
+
+                        </c:when>
+
+                        <c:otherwise>
+
+                            <span style="color:red;font-weight:bold;">
+                                🔴 Nghỉ việc
+                            </span>
+
+                        </c:otherwise>
+
+                    </c:choose>
+
+                </td>
+
+                <td>
+
                     <a class="action-btn edit-btn"
                        href="editNhanVien?maNV=${nv.maNV}">
 
                         ✏️ Sửa
-
-                    </a>
-
-                    <a class="action-btn delete-btn"
-                       href="deleteNhanVien?maNV=${nv.maNV}"
-                       onclick="return confirm('Bạn có chắc muốn xóa nhân viên này?')">
-
-                        🗑️ Xóa
 
                     </a>
 
@@ -124,7 +199,8 @@
 
     <br>
 
-    <a class="back-btn" href="home.jsp">
+    <a class="back-btn"
+       href="home.jsp">
 
         🏠 Trang chủ
 

@@ -40,9 +40,7 @@
 
             <th>Số điện thoại</th>
 
-            <th>Email</th>
 
-            <th>Địa chỉ</th>
 
             <th>Chức năng</th>
 
@@ -58,24 +56,14 @@
 
                 <td>${kh.soDienThoai}</td>
 
-                <td>${kh.email}</td>
 
-                <td>${kh.diaChi}</td>
 
                 <td>
 
                     <a class="action-btn edit-btn"
                        href="editKhachHang?id=${kh.maKH}">
 
-                        Sửa
-
-                    </a>
-
-                    <a class="action-btn delete-btn"
-                       href="deleteKhachHang?id=${kh.maKH}"
-                       onclick="return confirm('Bạn có chắc muốn xóa?')">
-
-                        Xóa
+                        ✏️ Sửa
 
                     </a>
 
