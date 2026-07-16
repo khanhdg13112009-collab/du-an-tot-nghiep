@@ -1,0 +1,1099 @@
+/*=========================================================
+        SHOP ÁO CHO NAM
+        LUXURY FASHION 2026
+=========================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+
+    --black:#111111;
+    --black2:#222222;
+
+    --white:#ffffff;
+
+    --bg:#f5f5f3;
+
+    --card:#ffffff;
+
+    --line:#ececec;
+
+    --text:#202020;
+
+    --gray:#6b7280;
+
+    --green:#22c55e;
+
+    --red:#ef4444;
+
+    --orange:#f59e0b;
+
+    --shadow:
+        0 20px 45px rgba(0,0,0,.06);
+
+    --radius:24px;
+
+}
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    font-family:'Inter',sans-serif;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    background:
+
+        radial-gradient(circle at top,#ffffff,#f5f5f3);
+
+    color:var(--text);
+
+    min-height:100vh;
+
+    padding:45px;
+
+}
+
+/*==========================================
+            MAIN CARD
+==========================================*/
+
+.login-box,
+.home-box,
+.profile-box,
+.form-box,
+.nhanvien-box{
+
+    width:95%;
+
+    max-width:1450px;
+
+    margin:auto;
+
+    background:var(--card);
+
+    border-radius:32px;
+
+    padding:45px;
+
+    box-shadow:var(--shadow);
+
+    border:1px solid var(--line);
+
+}
+
+/*==========================================
+                LOGO
+==========================================*/
+
+.logo{
+
+    width:95px;
+
+    height:95px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#111111;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    font-size:46px;
+
+    margin-bottom:22px;
+
+}
+
+/*==========================================
+                TITLE
+==========================================*/
+
+h1{
+
+    text-align:center;
+
+    font-size:44px;
+
+    font-weight:800;
+
+    letter-spacing:3px;
+
+    color:#111111;
+
+    margin-bottom:10px;
+
+    text-transform:uppercase;
+
+}
+
+h2{
+
+    text-align:center;
+
+    color:#7b7b7b;
+
+    font-weight:500;
+
+    font-size:19px;
+
+    margin-bottom:40px;
+
+}
+
+/*==========================================
+                LINE
+==========================================*/
+
+hr{
+
+    border:none;
+
+    height:1px;
+
+    background:var(--line);
+
+    margin:35px 0;
+
+}
+
+/*==========================================
+            MESSAGE
+==========================================*/
+
+.error{
+
+    background:#fff2f2;
+
+    color:#dc2626;
+
+    border-left:5px solid #dc2626;
+
+    padding:18px;
+
+    border-radius:14px;
+
+    margin-bottom:20px;
+
+    font-weight:600;
+
+}
+
+.success{
+
+    background:#ecfff3;
+
+    color:#16a34a;
+
+    border-left:5px solid #16a34a;
+
+    padding:18px;
+
+    border-radius:14px;
+
+    margin-bottom:20px;
+
+    font-weight:600;
+
+}
+/*=========================================================
+                    FORM STYLE
+=========================================================*/
+
+form{
+
+    width:100%;
+
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:24px;
+
+}
+
+label{
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#444;
+
+    margin-bottom:10px;
+
+    letter-spacing:.3px;
+
+}
+
+/*=========================================================
+                    INPUT
+=========================================================*/
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:18px 22px;
+
+    background:#fafafa;
+
+    border:2px solid transparent;
+
+    border-radius:18px;
+
+    font-size:15px;
+
+    color:#222;
+
+    transition:.35s;
+
+}
+
+input::placeholder,
+textarea::placeholder{
+
+    color:#9ca3af;
+
+}
+
+input:hover,
+select:hover,
+textarea:hover{
+
+    background:#fff;
+
+    border-color:#dddddd;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    outline:none;
+
+    background:#ffffff;
+
+    border-color:#111111;
+
+    box-shadow:
+
+        0 10px 30px rgba(0,0,0,.08);
+
+}
+
+textarea{
+
+    resize:vertical;
+
+    min-height:150px;
+
+}
+
+/*=========================================================
+                    DATE
+=========================================================*/
+
+input[type="date"]{
+
+    cursor:pointer;
+
+}
+
+/*=========================================================
+                    SELECT
+=========================================================*/
+
+select{
+
+    cursor:pointer;
+
+    appearance:none;
+
+    background-image:
+
+    linear-gradient(45deg,transparent 50%,#444 50%),
+
+    linear-gradient(135deg,#444 50%,transparent 50%);
+
+    background-position:
+
+    calc(100% - 24px) 24px,
+
+    calc(100% - 18px) 24px;
+
+    background-size:6px 6px;
+
+    background-repeat:no-repeat;
+
+}
+
+/*=========================================================
+                    TABLE
+=========================================================*/
+
+table{
+
+    width:100%;
+
+    border-collapse:separate;
+
+    border-spacing:0 12px;
+
+}
+
+table tr{
+
+    background:white;
+
+    transition:.3s;
+
+}
+
+table td{
+
+    padding:18px;
+
+    font-size:15px;
+
+}
+
+table td:first-child{
+
+    width:240px;
+
+    font-weight:600;
+
+    color:#555;
+
+}
+
+table tr:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/*=========================================================
+                SEARCH BOX
+=========================================================*/
+
+.search-box{
+
+    position:relative;
+
+    width:360px;
+
+    margin-bottom:30px;
+
+}
+
+.search-box input{
+
+    padding-left:52px;
+
+}
+
+.search-box::before{
+
+    content:"🔍";
+
+    position:absolute;
+
+    left:18px;
+
+    top:17px;
+
+    font-size:18px;
+
+}
+
+/*=========================================================
+                STATUS
+=========================================================*/
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+.badge-success{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+.badge-danger{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+.badge-warning{
+
+    background:#fef3c7;
+
+    color:#b45309;
+
+}
+/*=========================================================
+                    BUTTON SYSTEM
+=========================================================*/
+
+button{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    padding:16px 34px;
+
+    border-radius:18px;
+
+    background:#111111;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+    transition:.35s;
+
+    box-shadow:
+
+        0 10px 25px rgba(0,0,0,.10);
+
+}
+
+button:hover{
+
+    background:#000;
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+        0 18px 35px rgba(0,0,0,.18);
+
+}
+
+button:active{
+
+    transform:scale(.96);
+
+}
+
+/*=========================================================
+                    MENU CARD
+=========================================================*/
+
+.menu-wrapper{
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(auto-fit,minmax(240px,1fr));
+
+    gap:28px;
+
+    margin-top:35px;
+
+}
+
+.menu-btn{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:220px;
+
+    text-decoration:none;
+
+    color:#111111;
+
+    background:white;
+
+    border:1px solid #ececec;
+
+    border-radius:28px;
+
+    transition:.35s;
+
+    box-shadow:
+
+        0 12px 28px rgba(0,0,0,.04);
+
+}
+
+.menu-btn:hover{
+
+    transform:
+
+        translateY(-8px);
+
+    box-shadow:
+
+        0 22px 45px rgba(0,0,0,.10);
+
+}
+
+.menu-btn .icon{
+
+    font-size:54px;
+
+    margin-bottom:22px;
+
+}
+
+.menu-btn .title{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
+}
+
+.menu-btn .desc{
+
+    font-size:14px;
+
+    color:#888;
+
+    text-align:center;
+
+    width:85%;
+
+}
+
+/*=========================================================
+                ACTION BUTTON
+=========================================================*/
+
+.action-btn{
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-width:95px;
+
+    padding:12px 18px;
+
+    margin:3px;
+
+    text-decoration:none;
+
+    border-radius:14px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+/*=========================================================
+                    EDIT
+=========================================================*/
+
+.edit-btn{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+.edit-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+/*=========================================================
+                    DELETE
+=========================================================*/
+
+.delete-btn{
+
+    background:#ef4444;
+
+    color:white;
+
+}
+
+.delete-btn:hover{
+
+    background:#dc2626;
+
+    transform:translateY(-2px);
+
+}
+
+/*=========================================================
+                    ADD
+=========================================================*/
+
+.add-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:14px 24px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    background:#16a34a;
+
+    color:white;
+
+    font-weight:700;
+
+    transition:.35s;
+
+    margin-bottom:24px;
+
+}
+
+.add-btn:hover{
+
+    background:#15803d;
+
+    transform:translateY(-3px);
+
+}
+
+/*=========================================================
+                    BACK
+=========================================================*/
+
+.back-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:14px 24px;
+
+    text-decoration:none;
+
+    background:#4b5563;
+
+    color:white;
+
+    border-radius:18px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.back-btn:hover{
+
+    background:#374151;
+
+}
+
+/*=========================================================
+                    LOGOUT
+=========================================================*/
+
+.logout-btn{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:280px;
+
+    margin:40px auto 0;
+
+    padding:18px;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:#111111;
+
+    border-radius:22px;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    transition:.35s;
+
+}
+
+.logout-btn:hover{
+
+    background:#000;
+
+    transform:translateY(-5px);
+
+}
+/*=========================================================
+                    IMAGE
+=========================================================*/
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+.cccd-img{
+
+    width:230px;
+
+    border-radius:22px;
+
+    border:1px solid #ececec;
+
+    object-fit:cover;
+
+    transition:.35s;
+
+    cursor:pointer;
+
+    box-shadow:
+
+        0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.cccd-img:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:
+
+        0 25px 45px rgba(0,0,0,.15);
+
+}
+
+/*=========================================================
+                    FOOTER
+=========================================================*/
+
+.footer{
+
+    margin-top:45px;
+
+    padding-top:24px;
+
+    border-top:1px solid #ececec;
+
+    text-align:center;
+
+    color:#888;
+
+    font-size:14px;
+
+    line-height:30px;
+
+}
+
+/*=========================================================
+                    CARD EFFECT
+=========================================================*/
+
+.login-box,
+.home-box,
+.profile-box,
+.form-box,
+.nhanvien-box{
+
+    transition:
+
+        transform .35s,
+
+        box-shadow .35s;
+
+}
+
+.login-box:hover,
+.home-box:hover,
+.profile-box:hover,
+.form-box:hover,
+.nhanvien-box:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+
+        0 28px 55px rgba(0,0,0,.10);
+
+}
+
+/*=========================================================
+                    SCROLLBAR
+=========================================================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+    height:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#f5f5f5;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#cfcfcf;
+
+    border-radius:30px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#999;
+
+}
+
+/*=========================================================
+                    TEXT
+=========================================================*/
+
+::selection{
+
+    background:#111111;
+
+    color:white;
+
+}
+
+/*=========================================================
+                    ANIMATION
+=========================================================*/
+
+.login-box,
+.home-box,
+.profile-box,
+.form-box,
+.nhanvien-box{
+
+    animation:fadeUp .55s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.logo{
+
+    animation:logoZoom .6s ease;
+
+}
+
+@keyframes logoZoom{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.7);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+/*=========================================================
+                    RESPONSIVE
+=========================================================*/
+
+@media(max-width:1200px){
+
+    body{
+
+        padding:25px;
+
+    }
+
+}
+
+@media(max-width:900px){
+
+    .login-box,
+    .home-box,
+    .profile-box,
+    .form-box,
+    .nhanvien-box{
+
+        width:100%;
+
+        padding:28px;
+
+    }
+
+    table{
+
+        display:block;
+
+        overflow-x:auto;
+
+        white-space:nowrap;
+
+    }
+
+    .menu-wrapper{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    body{
+
+        padding:15px;
+
+    }
+
+    h1{
+
+        font-size:30px;
+
+    }
+
+    h2{
+
+        font-size:17px;
+
+    }
+
+    .logo{
+
+        width:75px;
+
+        height:75px;
+
+        font-size:34px;
+
+    }
+
+    button,
+    .add-btn,
+    .back-btn,
+    .logout-btn{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+}
+
+/*=========================================================
+                    END
+=========================================================*/

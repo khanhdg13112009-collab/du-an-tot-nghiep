@@ -10,7 +10,7 @@
     <title>Sửa màu sắc</title>
 
     <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/css/style.css">
+    href="${pageContext.request.contextPath}/css/style2.css">
 
 </head>
 

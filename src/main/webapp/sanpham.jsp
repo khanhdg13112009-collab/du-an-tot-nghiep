@@ -10,8 +10,8 @@
 
     <title>Quản lý sản phẩm</title>
 
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/css/style.css">
+ <link rel="stylesheet"
+ href="${pageContext.request.contextPath}/css/style2.css">
 
 </head>
 
