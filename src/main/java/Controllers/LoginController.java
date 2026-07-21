@@ -27,17 +27,31 @@ public class LoginController extends HttpServlet {
 
         Account account = accountService.login(username, password);
 
+        // Kiểm tra đăng nhập
+        System.out.println("Username = " + username);
+        System.out.println("Password = " + password);
+        System.out.println("Account = " + account);
+
         if (account != null) {
 
             HttpSession session = request.getSession();
 
             session.setAttribute("account", account);
 
-            response.sendRedirect("home.jsp");
+
+            if(account.getRoleID() == 1){
+
+                response.sendRedirect("admin");
+
+            }else{
+
+                response.sendRedirect("home");
+
+            }
 
         } else {
 
-            request.setAttribute("error", "sai tài khoản hoặc mật khẩu");
+            request.setAttribute("error", "Sai tài khoản hoặc mật khẩu");
 
             request.getRequestDispatcher("login.jsp")
                     .forward(request, response);

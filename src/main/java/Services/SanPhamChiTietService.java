@@ -11,7 +11,6 @@ public class SanPhamChiTietService {
 
     ConnectService connect = new ConnectService();
 
-
     public ArrayList<SanPhamChiTiet> getAll() {
 
         ArrayList<SanPhamChiTiet> list = new ArrayList<>();
@@ -73,7 +72,6 @@ public class SanPhamChiTietService {
 
     }
 
-
     public SanPhamChiTiet getById(int id) {
 
         SanPhamChiTiet spct = null;
@@ -117,13 +115,73 @@ public class SanPhamChiTietService {
         return spct;
 
     }
-    //===================== THÊM =====================
+
+    public SanPhamChiTiet getByMaSPCT(int maSPCT) {
+
+        SanPhamChiTiet spct = null;
+
+        String sql =
+                "SELECT " +
+                        "spct.MaSPCT," +
+                        "spct.MaSP," +
+                        "spct.MaMau," +
+                        "spct.MaSize," +
+                        "spct.Gia," +
+                        "spct.SoLuong," +
+                        "sp.TenSP," +
+                        "ms.TenMau," +
+                        "kc.TenSize " +
+                        "FROM SanPhamChiTiet spct " +
+                        "INNER JOIN SanPham sp ON spct.MaSP = sp.MaSP " +
+                        "INNER JOIN MauSac ms ON spct.MaMau = ms.MaMau " +
+                        "INNER JOIN KichCo kc ON spct.MaSize = kc.MaSize " +
+                        "WHERE spct.MaSPCT=?";
+
+        try {
+
+            Connection conn = connect.myConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, maSPCT);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                spct = new SanPhamChiTiet();
+
+                spct.setMaSPCT(rs.getInt("MaSPCT"));
+                spct.setMaSP(rs.getInt("MaSP"));
+                spct.setMaMau(rs.getInt("MaMau"));
+                spct.setMaSize(rs.getInt("MaSize"));
+                spct.setGia(rs.getDouble("Gia"));
+                spct.setSoLuong(rs.getInt("SoLuong"));
+
+                spct.setTenSP(rs.getString("TenSP"));
+                spct.setTenMau(rs.getString("TenMau"));
+                spct.setTenSize(rs.getString("TenSize"));
+
+            }
+
+            rs.close();
+            ps.close();
+            conn.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return spct;
+
+    }
 
     public void addSanPhamChiTiet(SanPhamChiTiet spct) {
 
         String sql =
-                "INSERT INTO SanPhamChiTiet(MaSP,MaMau,MaSize,Gia,SoLuong) " +
-                        "VALUES(?,?,?,?,?)";
+                "INSERT INTO SanPhamChiTiet(MaSP,MaMau,MaSize,Gia,SoLuong) VALUES(?,?,?,?,?)";
 
         try {
 
@@ -149,14 +207,11 @@ public class SanPhamChiTietService {
         }
 
     }
-    //===================== SỬA =====================
 
     public void updateSanPhamChiTiet(SanPhamChiTiet spct) {
 
         String sql =
-                "UPDATE SanPhamChiTiet " +
-                        "SET MaSP=?,MaMau=?,MaSize=?,Gia=?,SoLuong=? " +
-                        "WHERE MaSPCT=?";
+                "UPDATE SanPhamChiTiet SET MaSP=?,MaMau=?,MaSize=?,Gia=?,SoLuong=? WHERE MaSPCT=?";
 
         try {
 
@@ -183,8 +238,6 @@ public class SanPhamChiTietService {
         }
 
     }
-    //===================== XÓA =====================
-
     public void deleteSanPhamChiTiet(int id) {
 
         String sql =
@@ -210,6 +263,7 @@ public class SanPhamChiTietService {
         }
 
     }
+
     public ArrayList<SanPhamChiTiet> getBySanPham(int maSP) {
 
         ArrayList<SanPhamChiTiet> list = new ArrayList<>();
@@ -273,4 +327,40 @@ public class SanPhamChiTietService {
         return list;
 
     }
+
+    //===================== GIẢM SỐ LƯỢNG SAU KHI THANH TOÁN =====================
+
+    public boolean giamSoLuong(int maSPCT, int soLuong) {
+
+        String sql =
+                "UPDATE SanPhamChiTiet " +
+                        "SET SoLuong = SoLuong - ? " +
+                        "WHERE MaSPCT = ?";
+
+        try {
+
+            Connection conn = connect.myConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, soLuong);
+            ps.setInt(2, maSPCT);
+
+            boolean success = ps.executeUpdate() > 0;
+
+            ps.close();
+            conn.close();
+
+            return success;
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return false;
+
+    }
+
 }

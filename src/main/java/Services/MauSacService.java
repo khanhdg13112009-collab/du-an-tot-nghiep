@@ -11,7 +11,6 @@ public class MauSacService {
 
     ConnectService connect = new ConnectService();
 
-    //===================== LẤY DANH SÁCH =====================
 
     public ArrayList<MauSac> getAll() {
 

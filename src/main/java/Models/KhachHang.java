@@ -1,24 +1,18 @@
 package Models;
 
 public class KhachHang {
+
     private int maKH;
-
     private String hoTen;
-
     private String soDienThoai;
-
     private String email;
-
     private String diaChi;
 
     public KhachHang() {
     }
 
-    public KhachHang(int maKH, String hoTen,
-                     String soDienThoai,
-                     String email,
-                     String diaChi) {
-
+    public KhachHang(int maKH, String hoTen, String soDienThoai,
+                     String email, String diaChi) {
         this.maKH = maKH;
         this.hoTen = hoTen;
         this.soDienThoai = soDienThoai;

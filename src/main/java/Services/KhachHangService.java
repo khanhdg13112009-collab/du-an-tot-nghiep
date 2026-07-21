@@ -11,7 +11,6 @@ public class KhachHangService {
 
     ConnectService connect = new ConnectService();
 
-    //===================== LẤY DANH SÁCH =====================
 
     public ArrayList<KhachHang> getAll() {
 
@@ -55,7 +54,6 @@ public class KhachHangService {
 
     }
 
-    //===================== LẤY THEO ID =====================
 
     public KhachHang getById(int id) {
 
@@ -99,12 +97,12 @@ public class KhachHangService {
 
     }
 
-    //===================== THÊM =====================
 
-    public void addKhachHang(KhachHang kh) {
+    public int addKhachHang(KhachHang kh) {
 
         String sql =
                 "INSERT INTO KhachHang(HoTen,SoDienThoai,Email,DiaChi) " +
+                        "OUTPUT INSERTED.MaKH " +
                         "VALUES(?,?,?,?)";
 
         try {
@@ -118,8 +116,21 @@ public class KhachHangService {
             ps.setString(3, kh.getEmail());
             ps.setString(4, kh.getDiaChi());
 
-            ps.executeUpdate();
+            ResultSet rs = ps.executeQuery();
 
+            if (rs.next()) {
+
+                int maKH = rs.getInt(1);
+
+                rs.close();
+                ps.close();
+                conn.close();
+
+                return maKH;
+
+            }
+
+            rs.close();
             ps.close();
             conn.close();
 
@@ -129,9 +140,10 @@ public class KhachHangService {
 
         }
 
+        return -1;
+
     }
 
-    //===================== SỬA =====================
 
     public void updateKhachHang(KhachHang kh) {
 
