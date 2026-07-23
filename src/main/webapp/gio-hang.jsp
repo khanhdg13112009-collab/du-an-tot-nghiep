@@ -1,4 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page contentType="text/html;charset=UTF-8"
+         pageEncoding="UTF-8"
+         language="java"
+         isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -10,7 +13,8 @@
 
     <title>Giỏ hàng</title>
 
-    <link rel="stylesheet" href="assets/css/cart.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/css/cart.css">
 
 </head>
 
@@ -32,59 +36,73 @@
 
     <table>
 
+        <thead>
+
         <tr>
 
             <th>Sản phẩm</th>
-
             <th>Màu</th>
-
             <th>Size</th>
-
             <th>Giá</th>
-
             <th>Số lượng</th>
-
             <th>Thành tiền</th>
-
             <th>Thao tác</th>
 
         </tr>
+
+        </thead>
+
+        <tbody>
 
         <c:forEach items="${cart.items}" var="item">
 
             <tr>
 
-                <td>${item.sanPham.tenSP}</td>
+                <td class="product-name">
+                    ${item.sanPham.tenSP}
+                </td>
 
                 <td>${item.sanPham.tenMau}</td>
 
                 <td>${item.sanPham.tenSize}</td>
 
-                <td>${item.sanPham.gia}</td>
+                <td class="price">
+                    ${item.sanPham.gia} VNĐ
+                </td>
 
                 <td>
 
-                    <a href="quantity-cart?action=minus&maSPCT=${item.sanPham.maSPCT}">
-                        <button>-</button>
-                    </a>
+                    <div class="quantity">
 
-                    <span style="margin:0 10px;">
-                        ${item.soLuong}
-                    </span>
+                        <a href="quantity-cart?action=minus&maSPCT=${item.sanPham.maSPCT}">
+                            <button type="button">-</button>
+                        </a>
 
-                    <a href="quantity-cart?action=plus&maSPCT=${item.sanPham.maSPCT}">
-                        <button>+</button>
-                    </a>
+                        <span>${item.soLuong}</span>
+
+                        <a href="quantity-cart?action=plus&maSPCT=${item.sanPham.maSPCT}">
+                            <button type="button">+</button>
+                        </a>
+
+                    </div>
 
                 </td>
 
-                <td>${item.thanhTien}</td>
+                <td class="total">
+
+                    ${item.thanhTien} VNĐ
+
+                </td>
 
                 <td>
 
                     <a href="remove-cart?maSPCT=${item.sanPham.maSPCT}">
 
-                        <button>Xóa</button>
+                        <button class="delete-btn">
+
+                            Xóa
+
+                        </button>
 
                     </a>
 
@@ -94,23 +112,41 @@
 
         </c:forEach>
 
+        </tbody>
+
     </table>
 
-    <h2>
+    <div class="bottom">
 
-        Tổng tiền:
+        <h2>
 
-        ${cart.tongTien} VNĐ
+            Tổng tiền:
 
-    </h2>
+            <span>${cart.tongTien} VNĐ</span>
 
-    <br>
+        </h2>
 
-    <a href="home">
+        <div>
 
-        <button>Tiếp tục mua</button>
+            <a href="home">
 
-    </a>
+                <button class="continue-btn">
+
+                    Tiếp tục mua
+
+                </button>
+
+            </a>
+
+            <a href="checkout">
+                <button class="checkout-btn">
+                    Thanh toán
+                </button>
+            </a>
+
+        </div>
+
+    </div>
 
 </div>
 

@@ -48,6 +48,7 @@
             </button>
 
         </form>
+        </div>
 
     <div class="login">
 
@@ -62,9 +63,17 @@
 
             <a href="login.jsp">Đăng nhập</a>
 
+            <a href="register">Đăng ký</a>
+
         <% }else{ %>
 
             <span>Xin chào <%= account.getUsername() %></span>
+
+            <% if(account.getRoleID() == 1){ %>
+
+                <a href="admin">Quản trị</a>
+
+            <% } %>
 
             <a href="logout">Đăng xuất</a>
 
@@ -125,15 +134,15 @@
                         <img src="${pageContext.request.contextPath}/assets/images/no-image.png"
                              alt="Ảnh sản phẩm">
 
-                        <h3>${sp.tenSP}</h3>
+                      <h3>${sp.tenSP}</h3>
 
-                        <p>${sp.thuongHieu}</p>
+                      <p class="brand">${sp.thuongHieu}</p>
 
-                        <a href="product-detail?maSP=${sp.maSP}">
-
-                            <button>Mua ngay</button>
-
-                        </a>
+                      <a href="product-detail?maSP=${sp.maSP}">
+                          <button class="detail-btn">
+                              Xem chi tiết
+                          </button>
+                      </a>
 
                     </div>
 

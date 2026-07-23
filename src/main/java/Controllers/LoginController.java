@@ -27,7 +27,6 @@ public class LoginController extends HttpServlet {
 
         Account account = accountService.login(username, password);
 
-        // Kiểm tra đăng nhập
         System.out.println("Username = " + username);
         System.out.println("Password = " + password);
         System.out.println("Account = " + account);
@@ -38,16 +37,7 @@ public class LoginController extends HttpServlet {
 
             session.setAttribute("account", account);
 
-
-            if(account.getRoleID() == 1){
-
-                response.sendRedirect("admin");
-
-            }else{
-
-                response.sendRedirect("home");
-
-            }
+            response.sendRedirect("home");
 
         } else {
 
@@ -55,6 +45,9 @@ public class LoginController extends HttpServlet {
 
             request.getRequestDispatcher("login.jsp")
                     .forward(request, response);
+
         }
+
     }
+
 }

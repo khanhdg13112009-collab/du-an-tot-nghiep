@@ -23,7 +23,6 @@ public class RegisterController extends HttpServlet {
 
         request.getRequestDispatcher("register.jsp")
                 .forward(request, response);
-
     }
 
     @Override
@@ -33,21 +32,15 @@ public class RegisterController extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        String hoTen = request.getParameter("hoTen");
-        String soDienThoai = request.getParameter("soDienThoai");
-        String email = request.getParameter("email");
-        String diaChi = request.getParameter("diaChi");
-
         String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String soDienThoai = request.getParameter("soDienThoai");
         String password = request.getParameter("password");
         String rePassword = request.getParameter("rePassword");
 
-
-        if (hoTen == null || hoTen.trim().isEmpty()
-                || soDienThoai == null || soDienThoai.trim().isEmpty()
+        if (username == null || username.trim().isEmpty()
                 || email == null || email.trim().isEmpty()
-                || diaChi == null || diaChi.trim().isEmpty()
-                || username == null || username.trim().isEmpty()
+                || soDienThoai == null || soDienThoai.trim().isEmpty()
                 || password == null || password.trim().isEmpty()
                 || rePassword == null || rePassword.trim().isEmpty()) {
 
@@ -56,30 +49,47 @@ public class RegisterController extends HttpServlet {
             return;
         }
 
+        if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+
+            request.setAttribute("error", "Email không hợp lệ.");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+            return;
+        }
 
         if (!password.equals(rePassword)) {
 
             request.setAttribute("error", "Mật khẩu nhập lại không đúng.");
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
-
         }
-
 
         if (accountService.checkUsername(username)) {
 
             request.setAttribute("error", "Tên đăng nhập đã tồn tại.");
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
+        }
 
+        if (khService.checkEmail(email)) {
+
+            request.setAttribute("error", "Email đã được sử dụng.");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+            return;
+        }
+
+        if (khService.checkSoDienThoai(soDienThoai)) {
+
+            request.setAttribute("error", "Số điện thoại đã được sử dụng.");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+            return;
         }
 
         KhachHang kh = new KhachHang();
 
-        kh.setHoTen(hoTen);
+        kh.setHoTen("");
         kh.setSoDienThoai(soDienThoai);
         kh.setEmail(email);
-        kh.setDiaChi(diaChi);
+        kh.setDiaChi("");
 
         int maKH = khService.addKhachHang(kh);
 
@@ -88,7 +98,6 @@ public class RegisterController extends HttpServlet {
             request.setAttribute("error", "Không thể tạo khách hàng.");
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
-
         }
 
         Account account = new Account();
@@ -111,6 +120,5 @@ public class RegisterController extends HttpServlet {
             request.getRequestDispatcher("register.jsp").forward(request, response);
 
         }
-
     }
 }

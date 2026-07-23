@@ -177,4 +177,66 @@ public class KhachHangService {
 
     }
 
+    public boolean checkEmail(String email) {
+
+        String sql = "SELECT * FROM KhachHang WHERE Email=?";
+
+        try {
+
+            Connection conn = connect.myConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, email);
+
+            ResultSet rs = ps.executeQuery();
+
+            boolean exists = rs.next();
+
+            rs.close();
+            ps.close();
+            conn.close();
+
+            return exists;
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return false;
+    }
+
+    public boolean checkSoDienThoai(String soDienThoai) {
+
+        String sql = "SELECT * FROM KhachHang WHERE SoDienThoai=?";
+
+        try {
+
+            Connection conn = connect.myConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, soDienThoai);
+
+            ResultSet rs = ps.executeQuery();
+
+            boolean exists = rs.next();
+
+            rs.close();
+            ps.close();
+            conn.close();
+
+            return exists;
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return false;
+    }
+
 }

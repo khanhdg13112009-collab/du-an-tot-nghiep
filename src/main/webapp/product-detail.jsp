@@ -1,4 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"
+         pageEncoding="UTF-8"
+         language="java"
+         isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -10,7 +13,8 @@
 
     <title>${sanPham.tenSP}</title>
 
-    <link rel="stylesheet" href="assets/css/product-detail.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/css/product-detail.css">
 
 </head>
 
