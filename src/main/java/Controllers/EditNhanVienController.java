@@ -68,7 +68,13 @@ public class EditNhanVienController extends HttpServlet {
         String soDienThoai = request.getParameter("soDienThoai");
         String email = request.getParameter("email");
         String coSo = request.getParameter("coSo");
-        String diaChi = request.getParameter("diaChi");
+        String ngayCapCCCD = request.getParameter("ngayCapCCCD");
+        String noiCapCCCD = request.getParameter("noiCapCCCD");
+
+        String tinhThanhPho = request.getParameter("tinhThanhPho");
+        String quanHuyen = "";
+        String phuongXa = request.getParameter("phuongXa");
+        String diaChiChiTiet = request.getParameter("diaChiChiTiet");
         String trangThaiID = request.getParameter("trangThaiID");
 
         String anhCCCDTruoc =
@@ -76,6 +82,13 @@ public class EditNhanVienController extends HttpServlet {
 
         String anhCCCDSau =
                 request.getParameter("anhCCCDSau");
+
+        hoTen = hoTen.trim();
+        cccd = cccd.trim();
+        soDienThoai = soDienThoai.trim();
+        email = email.trim().toLowerCase();
+        noiCapCCCD = noiCapCCCD.trim();
+        diaChiChiTiet = diaChiChiTiet.trim();
 
         if (!cccd.matches("\\d{12}")) {
 
@@ -140,6 +153,23 @@ public class EditNhanVienController extends HttpServlet {
             return;
         }
 
+        Date ngaySinhDate = Date.valueOf(ngaySinh);
+        Date ngayCap = Date.valueOf(ngayCapCCCD);
+
+        if (ngayCap.before(ngaySinhDate)) {
+
+            request.setAttribute("error",
+                    "Ngày cấp CCCD không hợp lệ.");
+
+            request.setAttribute("nv",
+                    service.getNhanVienById(Integer.parseInt(maNV)));
+
+            request.getRequestDispatcher("editNhanVien.jsp")
+                    .forward(request, response);
+
+            return;
+        }
+
         NhanVien old =
                 service.getNhanVienById(Integer.parseInt(maNV));
 
@@ -147,12 +177,28 @@ public class EditNhanVienController extends HttpServlet {
         nv.setMaNV(Integer.parseInt(maNV));
         nv.setHoTen(hoTen);
         nv.setCccd(cccd);
+
+        nv.setNgayCapCCCD(Date.valueOf(ngayCapCCCD));
+        nv.setNoiCapCCCD(noiCapCCCD);
+
         nv.setNgaySinh(Date.valueOf(ngaySinh));
         nv.setGioiTinh(Boolean.parseBoolean(gioiTinh));
+
         nv.setSoDienThoai(soDienThoai);
         nv.setEmail(email);
+
         nv.setCoSo(coSo);
-        nv.setDiaChi(diaChi);
+
+        nv.setTinhThanhPho(tinhThanhPho);
+        nv.setQuanHuyen("");
+        nv.setPhuongXa(phuongXa);
+        nv.setDiaChiChiTiet(diaChiChiTiet);
+
+        nv.setDiaChi(
+                diaChiChiTiet + ", "
+                        + phuongXa + ", "
+                        + tinhThanhPho
+        );
 
         nv.setAnhCCCDTruoc(anhCCCDTruoc);
         nv.setAnhCCCDSau(anhCCCDSau);

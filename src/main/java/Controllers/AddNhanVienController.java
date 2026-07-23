@@ -55,20 +55,57 @@ public class AddNhanVienController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String hoTen = request.getParameter("hoTen");
+
         String cccd = request.getParameter("cccd");
-        String ngaySinh = request.getParameter("ngaySinh");
-        String gioiTinh = request.getParameter("gioiTinh");
-        String soDienThoai = request.getParameter("soDienThoai");
-        String email = request.getParameter("email");
-        String coSo = request.getParameter("coSo");
-        String diaChi = request.getParameter("diaChi");
-        String trangThai = request.getParameter("trangThaiID");
+
+        String ngayCapCCCD =
+                request.getParameter("ngayCapCCCD");
+
+        String noiCapCCCD =
+                request.getParameter("noiCapCCCD");
+
+        String ngaySinh =
+                request.getParameter("ngaySinh");
+
+        String gioiTinh =
+                request.getParameter("gioiTinh");
+
+        String soDienThoai =
+                request.getParameter("soDienThoai");
+
+        String email =
+                request.getParameter("email");
+
+        String coSo =
+                request.getParameter("coSo");
+
+        String tinhThanhPho =
+                request.getParameter("tinhThanhPho");
+
+        String quanHuyen =
+                request.getParameter("quanHuyen");
+
+        String phuongXa =
+                request.getParameter("phuongXa");
+
+        String diaChiChiTiet =
+                request.getParameter("diaChiChiTiet");
+
+        String trangThai =
+                request.getParameter("trangThaiID");
 
         String anhCCCDTruoc =
                 request.getParameter("anhCCCDTruoc");
 
         String anhCCCDSau =
                 request.getParameter("anhCCCDSau");
+
+        hoTen = hoTen.trim();
+        cccd = cccd.trim();
+        soDienThoai = soDienThoai.trim();
+        email = email.trim().toLowerCase();
+        noiCapCCCD = noiCapCCCD.trim();
+        diaChiChiTiet = diaChiChiTiet.trim();
 
         if (!cccd.matches("\\d{12}")) {
 
@@ -79,6 +116,7 @@ public class AddNhanVienController extends HttpServlet {
                     .forward(request, response);
 
             return;
+
         }
 
         if (!(soDienThoai.matches("0\\d{9}")
@@ -91,9 +129,11 @@ public class AddNhanVienController extends HttpServlet {
                     .forward(request, response);
 
             return;
+
         }
 
-        if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+        if (!email.matches(
+                "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
 
             request.setAttribute("error",
                     "Email không hợp lệ.");
@@ -102,8 +142,44 @@ public class AddNhanVienController extends HttpServlet {
                     .forward(request, response);
 
             return;
+
         }
 
+        if (service.isExistCCCD(cccd)) {
+
+            request.setAttribute("error",
+                    "CCCD đã tồn tại.");
+
+            request.getRequestDispatcher("addNhanVien.jsp")
+                    .forward(request, response);
+
+            return;
+
+        }
+
+        if (service.isExistPhone(soDienThoai)) {
+
+            request.setAttribute("error",
+                    "Số điện thoại đã tồn tại.");
+
+            request.getRequestDispatcher("addNhanVien.jsp")
+                    .forward(request, response);
+
+            return;
+
+        }
+
+        if (service.isExistEmail(email)) {
+
+            request.setAttribute("error",
+                    "Email đã tồn tại.");
+
+            request.getRequestDispatcher("addNhanVien.jsp")
+                    .forward(request, response);
+
+            return;
+
+        }
         LocalDate birth = LocalDate.parse(ngaySinh);
 
         int tuoi = Period.between(
@@ -119,20 +195,59 @@ public class AddNhanVienController extends HttpServlet {
                     .forward(request, response);
 
             return;
+
+        }
+        Date ngaySinhDate = Date.valueOf(ngaySinh);
+        Date ngayCap = Date.valueOf(ngayCapCCCD);
+
+        if (ngayCap.before(ngaySinhDate)) {
+
+            request.setAttribute("error",
+                    "Ngày cấp CCCD không hợp lệ.");
+
+            request.getRequestDispatcher("addNhanVien.jsp")
+                    .forward(request, response);
+
+            return;
         }
 
         NhanVien nv = new NhanVien();
 
         nv.setHoTen(hoTen);
+
         nv.setCccd(cccd);
+
+        nv.setNgayCapCCCD(Date.valueOf(ngayCapCCCD));
+
+        nv.setNoiCapCCCD(noiCapCCCD);
+
         nv.setNgaySinh(Date.valueOf(ngaySinh));
+
         nv.setGioiTinh(Boolean.parseBoolean(gioiTinh));
+
         nv.setSoDienThoai(soDienThoai);
+
         nv.setEmail(email);
+
         nv.setCoSo(coSo);
-        nv.setDiaChi(diaChi);
+
+        nv.setTinhThanhPho(tinhThanhPho);
+
+        nv.setQuanHuyen(quanHuyen);
+
+        nv.setPhuongXa(phuongXa);
+
+        nv.setDiaChiChiTiet(diaChiChiTiet);
+
+        nv.setDiaChi(
+                tinhThanhPho + ", "
+                        + quanHuyen + ", "
+                        + phuongXa + ", "
+                        + diaChiChiTiet
+        );
 
         nv.setAnhCCCDTruoc(anhCCCDTruoc);
+
         nv.setAnhCCCDSau(anhCCCDSau);
 
         nv.setTrangThaiID(Integer.parseInt(trangThai));

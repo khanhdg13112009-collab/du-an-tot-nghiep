@@ -11,9 +11,7 @@ public class NhanVienService {
 
     ConnectService connect = new ConnectService();
 
-
     public ArrayList<NhanVien> getAllNhanVien() {
-
 
         ArrayList<NhanVien> list = new ArrayList<>();
 
@@ -38,13 +36,27 @@ public class NhanVienService {
 
                 nv.setMaNV(rs.getInt("MaNV"));
                 nv.setHoTen(rs.getString("HoTen"));
+
                 nv.setCccd(rs.getString("CCCD"));
+                nv.setNgayCapCCCD(rs.getDate("NgayCapCCCD"));
+                nv.setNoiCapCCCD(rs.getString("NoiCapCCCD"));
+
                 nv.setNgaySinh(rs.getDate("NgaySinh"));
                 nv.setGioiTinh(rs.getBoolean("GioiTinh"));
+
                 nv.setSoDienThoai(rs.getString("SoDienThoai"));
                 nv.setEmail(rs.getString("Email"));
+
                 nv.setCoSo(rs.getString("CoSo"));
+
+                nv.setTinhThanhPho(rs.getString("TinhThanhPho"));
+                nv.setQuanHuyen(rs.getString("QuanHuyen"));
+                nv.setPhuongXa(rs.getString("PhuongXa"));
+                nv.setDiaChiChiTiet(rs.getString("DiaChiChiTiet"));
+
+                // Giữ lại để tương thích trong giai đoạn chuyển đổi
                 nv.setDiaChi(rs.getString("DiaChi"));
+
                 nv.setTrangThaiID(rs.getInt("TrangThaiID"));
 
                 nv.setTenTrangThai(rs.getString("TenTrangThai"));
@@ -70,7 +82,6 @@ public class NhanVienService {
         return list;
 
     }
-
 
     public NhanVien getNhanVienById(int maNV) {
 
@@ -101,13 +112,26 @@ public class NhanVienService {
 
                 nv.setMaNV(rs.getInt("MaNV"));
                 nv.setHoTen(rs.getString("HoTen"));
+
                 nv.setCccd(rs.getString("CCCD"));
+                nv.setNgayCapCCCD(rs.getDate("NgayCapCCCD"));
+                nv.setNoiCapCCCD(rs.getString("NoiCapCCCD"));
+
                 nv.setNgaySinh(rs.getDate("NgaySinh"));
                 nv.setGioiTinh(rs.getBoolean("GioiTinh"));
+
                 nv.setSoDienThoai(rs.getString("SoDienThoai"));
                 nv.setEmail(rs.getString("Email"));
+
                 nv.setCoSo(rs.getString("CoSo"));
+
+                nv.setTinhThanhPho(rs.getString("TinhThanhPho"));
+                nv.setQuanHuyen(rs.getString("QuanHuyen"));
+                nv.setPhuongXa(rs.getString("PhuongXa"));
+                nv.setDiaChiChiTiet(rs.getString("DiaChiChiTiet"));
+
                 nv.setDiaChi(rs.getString("DiaChi"));
+
                 nv.setTrangThaiID(rs.getInt("TrangThaiID"));
 
                 nv.setTenTrangThai(rs.getString("TenTrangThai"));
@@ -132,15 +156,27 @@ public class NhanVienService {
 
     }
 
-
     public void addNhanVien(NhanVien nv) {
 
         String sql =
                 "INSERT INTO NhanVien(" +
-                        "HoTen,CCCD,NgaySinh,GioiTinh," +
-                        "SoDienThoai,Email,CoSo,DiaChi," +
-                        "TrangThaiID,AnhCCCDTruoc,AnhCCCDSau) " +
-                        "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+                        "HoTen," +
+                        "CCCD," +
+                        "NgayCapCCCD," +
+                        "NoiCapCCCD," +
+                        "NgaySinh," +
+                        "GioiTinh," +
+                        "SoDienThoai," +
+                        "Email," +
+                        "CoSo," +
+                        "TinhThanhPho," +
+                        "QuanHuyen," +
+                        "PhuongXa," +
+                        "DiaChiChiTiet," +
+                        "TrangThaiID," +
+                        "AnhCCCDTruoc," +
+                        "AnhCCCDSau" +
+                        ") VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
 
@@ -150,15 +186,23 @@ public class NhanVienService {
 
             ps.setString(1, nv.getHoTen());
             ps.setString(2, nv.getCccd());
-            ps.setDate(3, nv.getNgaySinh());
-            ps.setBoolean(4, nv.isGioiTinh());
-            ps.setString(5, nv.getSoDienThoai());
-            ps.setString(6, nv.getEmail());
-            ps.setString(7, nv.getCoSo());
-            ps.setString(8, nv.getDiaChi());
-            ps.setInt(9, nv.getTrangThaiID());
-            ps.setString(10, nv.getAnhCCCDTruoc());
-            ps.setString(11, nv.getAnhCCCDSau());
+            ps.setDate(3, nv.getNgayCapCCCD());
+            ps.setString(4, nv.getNoiCapCCCD());
+            ps.setDate(5, nv.getNgaySinh());
+            ps.setBoolean(6, nv.isGioiTinh());
+            ps.setString(7, nv.getSoDienThoai());
+            ps.setString(8, nv.getEmail());
+            ps.setString(9, nv.getCoSo());
+
+            ps.setString(10, nv.getTinhThanhPho());
+            ps.setString(11, nv.getQuanHuyen());
+            ps.setString(12, nv.getPhuongXa());
+            ps.setString(13, nv.getDiaChiChiTiet());
+
+            ps.setInt(14, nv.getTrangThaiID());
+
+            ps.setString(15, nv.getAnhCCCDTruoc());
+            ps.setString(16, nv.getAnhCCCDSau());
 
             ps.executeUpdate();
 
@@ -173,19 +217,23 @@ public class NhanVienService {
 
     }
 
-
     public void updateNhanVien(NhanVien nv) {
 
         String sql =
                 "UPDATE NhanVien SET " +
                         "HoTen=?," +
                         "CCCD=?," +
+                        "NgayCapCCCD=?," +
+                        "NoiCapCCCD=?," +
                         "NgaySinh=?," +
                         "GioiTinh=?," +
                         "SoDienThoai=?," +
                         "Email=?," +
                         "CoSo=?," +
-                        "DiaChi=?," +
+                        "TinhThanhPho=?," +
+                        "QuanHuyen=?," +
+                        "PhuongXa=?," +
+                        "DiaChiChiTiet=?," +
                         "TrangThaiID=?," +
                         "AnhCCCDTruoc=?," +
                         "AnhCCCDSau=? " +
@@ -199,16 +247,25 @@ public class NhanVienService {
 
             ps.setString(1, nv.getHoTen());
             ps.setString(2, nv.getCccd());
-            ps.setDate(3, nv.getNgaySinh());
-            ps.setBoolean(4, nv.isGioiTinh());
-            ps.setString(5, nv.getSoDienThoai());
-            ps.setString(6, nv.getEmail());
-            ps.setString(7, nv.getCoSo());
-            ps.setString(8, nv.getDiaChi());
-            ps.setInt(9, nv.getTrangThaiID());
-            ps.setString(10, nv.getAnhCCCDTruoc());
-            ps.setString(11, nv.getAnhCCCDSau());
-            ps.setInt(12, nv.getMaNV());
+            ps.setDate(3, nv.getNgayCapCCCD());
+            ps.setString(4, nv.getNoiCapCCCD());
+            ps.setDate(5, nv.getNgaySinh());
+            ps.setBoolean(6, nv.isGioiTinh());
+            ps.setString(7, nv.getSoDienThoai());
+            ps.setString(8, nv.getEmail());
+            ps.setString(9, nv.getCoSo());
+
+            ps.setString(10, nv.getTinhThanhPho());
+            ps.setString(11, nv.getQuanHuyen());
+            ps.setString(12, nv.getPhuongXa());
+            ps.setString(13, nv.getDiaChiChiTiet());
+
+            ps.setInt(14, nv.getTrangThaiID());
+
+            ps.setString(15, nv.getAnhCCCDTruoc());
+            ps.setString(16, nv.getAnhCCCDSau());
+
+            ps.setInt(17, nv.getMaNV());
 
             ps.executeUpdate();
 
@@ -223,4 +280,97 @@ public class NhanVienService {
 
     }
 
+    public boolean isExistCCCD(String cccd) {
+
+        String sql = "SELECT 1 FROM NhanVien WHERE CCCD=?";
+
+        try {
+
+            Connection conn = connect.myConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, cccd);
+
+            ResultSet rs = ps.executeQuery();
+
+            boolean result = rs.next();
+
+            rs.close();
+            ps.close();
+            conn.close();
+
+            return result;
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return false;
+    }
+
+    public boolean isExistEmail(String email) {
+
+        String sql = "SELECT 1 FROM NhanVien WHERE Email=?";
+
+        try {
+
+            Connection conn = connect.myConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, email);
+
+            ResultSet rs = ps.executeQuery();
+
+            boolean result = rs.next();
+
+            rs.close();
+            ps.close();
+            conn.close();
+
+            return result;
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return false;
+    }
+
+    public boolean isExistPhone(String phone) {
+
+        String sql = "SELECT 1 FROM NhanVien WHERE SoDienThoai=?";
+
+        try {
+
+            Connection conn = connect.myConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, phone);
+
+            ResultSet rs = ps.executeQuery();
+
+            boolean result = rs.next();
+
+            rs.close();
+            ps.close();
+            conn.close();
+
+            return result;
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return false;
+    }
 }
+

@@ -68,10 +68,31 @@
                            name="cccd"
                            value="${nv.cccd}"
                            maxlength="12"
+                           pattern="\d{12}"
                            required>
 
                 </td>
 
+            </tr>
+
+            <tr>
+                <td>Ngày cấp CCCD</td>
+                <td>
+                    <input type="date"
+                           name="ngayCapCCCD"
+                           value="${nv.ngayCapCCCD}"
+                           required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Nơi cấp CCCD</td>
+                <td>
+                    <input type="text"
+                           name="noiCapCCCD"
+                           value="${nv.noiCapCCCD}"
+                           required>
+                </td>
             </tr>
 
             <tr>
@@ -153,10 +174,11 @@
 
                 <td>
 
-                    <input type="text"
-                           name="soDienThoai"
-                           value="${nv.soDienThoai}"
-                           required>
+                   <input type="text"
+                          name="soDienThoai"
+                          value="${nv.soDienThoai}"
+                          pattern="(0[0-9]{9})|(\+84[0-9]{9})"
+                          required>
 
                 </td>
 
@@ -213,18 +235,37 @@
             </tr>
 
             <tr>
-
-                <td>Địa chỉ</td>
-
+                <td>Tỉnh / Thành phố</td>
                 <td>
-
-                    <input type="text"
-                           name="diaChi"
-                           value="${nv.diaChi}"
-                           required>
-
+                    <select id="province"
+                            name="tinhThanhPho"
+                            data-selected="${nv.tinhThanhPho}"
+                            required>
+                    </select>
                 </td>
+            </tr>
 
+
+
+            <tr>
+                <td>Phường / Xã</td>
+                <td>
+                    <select id="ward"
+                            name="phuongXa"
+                            data-selected="${nv.phuongXa}"
+                            required>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Địa chỉ chi tiết</td>
+                <td>
+                    <input type="text"
+                           name="diaChiChiTiet"
+                           value="${nv.diaChiChiTiet}"
+                           required>
+                </td>
             </tr>
 
 <tr>
@@ -304,7 +345,7 @@
     </div>
 
 </div>
-
+<script src="${pageContext.request.contextPath}/js/address.js"></script>
 </body>
 
 </html>

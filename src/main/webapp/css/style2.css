@@ -74,12 +74,31 @@ body{
 .login-box,
 .home-box,
 .profile-box,
-.form-box,
-.nhanvien-box{
+.form-box{
 
     width:95%;
 
     max-width:1450px;
+
+    margin:auto;
+
+    background:var(--card);
+
+    border-radius:32px;
+
+    padding:45px;
+
+    box-shadow:var(--shadow);
+
+    border:1px solid var(--line);
+
+}
+
+.nhanvien-box{
+
+    width:98%;
+
+    max-width:none;
 
     margin:auto;
 
@@ -362,6 +381,7 @@ select{
 table{
 
     width:100%;
+    min-width:2000px;
 
     border-collapse:separate;
 
@@ -382,6 +402,10 @@ table td{
     padding:18px;
 
     font-size:15px;
+
+    white-space:normal;
+    word-break:break-word;
+    vertical-align:top;
 
 }
 
@@ -1093,6 +1117,62 @@ img{
     }
 
 }
+.table-scroll{
+
+    width:100%;
+
+    overflow-x:auto;
+
+}
+.table-scroll{
+    width:100%;
+    overflow-x:auto;
+}
+
+.diachi{
+    min-width:350px;
+    width:350px;
+    white-space:normal;
+    word-break:break-word;
+}
+.profile-box{
+    width:900px;
+    margin:30px auto;
+    background:#fff;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+.profile-box table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+.profile-box th{
+    background:#2c3e50;
+    color:white;
+    padding:12px;
+}
+
+.profile-box td{
+    padding:12px;
+    border:1px solid #ddd;
+}
+
+.profile-box tr:nth-child(even){
+    background:#f8f8f8;
+}
+
+.cccd-img{
+    width:320px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    padding:5px;
+    background:white;
+}
+
 
 /*=========================================================
                     END

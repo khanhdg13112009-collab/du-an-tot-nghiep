@@ -32,6 +32,7 @@
 
     </a>
 
+    <div class="table-scroll">
     <table>
 
         <tr>
@@ -41,25 +42,12 @@
             <th>Họ tên</th>
 
             <th>CCCD</th>
-
-            <th>CCCD trước</th>
-
-            <th>CCCD sau</th>
-
             <th>Ngày sinh</th>
-
             <th>Giới tính</th>
-
             <th>SĐT</th>
-
             <th>Email</th>
-
             <th>Cơ sở</th>
-
-            <th>Địa chỉ</th>
-
             <th>Trạng thái</th>
-
             <th>Thao tác</th>
 
         </tr>
@@ -74,61 +62,7 @@
 
                 <td>${nv.cccd}</td>
 
-                <td>
 
-                    <c:choose>
-
-                        <c:when test="${not empty nv.anhCCCDTruoc}">
-
-                            <span style="color:green;font-weight:bold;">
-
-                                ✅ Đã có
-
-                            </span>
-
-                        </c:when>
-
-                        <c:otherwise>
-
-                            <span style="color:red;">
-
-                                ❌ Chưa có
-
-                            </span>
-
-                        </c:otherwise>
-
-                    </c:choose>
-
-                </td>
-
-                <td>
-
-                    <c:choose>
-
-                        <c:when test="${not empty nv.anhCCCDSau}">
-
-                            <span style="color:green;font-weight:bold;">
-
-                                ✅ Đã có
-
-                            </span>
-
-                        </c:when>
-
-                        <c:otherwise>
-
-                            <span style="color:red;">
-
-                                ❌ Chưa có
-
-                            </span>
-
-                        </c:otherwise>
-
-                    </c:choose>
-
-                </td>
 
                 <td>${nv.ngaySinh}</td>
 
@@ -154,7 +88,7 @@
 
                 <td>${nv.coSo}</td>
 
-                <td>${nv.diaChi}</td>
+
 
                 <td>
 
@@ -182,10 +116,22 @@
 
                 <td>
 
-                    <a class="action-btn edit-btn"
-                       href="editNhanVien?maNV=${nv.maNV}">
+                    <a class="action-btn"
+                       href="chiTietNhanVien?maNV=${nv.maNV}">
 
-                        ✏️ Sửa
+                        👁 Chi tiết
+
+                    <a class="action-btn"
+                    href="chiTietNhanVien?maNV=${nv.maNV}">
+
+                    👁 Chi tiết
+
+                    </a>
+
+                    <a class="action-btn edit-btn"
+                    href="editNhanVien?maNV=${nv.maNV}">
+
+                    ✏️ Sửa
 
                     </a>
 
@@ -196,6 +142,7 @@
         </c:forEach>
 
     </table>
+    </div>
 
     <br>
 

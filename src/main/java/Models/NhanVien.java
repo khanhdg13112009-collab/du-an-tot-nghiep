@@ -12,10 +12,21 @@ public class NhanVien {
     private String soDienThoai;
     private String email;
     private String coSo;
+
     private String diaChi;
+
+    private String tinhThanhPho;
+    private String quanHuyen;
+    private String phuongXa;
+    private String diaChiChiTiet;
+
+
+    private Date ngayCapCCCD;
+    private String noiCapCCCD;
+
     private int trangThaiID;
 
-    // Mới
+
     private String tenTrangThai;
     private int roleID;
     private String anhCCCDTruoc;
@@ -33,6 +44,12 @@ public class NhanVien {
                     String email,
                     String coSo,
                     String diaChi,
+                    String tinhThanhPho,
+                    String quanHuyen,
+                    String phuongXa,
+                    String diaChiChiTiet,
+                    Date ngayCapCCCD,
+                    String noiCapCCCD,
                     int trangThaiID,
                     String tenTrangThai,
                     int roleID,
@@ -47,7 +64,17 @@ public class NhanVien {
         this.soDienThoai = soDienThoai;
         this.email = email;
         this.coSo = coSo;
+
         this.diaChi = diaChi;
+
+        this.tinhThanhPho = tinhThanhPho;
+        this.quanHuyen = quanHuyen;
+        this.phuongXa = phuongXa;
+        this.diaChiChiTiet = diaChiChiTiet;
+
+        this.ngayCapCCCD = ngayCapCCCD;
+        this.noiCapCCCD = noiCapCCCD;
+
         this.trangThaiID = trangThaiID;
         this.tenTrangThai = tenTrangThai;
         this.roleID = roleID;
@@ -127,6 +154,54 @@ public class NhanVien {
         this.diaChi = diaChi;
     }
 
+    public String getTinhThanhPho() {
+        return tinhThanhPho;
+    }
+
+    public void setTinhThanhPho(String tinhThanhPho) {
+        this.tinhThanhPho = tinhThanhPho;
+    }
+
+    public String getQuanHuyen() {
+        return quanHuyen;
+    }
+
+    public void setQuanHuyen(String quanHuyen) {
+        this.quanHuyen = quanHuyen;
+    }
+
+    public String getPhuongXa() {
+        return phuongXa;
+    }
+
+    public void setPhuongXa(String phuongXa) {
+        this.phuongXa = phuongXa;
+    }
+
+    public String getDiaChiChiTiet() {
+        return diaChiChiTiet;
+    }
+
+    public void setDiaChiChiTiet(String diaChiChiTiet) {
+        this.diaChiChiTiet = diaChiChiTiet;
+    }
+
+    public Date getNgayCapCCCD() {
+        return ngayCapCCCD;
+    }
+
+    public void setNgayCapCCCD(Date ngayCapCCCD) {
+        this.ngayCapCCCD = ngayCapCCCD;
+    }
+
+    public String getNoiCapCCCD() {
+        return noiCapCCCD;
+    }
+
+    public void setNoiCapCCCD(String noiCapCCCD) {
+        this.noiCapCCCD = noiCapCCCD;
+    }
+
     public int getTrangThaiID() {
         return trangThaiID;
     }
@@ -166,5 +241,4 @@ public class NhanVien {
     public void setAnhCCCDSau(String anhCCCDSau) {
         this.anhCCCDSau = anhCCCDSau;
     }
-
 }
