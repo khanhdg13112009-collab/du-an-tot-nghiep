@@ -11,18 +11,33 @@
 
     <title>Chi tiết sản phẩm</title>
 
-    <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/css/style2.css">
+    <link rel="stylesheet" href="/DATN-nhom2/css/admin.css">
 
 </head>
 
 <body>
 
-<div class="nhanvien-box">
+<div class="sidebar">
 
-    <h1>SHOP ÁO CHO NAM</h1>
+    <h2>BO THẰNG CHÁ</h2>
 
-    <h2>CHI TIẾT SẢN PHẨM</h2>
+    <a href="admin">🏠 Dashboard</a>
+
+    <a href="sanpham" class="active">👕 Quản lý sản phẩm</a>
+
+    <a href="nhanvien">👨 Quản lý nhân viên</a>
+
+    <a href="khachhang">👤 Quản lý khách hàng</a>
+
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
+
+    <a href="logout">🚪 Đăng xuất</a>
+
+</div>
+
+<div class="content">
+
+    <h1>Chi tiết sản phẩm</h1>
 
     <c:if test="${not empty list}">
 
@@ -40,70 +55,78 @@
 
     </c:if>
 
-    <a class="add-btn"
-       href="addSanPhamChiTiet?maSP=${maSP}">
+    <div class="toolbar">
 
-        ➕ Thêm biến thể
+        <a href="addSanPhamChiTiet?maSP=${maSP}"
+           class="btn btn-success">
 
-    </a>
+            ➕ Thêm biến thể
 
-    <table>
+        </a>
 
-        <tr>
+    </div>
 
-            <th>Màu sắc</th>
+    <div class="table-box">
 
-            <th>Kích cỡ</th>
-
-            <th>Giá</th>
-
-            <th>Số lượng</th>
-
-            <th>Chức năng</th>
-
-        </tr>
-
-        <c:forEach items="${list}" var="spct">
+        <table>
 
             <tr>
 
-                <td>${spct.tenMau}</td>
+                <th>Màu sắc</th>
 
-                <td>${spct.tenSize}</td>
+                <th>Kích cỡ</th>
 
-                <td style="text-align:right;">
+                <th>Giá</th>
 
-                    <fmt:formatNumber
-                            value="${spct.gia}"
-                            pattern="#,##0"/>
+                <th>Số lượng</th>
 
-                    VNĐ
-
-                </td>
-
-                <td>${spct.soLuong}</td>
-
-                <td>
-
-                    <a class="action-btn edit-btn"
-                       href="editSanPhamChiTiet?id=${spct.maSPCT}">
-
-                        ✏️ Sửa
-
-                    </a>
-
-                </td>
+                <th>Thao tác</th>
 
             </tr>
 
-        </c:forEach>
+            <c:forEach items="${list}" var="spct">
 
-    </table>
+                <tr>
+
+                    <td>${spct.tenMau}</td>
+
+                    <td>${spct.tenSize}</td>
+
+                    <td style="text-align:right;">
+
+                        <fmt:formatNumber
+                                value="${spct.gia}"
+                                pattern="#,##0"/>
+
+                        VNĐ
+
+                    </td>
+
+                    <td>${spct.soLuong}</td>
+
+                    <td>
+
+                        <a href="editSanPhamChiTiet?id=${spct.maSPCT}"
+                           class="btn">
+
+                            ✏️ Sửa
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            </c:forEach>
+
+        </table>
+
+    </div>
 
     <br>
 
-    <a class="back-btn"
-       href="sanpham">
+    <a href="sanpham"
+       class="btn btn-gray">
 
         ← Quay lại Quản lý sản phẩm
 

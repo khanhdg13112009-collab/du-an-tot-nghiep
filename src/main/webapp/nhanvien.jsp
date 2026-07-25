@@ -10,156 +10,156 @@
 
     <title>Quản lý nhân viên</title>
 
-    <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/css/style2.css">
+    <link rel="stylesheet" href="/DATN-nhom2/css/admin.css">
 
 </head>
 
 <body>
 
-<div class="nhanvien-box">
+<div class="sidebar">
 
-    <div class="logo">👔</div>
+    <h2>BO THẰNG CHÁ</h2>
 
-    <h1>SHOP ÁO CHO NAM</h1>
+    <a href="admin">🏠 Dashboard</a>
 
-    <h2>QUẢN LÝ NHÂN VIÊN</h2>
+    <a href="sanpham">👕 Quản lý sản phẩm</a>
 
-    <a class="add-btn"
-       href="addNhanVien">
+    <a href="nhanvien" class="active">👨 Quản lý nhân viên</a>
 
-        ➕ Thêm nhân viên
+    <a href="khachhang">👤 Quản lý khách hàng</a>
 
-    </a>
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
-    <div class="table-scroll">
-    <table>
+    <a href="logout">🚪 Đăng xuất</a>
 
-        <tr>
+</div>
 
-            <th>Mã</th>
+<div class="content">
 
-            <th>Họ tên</th>
+    <h1>Quản lý nhân viên</h1>
 
-            <th>CCCD</th>
-            <th>Ngày sinh</th>
-            <th>Giới tính</th>
-            <th>SĐT</th>
-            <th>Email</th>
-            <th>Cơ sở</th>
-            <th>Trạng thái</th>
-            <th>Thao tác</th>
+    <div class="toolbar">
 
-        </tr>
+        <a href="addNhanVien" class="btn btn-success">
 
-        <c:forEach items="${list}" var="nv">
+            ➕ Thêm nhân viên
+
+        </a>
+
+    </div>
+
+    <div class="table-box">
+
+        <table>
+
+            <thead>
 
             <tr>
 
-                <td>${nv.maNV}</td>
-
-                <td>${nv.hoTen}</td>
-
-                <td>${nv.cccd}</td>
-
-
-
-                <td>${nv.ngaySinh}</td>
-
-                <td>
-
-                    <c:choose>
-
-                        <c:when test="${nv.gioiTinh}">
-                            Nam
-                        </c:when>
-
-                        <c:otherwise>
-                            Nữ
-                        </c:otherwise>
-
-                    </c:choose>
-
-                </td>
-
-                <td>${nv.soDienThoai}</td>
-
-                <td>${nv.email}</td>
-
-                <td>${nv.coSo}</td>
-
-
-
-                <td>
-
-                    <c:choose>
-
-                        <c:when test="${nv.trangThaiID == 1}">
-
-                            <span style="color:green;font-weight:bold;">
-                                🟢 Đang làm
-                            </span>
-
-                        </c:when>
-
-                        <c:otherwise>
-
-                            <span style="color:red;font-weight:bold;">
-                                🔴 Nghỉ việc
-                            </span>
-
-                        </c:otherwise>
-
-                    </c:choose>
-
-                </td>
-
-                <td>
-
-                    <a class="action-btn"
-                       href="chiTietNhanVien?maNV=${nv.maNV}">
-
-                        👁 Chi tiết
-
-                    <a class="action-btn"
-                    href="chiTietNhanVien?maNV=${nv.maNV}">
-
-                    👁 Chi tiết
-
-                    </a>
-
-                    <a class="action-btn edit-btn"
-                    href="editNhanVien?maNV=${nv.maNV}">
-
-                    ✏️ Sửa
-
-                    </a>
-
-                </td>
+                <th>Mã</th>
+                <th>Họ tên</th>
+                <th>CCCD</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
+                <th>SĐT</th>
+                <th>Email</th>
+                <th>Cơ sở</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
 
             </tr>
 
-        </c:forEach>
+            </thead>
 
-    </table>
-    </div>
+            <tbody>
 
-    <br>
+            <c:forEach items="${list}" var="nv">
 
-    <a class="back-btn"
-       href="home.jsp">
+                <tr>
 
-        🏠 Trang chủ
+                    <td>${nv.maNV}</td>
 
-    </a>
+                    <td>${nv.hoTen}</td>
 
-    <div class="footer">
+                    <td>${nv.cccd}</td>
 
-        © 2026 SHOP ÁO CHO NAM
+                    <td>${nv.ngaySinh}</td>
 
-        <br>
+                    <td>
 
-        FPT PolySchool - Nhóm 7
+                        <c:choose>
+
+                            <c:when test="${nv.gioiTinh}">
+                                Nam
+                            </c:when>
+
+                            <c:otherwise>
+                                Nữ
+                            </c:otherwise>
+
+                        </c:choose>
+
+                    </td>
+
+                    <td>${nv.soDienThoai}</td>
+
+                    <td>${nv.email}</td>
+
+                    <td>${nv.coSo}</td>
+
+                    <td>
+
+                        <c:choose>
+
+                            <c:when test="${nv.trangThaiID == 1}">
+
+                                <span class="status-on">
+
+                                    🟢 Đang làm
+
+                                </span>
+
+                            </c:when>
+
+                            <c:otherwise>
+
+                                <span class="status-off">
+
+                                    🔴 Nghỉ việc
+
+                                </span>
+
+                            </c:otherwise>
+
+                        </c:choose>
+
+                    </td>
+
+                    <td>
+
+                        <a href="chiTietNhanVien?maNV=${nv.maNV}"
+                           class="btn">
+
+                            👁 Chi tiết
+
+                        </a>
+
+                        <a href="editNhanVien?maNV=${nv.maNV}"
+                           class="btn">
+
+                            ✏️ Sửa
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            </c:forEach>
+
+            </tbody>
+
+        </table>
 
     </div>
 

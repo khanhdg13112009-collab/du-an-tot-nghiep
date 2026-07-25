@@ -8,7 +8,7 @@
 
     <title>BO THẰNG CHÁ - ADMIN</title>
 
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="/DATN-nhom2/css/admin.css">
 
 </head>
 
@@ -26,11 +26,11 @@
 
     <a href="khachhang">👤 Quản lý khách hàng</a>
 
-    <a href="hoadon">🧾 Quản lý hóa đơn</a>
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
-    <a href="thongke">📈 Thống kê</a>
 
-    <a href="logout">🚪 Đăng xuất</a>
+
+    <a href="/DATN-nhom2/logout">🚪 Đăng xuất</a>
 
 </div>
 
@@ -76,7 +76,7 @@
 
             <p>Quản lý hóa đơn.</p>
 
-            <a href="hoadon">Mở</a>
+            <a href="hoaDon">Mở</a>
 
         </div>
 

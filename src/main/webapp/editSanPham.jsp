@@ -2,111 +2,114 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
 
     <meta charset="UTF-8">
 
     <title>Sửa sản phẩm</title>
 
-    <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/css/style2.css">
+    <link rel="stylesheet" href="/DATN-nhom2/css/admin.css">
 
 </head>
 
 <body>
 
-<div class="form-box">
+<div class="sidebar">
 
-    <h1>SHOP ÁO CHO NAM</h1>
+    <h2>BO THẰNG CHÁ</h2>
 
-    <h2>SỬA SẢN PHẨM</h2>
+    <a href="admin">🏠 Dashboard</a>
 
-    <form action="editSanPham" method="post">
+    <a href="sanpham" class="active">👕 Quản lý sản phẩm</a>
 
-        <input
-                type="hidden"
-                name="maSP"
-                value="${sp.maSP}">
+    <a href="nhanvien">👨 Quản lý nhân viên</a>
 
-        <label>Tên sản phẩm</label>
+    <a href="khachhang">👤 Quản lý khách hàng</a>
 
-        <input
-                type="text"
-                name="tenSP"
-                value="${sp.tenSP}"
-                required>
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
-        <br><br>
+    <a href="logout">🚪 Đăng xuất</a>
 
-        <label>Thương hiệu</label>
+</div>
 
-        <input
-                type="text"
-                name="thuongHieu"
-                value="${sp.thuongHieu}"
-                required>
+<div class="content">
 
-        <br><br>
+    <h1>Sửa sản phẩm</h1>
 
-        <label>Chất liệu</label>
+    <div class="table-box" style="padding:30px;">
 
-        <input
-                type="text"
-                name="chatLieu"
-                value="${sp.chatLieu}"
-                required>
+        <form action="editSanPham" method="post">
 
-        <br><br>
+            <input type="hidden"
+                   name="maSP"
+                   value="${sp.maSP}">
 
-        <label>Mô tả</label>
+            <label>Tên sản phẩm</label><br>
 
-        <textarea
-                name="moTa"
-                rows="5"
-                style="width:100%;resize:vertical;">${sp.moTa}</textarea>
+            <input type="text"
+                   name="tenSP"
+                   value="${sp.tenSP}"
+                   required>
 
-        <br><br>
+            <br><br>
 
-        <label>Trạng thái</label>
+            <label>Thương hiệu</label><br>
 
-        <select name="trangThai">
+            <input type="text"
+                   name="thuongHieu"
+                   value="${sp.thuongHieu}"
+                   required>
 
-            <option value="true"
-                ${sp.trangThai ? "selected" : ""}>
+            <br><br>
 
-                Đang bán
+            <label>Chất liệu</label><br>
 
-            </option>
+            <input type="text"
+                   name="chatLieu"
+                   value="${sp.chatLieu}"
+                   required>
 
-            <option value="false"
-                ${!sp.trangThai ? "selected" : ""}>
+            <br><br>
 
-                Ngừng bán
+            <label>Mô tả</label><br>
 
-            </option>
+            <textarea
+                    name="moTa"
+                    rows="5">${sp.moTa}</textarea>
 
-        </select>
+            <br><br>
 
-        <br><br>
+            <label>Trạng thái</label><br>
 
-        <button type="submit">
+            <select name="trangThai">
 
-            Cập nhật
+                <option value="true"
+                    ${sp.trangThai ? "selected" : ""}>
+                    Đang bán
+                </option>
 
-        </button>
+                <option value="false"
+                    ${!sp.trangThai ? "selected" : ""}>
+                    Ngừng bán
+                </option>
 
-        <a class="back-btn"
-           href="sanpham">
+            </select>
 
-            Quay lại
+            <br><br>
 
-        </a>
+            <button type="submit" class="btn">
+                💾 Cập nhật
+            </button>
 
-    </form>
+            <a href="sanpham" class="btn btn-gray">
+                ← Quay lại
+            </a>
+
+        </form>
+
+    </div>
 
 </div>
 
 </body>
-
 </html>

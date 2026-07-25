@@ -14,6 +14,15 @@ public class LoginController extends HttpServlet {
     AccountService accountService = new AccountService();
 
     @Override
+    protected void doGet(HttpServletRequest request,
+                         HttpServletResponse response)
+            throws ServletException, IOException {
+
+        request.getRequestDispatcher("login.jsp")
+                .forward(request, response);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,7 +46,7 @@ public class LoginController extends HttpServlet {
 
             session.setAttribute("account", account);
 
-            response.sendRedirect("home");
+            response.sendRedirect("admin");
 
         } else {
 

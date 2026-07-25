@@ -10,59 +10,87 @@
     <title>Thêm khách hàng</title>
 
     <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/css/style2.css">
+          href="/DATN-nhom2/css/admin.css">
 
 </head>
 
 <body>
 
-<div class="form-box">
+<div class="sidebar">
 
-    <h2>THÊM KHÁCH HÀNG</h2>
+    <h2>BO THẰNG CHÁ</h2>
 
-    <form action="addKhachHang" method="post">
+    <a href="admin">🏠 Dashboard</a>
 
-        <label>Họ tên</label>
+    <a href="sanpham">👕 Quản lý sản phẩm</a>
 
-        <input
-                type="text"
-                name="hoTen"
-                required>
+    <a href="nhanvien">👨 Quản lý nhân viên</a>
 
-        <label>Số điện thoại</label>
+    <a href="khachhang" class="active">👤 Quản lý khách hàng</a>
 
-        <input
-                type="text"
-                name="soDienThoai"
-                required>
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
-        <label>Email</label>
+    <a href="/DATN-nhom2/logout">🚪 Đăng xuất</a>
 
-        <input
-                type="email"
-                name="email">
+</div>
 
-        <label>Địa chỉ</label>
+<div class="content">
 
-        <input
-                type="text"
-                name="diaChi">
+    <h1>Thêm khách hàng</h1>
 
-        <br><br>
+    <div class="table-box">
 
-        <button type="submit">
+        <form action="addKhachHang" method="post">
 
-            Thêm khách hàng
+            <table>
 
-        </button>
+                <tr>
+                    <td><b>Họ tên</b></td>
+                    <td>
+                        <input type="text"
+                               name="hoTen"
+                               required>
+                    </td>
+                </tr>
 
-        <a href="khachhang">
+                <tr>
+                    <td><b>Số điện thoại</b></td>
+                    <td>
+                        <input type="text"
+                               name="soDienThoai"
+                               required>
+                    </td>
+                </tr>
 
-            Quay lại
+                <tr>
+                    <td><b>Email</b></td>
+                    <td>
+                        <input type="email"
+                               name="email">
+                    </td>
+                </tr>
 
-        </a>
+            </table>
 
-    </form>
+            <br>
+
+            <button type="submit"
+                    class="btn btn-success">
+
+                ➕ Thêm khách hàng
+
+            </button>
+
+            <a href="khachhang"
+               class="btn btn-gray">
+
+                ↩ Quay lại
+
+            </a>
+
+        </form>
+
+    </div>
 
 </div>
 

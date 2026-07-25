@@ -75,20 +75,7 @@
 
     </form>
 
-    <br>
 
-    <div style="text-align:center;">
-
-        <br><br>
-
-        <a class="forgot-link"
-           href="register">
-
-            Chưa có tài khoản? Đăng ký
-
-        </a>
-
-    </div>
 
     <div class="footer">
 

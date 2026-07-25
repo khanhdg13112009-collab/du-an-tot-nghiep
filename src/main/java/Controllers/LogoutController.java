@@ -14,10 +14,10 @@ public class LogoutController extends HttpServlet {
 
         HttpSession session = request.getSession(false);
 
-        if(session != null){
+        if (session != null) {
             session.invalidate();
         }
 
-        response.sendRedirect("home");
+        response.sendRedirect(request.getContextPath() + "/login");
     }
 }

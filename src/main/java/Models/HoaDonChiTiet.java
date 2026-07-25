@@ -1,19 +1,21 @@
 package Models;
 
+import java.math.BigDecimal;
+
 public class HoaDonChiTiet {
 
     private int maHDCT;
     private int maHD;
     private int maSPCT;
     private int soLuong;
-    private double donGia;
-    private double thanhTien;
+    private BigDecimal donGia;
+    private BigDecimal thanhTien;
 
     public HoaDonChiTiet() {
     }
 
     public HoaDonChiTiet(int maHDCT, int maHD, int maSPCT,
-                         int soLuong, double donGia, double thanhTien) {
+                         int soLuong, BigDecimal donGia, BigDecimal thanhTien) {
         this.maHDCT = maHDCT;
         this.maHD = maHD;
         this.maSPCT = maSPCT;
@@ -54,20 +56,19 @@ public class HoaDonChiTiet {
         this.soLuong = soLuong;
     }
 
-    public double getDonGia() {
+    public BigDecimal getDonGia() {
         return donGia;
     }
 
-    public void setDonGia(double donGia) {
+    public void setDonGia(BigDecimal donGia) {
         this.donGia = donGia;
     }
 
-    public double getThanhTien() {
+    public BigDecimal getThanhTien() {
         return thanhTien;
     }
 
-    public void setThanhTien(double thanhTien) {
+    public void setThanhTien(BigDecimal thanhTien) {
         this.thanhTien = thanhTien;
     }
-
 }

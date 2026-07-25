@@ -10,136 +10,146 @@
 
     <title>Thêm sản phẩm</title>
 
-    <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/css/style2.css">
+    <link rel="stylesheet" href="/DATN-nhom2/css/admin.css">
 
 </head>
 
 <body>
 
-<div class="form-box">
+<div class="sidebar">
 
-    <h1>SHOP ÁO CHO NAM</h1>
+    <h2>BO THẰNG CHÁ</h2>
 
-    <h2>THÊM SẢN PHẨM</h2>
+    <a href="admin">🏠 Dashboard</a>
 
-    <form action="addSanPham" method="post">
+    <a href="sanpham" class="active">👕 Quản lý sản phẩm</a>
 
-        <label>Tên sản phẩm</label>
+    <a href="nhanvien">👨 Quản lý nhân viên</a>
 
-        <input type="text"
-               name="tenSP"
-               required>
+    <a href="khachhang">👤 Quản lý khách hàng</a>
 
-        <br><br>
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
-        <label>Thương hiệu</label>
+    <a href="logout">🚪 Đăng xuất</a>
 
-        <input type="text"
-               name="thuongHieu"
-               required>
+</div>
 
-        <br><br>
+<div class="content">
 
-        <label>Chất liệu</label>
+    <h1>Thêm sản phẩm</h1>
 
-        <input type="text"
-               name="chatLieu"
-               required>
+    <div class="table-box" style="padding:30px;max-width:700px;">
 
-        <br><br>
+        <form action="addSanPham" method="post">
 
-        <label>Mô tả</label>
+            <label>Tên sản phẩm</label>
 
-        <textarea name="moTa"
-                  rows="5"></textarea>
+            <input type="text"
+                   name="tenSP"
+                   required>
 
-        <br><br>
+            <br><br>
 
-        <label>Màu sắc</label>
+            <label>Thương hiệu</label>
 
-        <select name="maMau">
+            <input type="text"
+                   name="thuongHieu"
+                   required>
 
-            <c:forEach items="${mauSacList}" var="ms">
+            <br><br>
 
-                <option value="${ms.maMau}">
-                    ${ms.tenMau}
+            <label>Chất liệu</label>
+
+            <input type="text"
+                   name="chatLieu"
+                   required>
+
+            <br><br>
+
+            <label>Mô tả</label>
+
+            <textarea name="moTa"
+                      rows="5"></textarea>
+
+            <br><br>
+
+            <label>Màu sắc</label>
+
+            <select name="maMau">
+
+                <c:forEach items="${mauSacList}" var="ms">
+
+                    <option value="${ms.maMau}">
+                        ${ms.tenMau}
+                    </option>
+
+                </c:forEach>
+
+            </select>
+
+            <br><br>
+
+            <label>Kích cỡ</label>
+
+            <select name="maSize">
+
+                <c:forEach items="${kichCoList}" var="kc">
+
+                    <option value="${kc.maSize}">
+                        ${kc.tenSize}
+                    </option>
+
+                </c:forEach>
+
+            </select>
+
+            <br><br>
+
+            <label>Giá bán</label>
+
+            <input type="number"
+                   name="gia"
+                   min="0"
+                   required>
+
+            <br><br>
+
+            <label>Số lượng</label>
+
+            <input type="number"
+                   name="soLuong"
+                   min="0"
+                   required>
+
+            <br><br>
+
+            <label>Trạng thái</label>
+
+            <select name="trangThai">
+
+                <option value="true">
+                    Đang bán
                 </option>
 
-            </c:forEach>
-
-        </select>
-
-        <br><br>
-
-        <label>Kích cỡ</label>
-
-        <select name="maSize">
-
-            <c:forEach items="${kichCoList}" var="kc">
-
-                <option value="${kc.maSize}">
-                    ${kc.tenSize}
+                <option value="false">
+                    Ngừng bán
                 </option>
 
-            </c:forEach>
+            </select>
 
-        </select>
+            <br><br>
 
-        <br><br>
+            <button type="submit" class="btn btn-success">
+                ➕ Thêm sản phẩm
+            </button>
 
-        <label>Giá bán</label>
+            <a href="sanpham" class="btn btn-gray">
+                ← Quay lại
+            </a>
 
-        <input type="number"
-               name="gia"
-               min="0"
-               required>
+        </form>
 
-        <br><br>
-
-        <label>Số lượng</label>
-
-        <input type="number"
-               name="soLuong"
-               min="0"
-               required>
-
-        <br><br>
-
-        <label>Trạng thái</label>
-
-        <select name="trangThai">
-
-            <option value="true">
-
-                Đang bán
-
-            </option>
-
-            <option value="false">
-
-                Ngừng bán
-
-            </option>
-
-        </select>
-
-        <br><br>
-
-        <button type="submit">
-
-            Thêm sản phẩm
-
-        </button>
-
-        <a class="back-btn"
-           href="sanpham">
-
-            Quay lại
-
-        </a>
-
-    </form>
+    </div>
 
 </div>
 

@@ -10,89 +10,115 @@
 
     <title>Thêm biến thể sản phẩm</title>
 
-    <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/css/style2.css">
+    <link rel="stylesheet" href="/DATN-nhom2/css/admin.css">
 
 </head>
 
 <body>
 
-<div class="form-box">
+<div class="sidebar">
 
-    <h1>SHOP ÁO CHO NAM</h1>
+    <h2>BO THẰNG CHÁ</h2>
 
-    <h2>THÊM BIẾN THỂ SẢN PHẨM</h2>
+    <a href="admin">🏠 Dashboard</a>
 
-    <form action="addSanPhamChiTiet" method="post">
+    <a href="sanpham" class="active">👕 Quản lý sản phẩm</a>
 
-        <input type="hidden"
-               name="maSP"
-               value="${maSP}">
+    <a href="nhanvien">👨 Quản lý nhân viên</a>
 
-        <label>Màu sắc</label>
+    <a href="khachhang">👤 Quản lý khách hàng</a>
 
-        <select name="maMau" required>
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
-            <c:forEach items="${mauSacList}" var="ms">
+    <a href="logout">🚪 Đăng xuất</a>
 
-                <option value="${ms.maMau}">
-                    ${ms.tenMau}
-                </option>
+</div>
 
-            </c:forEach>
+<div class="content">
 
-        </select>
+    <h1>Thêm biến thể sản phẩm</h1>
 
-        <br><br>
+    <div class="table-box" style="padding:30px;max-width:700px;">
 
-        <label>Kích cỡ</label>
+        <form action="addSanPhamChiTiet" method="post">
 
-        <select name="maSize" required>
+            <input type="hidden"
+                   name="maSP"
+                   value="${maSP}">
 
-            <c:forEach items="${kichCoList}" var="kc">
+            <label>Màu sắc</label>
 
-                <option value="${kc.maSize}">
-                    ${kc.tenSize}
-                </option>
+            <select name="maMau" required>
 
-            </c:forEach>
+                <c:forEach items="${mauSacList}" var="ms">
 
-        </select>
+                    <option value="${ms.maMau}">
+                        ${ms.tenMau}
+                    </option>
 
-        <br><br>
+                </c:forEach>
 
-        <label>Giá</label>
+            </select>
 
-        <input type="number"
-               name="gia"
-               min="0"
-               required>
+            <br><br>
 
-        <br><br>
+            <label>Kích cỡ</label>
 
-        <label>Số lượng</label>
+            <select name="maSize" required>
 
-        <input type="number"
-               name="soLuong"
-               min="0"
-               required>
+                <c:forEach items="${kichCoList}" var="kc">
 
-        <br><br>
+                    <option value="${kc.maSize}">
+                        ${kc.tenSize}
+                    </option>
 
-        <button type="submit">
+                </c:forEach>
 
-            Thêm
+            </select>
 
-        </button>
+            <br><br>
 
-        <a class="back-btn"
-           href="sanphamchitiet?id=${maSP}">
+            <label>Giá</label>
 
-            Quay lại
+            <div class="input-group">
 
-        </a>
+                <input type="number"
+                       name="gia"
+                       min="0"
+                       step="1"
+                       required>
 
-    </form>
+                <span>VNĐ</span>
+
+            </div>
+
+            <br><br>
+
+            <label>Số lượng</label>
+
+            <input type="number"
+                   name="soLuong"
+                   min="0"
+                   required>
+
+            <br><br>
+
+            <button type="submit" class="btn btn-success">
+
+                ➕ Thêm biến thể
+
+            </button>
+
+            <a href="sanphamchitiet?id=${maSP}"
+               class="btn btn-gray">
+
+                ← Quay lại
+
+            </a>
+
+        </form>
+
+    </div>
 
 </div>
 

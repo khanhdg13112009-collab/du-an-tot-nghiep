@@ -10,99 +10,116 @@
 
     <title>Sửa biến thể sản phẩm</title>
 
-    <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/css/style2.css">
+    <link rel="stylesheet" href="/DATN-nhom2/css/admin.css">
 
 </head>
 
 <body>
 
-<div class="form-box">
+<div class="sidebar">
 
-    <h1>SHOP ÁO CHO NAM</h1>
+    <h2>BO THẰNG CHÁ</h2>
 
-    <h2>SỬA BIẾN THỂ</h2>
+    <a href="admin">🏠 Dashboard</a>
 
-    <form action="editSanPhamChiTiet" method="post">
+    <a href="sanpham" class="active">👕 Quản lý sản phẩm</a>
 
-        <input type="hidden"
-               name="maSPCT"
-               value="${spct.maSPCT}">
+    <a href="nhanvien">👨 Quản lý nhân viên</a>
 
-        <input type="hidden"
-               name="maSP"
-               value="${spct.maSP}">
+    <a href="khachhang">👤 Quản lý khách hàng</a>
 
-        <label>Màu sắc</label>
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
-        <select name="maMau">
+    <a href="logout">🚪 Đăng xuất</a>
 
-            <c:forEach items="${mauSacList}" var="ms">
+</div>
 
-                <option value="${ms.maMau}"
-                    ${spct.maMau==ms.maMau?"selected":""}>
+<div class="content">
 
-                    ${ms.tenMau}
+    <h1>Sửa biến thể sản phẩm</h1>
 
-                </option>
+    <div class="table-box" style="padding:30px; max-width:700px;">
 
-            </c:forEach>
+        <form action="editSanPhamChiTiet" method="post">
 
-        </select>
+            <input type="hidden"
+                   name="maSPCT"
+                   value="${spct.maSPCT}">
 
-        <br><br>
+            <input type="hidden"
+                   name="maSP"
+                   value="${spct.maSP}">
 
-        <label>Kích cỡ</label>
+            <label>Màu sắc</label>
 
-        <select name="maSize">
+            <select name="maMau">
 
-            <c:forEach items="${kichCoList}" var="kc">
+                <c:forEach items="${mauSacList}" var="ms">
 
-                <option value="${kc.maSize}"
-                    ${spct.maSize==kc.maSize?"selected":""}>
+                    <option value="${ms.maMau}"
+                        ${spct.maMau==ms.maMau?"selected":""}>
 
-                    ${kc.tenSize}
+                        ${ms.tenMau}
 
-                </option>
+                    </option>
 
-            </c:forEach>
+                </c:forEach>
 
-        </select>
+            </select>
 
-        <br><br>
+            <br><br>
 
-        <label>Giá</label>
+            <label>Kích cỡ</label>
 
-        <input type="number"
-               name="gia"
-               value="${spct.gia}"
-               required>
+            <select name="maSize">
 
-        <br><br>
+                <c:forEach items="${kichCoList}" var="kc">
 
-        <label>Số lượng</label>
+                    <option value="${kc.maSize}"
+                        ${spct.maSize==kc.maSize?"selected":""}>
 
-        <input type="number"
-               name="soLuong"
-               value="${spct.soLuong}"
-               required>
+                        ${kc.tenSize}
 
-        <br><br>
+                    </option>
 
-        <button type="submit">
+                </c:forEach>
 
-            Cập nhật
+            </select>
 
-        </button>
+            <br><br>
 
-        <a class="back-btn"
-           href="sanphamchitiet?id=${spct.maSP}">
+            <label>Giá</label>
 
-            Quay lại
+            <input type="number"
+                   name="gia"
+                   value="${spct.gia}"
+                   required>
 
-        </a>
+            <br><br>
 
-    </form>
+            <label>Số lượng</label>
+
+            <input type="number"
+                   name="soLuong"
+                   value="${spct.soLuong}"
+                   required>
+
+            <br><br>
+
+            <button type="submit" class="btn">
+                💾 Cập nhật
+            </button>
+
+            <a href="sanphamchitiet?id=${spct.maSP}"
+               class="btn btn-gray">
+
+                ← Quay lại
+
+            </a>
+
+        </form>
+
+    </div>
 
 </div>
 

@@ -10,73 +10,98 @@
 
     <title>Quản lý kích cỡ</title>
 
-    <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/css/style2.css">
+    <link rel="stylesheet" href="/DATN-nhom2/css/admin.css">
 
 </head>
 
 <body>
 
-<div class="nhanvien-box">
+<div class="sidebar">
 
-    <h2>QUẢN LÝ KÍCH CỠ</h2>
+    <h2>BO THẰNG CHÁ</h2>
 
-    <a class="add-btn" href="addKichCo">
+    <a href="admin">🏠 Dashboard</a>
 
-        ➕ Thêm kích cỡ
+    <a href="sanpham" class="active">👕 Quản lý sản phẩm</a>
 
-    </a>
+    <a href="nhanvien">👨 Quản lý nhân viên</a>
 
-    <table>
+    <a href="khachhang">👤 Quản lý khách hàng</a>
 
-        <tr>
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
-            <th>Mã Size</th>
+    <a href="/DATN-nhom2/logout">🚪 Đăng xuất</a>
 
-            <th>Tên Size</th>
+</div>
 
-            <th>Chức năng</th>
+<div class="content">
 
-        </tr>
+    <h1>Quản lý kích cỡ</h1>
 
-        <c:forEach items="${list}" var="kc">
+    <div class="toolbar">
+
+        <a href="addKichCo" class="btn btn-success">
+
+            ➕ Thêm kích cỡ
+
+        </a>
+
+    </div>
+
+    <div class="table-box">
+
+        <table>
 
             <tr>
 
-                <td>${kc.maSize}</td>
+                <th>Mã Size</th>
 
-                <td>${kc.tenSize}</td>
+                <th>Tên Size</th>
 
-                <td>
-
-                    <a class="action-btn edit-btn"
-                       href="editKichCo?id=${kc.maSize}">
-
-                        Sửa
-
-                    </a>
-
-                    <a class="action-btn delete-btn"
-                       href="deleteKichCo?id=${kc.maSize}"
-                       onclick="return confirm('Bạn có chắc muốn xóa?')">
-
-                        Xóa
-
-                    </a>
-
-                </td>
+                <th>Chức năng</th>
 
             </tr>
 
-        </c:forEach>
+            <c:forEach items="${list}" var="kc">
 
-    </table>
+                <tr>
+
+                    <td>${kc.maSize}</td>
+
+                    <td>${kc.tenSize}</td>
+
+                    <td>
+
+                        <a href="editKichCo?id=${kc.maSize}"
+                           class="btn">
+
+                            ✏ Sửa
+
+                        </a>
+
+                        <a href="deleteKichCo?id=${kc.maSize}"
+                           class="btn"
+                           onclick="return confirm('Bạn có chắc muốn xóa?')">
+
+                            🗑 Xóa
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            </c:forEach>
+
+        </table>
+
+    </div>
 
     <br>
 
-    <a class="back-btn" href="home.jsp">
+    <a href="sanpham" class="btn btn-gray">
 
-        ← Quay lại Trang chủ
+        ↩ Quay lại
 
     </a>
 

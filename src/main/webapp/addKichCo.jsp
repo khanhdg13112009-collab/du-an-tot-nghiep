@@ -9,40 +9,69 @@
 
     <title>Thêm kích cỡ</title>
 
-    <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/css/style2.css">
+    <link rel="stylesheet" href="/DATN-nhom2/css/admin.css">
 
 </head>
 
 <body>
 
-<div class="form-box">
+<div class="sidebar">
 
-    <h2>THÊM KÍCH CỠ</h2>
+    <h2>BO THẰNG CHÁ</h2>
 
-    <form action="addKichCo" method="post">
+    <a href="admin">🏠 Dashboard</a>
 
-        <label>Tên kích cỡ</label>
+    <a href="sanpham" class="active">👕 Quản lý sản phẩm</a>
 
-        <input type="text"
-               name="tenSize"
-               required>
+    <a href="nhanvien">👨 Quản lý nhân viên</a>
 
-        <br><br>
+    <a href="khachhang">👤 Quản lý khách hàng</a>
 
-        <button type="submit">
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
-            Thêm kích cỡ
+    <a href="/DATN-nhom2/logout">🚪 Đăng xuất</a>
 
-        </button>
+</div>
 
-        <a href="kichco">
+<div class="content">
 
-            Quay lại
+    <h1>Thêm kích cỡ</h1>
 
-        </a>
+    <div class="table-box">
 
-    </form>
+        <form action="addKichCo" method="post">
+
+            <table>
+
+                <tr>
+                    <td><b>Tên kích cỡ</b></td>
+                    <td>
+                        <input type="text"
+                               name="tenSize"
+                               placeholder="Ví dụ: S, M, L, XL..."
+                               required>
+                    </td>
+                </tr>
+
+            </table>
+
+            <br>
+
+            <button type="submit" class="btn btn-success">
+
+                ➕ Thêm kích cỡ
+
+            </button>
+
+            <a href="kichco" class="btn btn-gray">
+
+                ↩ Quay lại
+
+            </a>
+
+        </form>
+
+    </div>
 
 </div>
 

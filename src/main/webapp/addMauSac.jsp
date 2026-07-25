@@ -9,41 +9,69 @@
 
     <title>Thêm màu sắc</title>
 
-    <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/css/style2.css">
+    <link rel="stylesheet" href="/DATN-nhom2/css/admin.css">
 
 </head>
 
 <body>
 
-<div class="form-box">
+<div class="sidebar">
 
-    <h2>THÊM MÀU SẮC</h2>
+    <h2>BO THẰNG CHÁ</h2>
 
-    <form action="addMauSac" method="post">
+    <a href="admin">🏠 Dashboard</a>
 
-        <label>Tên màu</label>
+    <a href="sanpham" class="active">👕 Quản lý sản phẩm</a>
 
-        <input
-                type="text"
-                name="tenMau"
-                required>
+    <a href="nhanvien">👨 Quản lý nhân viên</a>
 
-        <br><br>
+    <a href="khachhang">👤 Quản lý khách hàng</a>
 
-        <button type="submit">
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
-            Thêm màu
+    <a href="/DATN-nhom2/logout">🚪 Đăng xuất</a>
 
-        </button>
+</div>
 
-        <a href="mausac">
+<div class="content">
 
-            Quay lại
+    <h1>Thêm màu sắc</h1>
 
-        </a>
+    <div class="table-box">
 
-    </form>
+        <form action="addMauSac" method="post">
+
+            <table>
+
+                <tr>
+                    <td><b>Tên màu sắc</b></td>
+                    <td>
+                        <input type="text"
+                               name="tenMau"
+                               placeholder="Ví dụ: Đen, Trắng, Xanh..."
+                               required>
+                    </td>
+                </tr>
+
+            </table>
+
+            <br>
+
+            <button type="submit" class="btn btn-success">
+
+                ➕ Thêm màu sắc
+
+            </button>
+
+            <a href="mausac" class="btn btn-gray">
+
+                ↩ Quay lại
+
+            </a>
+
+        </form>
+
+    </div>
 
 </div>
 

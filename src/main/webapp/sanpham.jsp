@@ -3,164 +3,147 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
 
     <meta charset="UTF-8">
 
     <title>Quản lý sản phẩm</title>
 
- <link rel="stylesheet"
- href="${pageContext.request.contextPath}/css/style2.css">
+   <link rel="stylesheet"
+         href="${pageContext.request.contextPath}/css/admin.css">
 
 </head>
 
 <body>
 
-<div class="nhanvien-box">
+<!-- Sidebar -->
+<div class="sidebar">
 
-    <h1>SHOP ÁO CHO NAM</h1>
+    <h2>BO THẰNG CHÁ</h2>
 
-    <h2>QUẢN LÝ SẢN PHẨM</h2>
+    <a href="admin">🏠 Dashboard</a>
 
-    <a class="add-btn"
-       href="addSanPham">
+    <a href="sanpham" class="active">👕 Quản lý sản phẩm</a>
 
-        ➕ Thêm sản phẩm
+    <a href="nhanvien">👨 Quản lý nhân viên</a>
 
-    </a>
+    <a href="khachhang">👤 Quản lý khách hàng</a>
 
-    <br><br>
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
-    <form action="sanpham" method="get">
+    <a href="logout">🚪 Đăng xuất</a>
 
-        <input type="text"
-               name="keyword"
-               value="${keyword}"
-               placeholder="Nhập mã hoặc tên sản phẩm..."
-               style="width:300px;
-                      padding:10px;
-                      border-radius:8px;
-                      border:1px solid #ccc;">
+</div>
 
-        <button type="submit"
-                class="add-btn"
-                style="padding:10px 18px;">
+<!-- Nội dung -->
+<div class="content">
 
-            🔍 Tìm
+    <h1>Quản lý sản phẩm</h1>
 
-        </button>
+    <div class="toolbar">
 
-        <a href="sanpham"
-           class="back-btn"
-           style="padding:10px 18px;">
-
-            Hiển thị tất cả
-
+        <a href="addSanPham" class="btn btn-success">
+            ➕ Thêm sản phẩm
         </a>
 
-    </form>
+        <form action="sanpham" method="get">
 
-    <br>
+            <input type="text"
+                   name="keyword"
+                   value="${keyword}"
+                   placeholder="Nhập mã hoặc tên sản phẩm...">
 
-    <table>
+            <button type="submit" class="btn">
+                🔍 Tìm
+            </button>
 
-        <tr>
+            <a href="sanpham" class="btn btn-gray">
+                Hiển thị tất cả
+            </a>
 
-            <th>Mã SP</th>
+        </form>
 
-            <th>Tên sản phẩm</th>
+    </div>
 
-            <th>Thương hiệu</th>
+    <div class="table-box">
 
-            <th>Chất liệu</th>
-
-            <th>Mô tả</th>
-
-            <th>Trạng thái</th>
-
-            <th>Chức năng</th>
-
-        </tr>
-
-        <c:forEach items="${list}" var="sp">
+        <table>
 
             <tr>
 
-                <td>${sp.maSP}</td>
+                <th>Mã SP</th>
 
-                <td>${sp.tenSP}</td>
+                <th>Tên sản phẩm</th>
 
-                <td>${sp.thuongHieu}</td>
+                <th>Thương hiệu</th>
 
-                <td>${sp.chatLieu}</td>
+                <th>Chất liệu</th>
 
-                <td>${sp.moTa}</td>
+                <th>Mô tả</th>
 
-                <td>
+                <th>Trạng thái</th>
 
-                    <c:choose>
-
-                        <c:when test="${sp.trangThai}">
-
-                            <span style="color:green;font-weight:bold;">
-
-                                🟢 Đang bán
-
-                            </span>
-
-                        </c:when>
-
-                        <c:otherwise>
-
-                            <span style="color:red;font-weight:bold;">
-
-                                🔴 Ngừng bán
-
-                            </span>
-
-                        </c:otherwise>
-
-                    </c:choose>
-
-                </td>
-
-                <td>
-
-                    <a class="action-btn edit-btn"
-                       href="editSanPham?id=${sp.maSP}">
-
-                        ✏️ Sửa
-
-                    </a>
-
-                    <a class="action-btn"
-                       style="background:#16a34a;"
-                       href="sanphamchitiet?id=${sp.maSP}">
-
-                        📦 Chi tiết
-
-                    </a>
-
-                </td>
+                <th>Thao tác</th>
 
             </tr>
 
-        </c:forEach>
+            <c:forEach items="${list}" var="sp">
 
-    </table>
+                <tr>
 
-    <br>
+                    <td>${sp.maSP}</td>
 
-    <a class="back-btn"
-       href="home.jsp">
+                    <td>${sp.tenSP}</td>
 
-        ← Quay lại Trang chủ
+                    <td>${sp.thuongHieu}</td>
 
-    </a>
+                    <td>${sp.chatLieu}</td>
+
+                    <td>${sp.moTa}</td>
+
+                    <td>
+
+                        <c:choose>
+
+                            <c:when test="${sp.trangThai}">
+                                <span class="status-on">
+                                    🟢 Đang bán
+                                </span>
+                            </c:when>
+
+                            <c:otherwise>
+                                <span class="status-off">
+                                    🔴 Ngừng bán
+                                </span>
+                            </c:otherwise>
+
+                        </c:choose>
+
+                    </td>
+
+                    <td>
+
+                        <a href="editSanPham?id=${sp.maSP}"
+                           class="btn">
+                            ✏️ Sửa
+                        </a>
+
+                        <a href="sanphamchitiet?id=${sp.maSP}"
+                           class="btn btn-success">
+                            📦 Chi tiết
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            </c:forEach>
+
+        </table>
+
+    </div>
 
 </div>
 
 </body>
-
 </html>

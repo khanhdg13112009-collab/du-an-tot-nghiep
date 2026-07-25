@@ -10,79 +10,96 @@
 
     <title>Quản lý khách hàng</title>
 
-<link rel="stylesheet"
-href="${pageContext.request.contextPath}/css/style2.css">
+    <link rel="stylesheet" href="/DATN-nhom2/css/admin.css">
 
 </head>
 
 <body>
 
-<div class="nhanvien-box">
+<div class="sidebar">
 
-    <h1>SHOP ÁO CHO NAM</h1>
+    <h2>BO THẰNG CHÁ</h2>
 
-    <h2>QUẢN LÝ KHÁCH HÀNG</h2>
+    <a href="admin">🏠 Dashboard</a>
 
-    <a class="add-btn"
-       href="addKhachHang">
+    <a href="sanpham">👕 Quản lý sản phẩm</a>
 
-        ➕ Thêm khách hàng
+    <a href="nhanvien">👨 Quản lý nhân viên</a>
 
-    </a>
+    <a href="khachhang" class="active">👤 Quản lý khách hàng</a>
 
-    <table>
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
-        <tr>
+    <a href="/DATN-nhom2/logout">🚪 Đăng xuất</a>
 
-            <th>Mã KH</th>
+</div>
 
-            <th>Họ tên</th>
+<div class="content">
 
-            <th>Số điện thoại</th>
+    <h1>Quản lý khách hàng</h1>
 
+    <div class="toolbar">
 
+        <a href="addKhachHang" class="btn btn-success">
 
-            <th>Chức năng</th>
+            ➕ Thêm khách hàng
 
-        </tr>
+        </a>
 
-        <c:forEach items="${list}" var="kh">
+    </div>
+
+    <div class="table-box">
+
+        <table>
+
+            <thead>
 
             <tr>
 
-                <td>${kh.maKH}</td>
+                <th>Mã KH</th>
 
-                <td>${kh.hoTen}</td>
+                <th>Họ tên</th>
 
-                <td>${kh.soDienThoai}</td>
+                <th>Số điện thoại</th>
 
-
-
-                <td>
-
-                    <a class="action-btn edit-btn"
-                       href="editKhachHang?id=${kh.maKH}">
-
-                        ✏️ Sửa
-
-                    </a>
-
-                </td>
+                <th>Thao tác</th>
 
             </tr>
 
-        </c:forEach>
+            </thead>
 
-    </table>
+            <tbody>
 
-    <br>
+            <c:forEach items="${list}" var="kh">
 
-    <a class="back-btn"
-       href="home.jsp">
+                <tr>
 
-        ← Quay lại Trang chủ
+                    <td>${kh.maKH}</td>
 
-    </a>
+                    <td>${kh.hoTen}</td>
+
+                    <td>${kh.soDienThoai}</td>
+
+                    <td>
+
+                        <a href="editKhachHang?id=${kh.maKH}"
+                           class="btn">
+
+                            ✏️ Sửa
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            </c:forEach>
+
+            </tbody>
+
+        </table>
+
+    </div>
 
 </div>
 

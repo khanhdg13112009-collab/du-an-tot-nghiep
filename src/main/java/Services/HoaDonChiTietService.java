@@ -25,8 +25,10 @@ public class HoaDonChiTietService {
             ps.setInt(1, ct.getMaHD());
             ps.setInt(2, ct.getMaSPCT());
             ps.setInt(3, ct.getSoLuong());
-            ps.setDouble(4, ct.getDonGia());
-            ps.setDouble(5, ct.getThanhTien());
+
+
+            ps.setBigDecimal(4, ct.getDonGia());
+            ps.setBigDecimal(5, ct.getThanhTien());
 
             boolean success = ps.executeUpdate() > 0;
 
@@ -42,7 +44,5 @@ public class HoaDonChiTietService {
         }
 
         return false;
-
     }
-
 }

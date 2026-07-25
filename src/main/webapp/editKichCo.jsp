@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -7,7 +8,7 @@
 
     <meta charset="UTF-8">
 
-    <title>Sửa kích cỡ</title>
+    <title>Quản lý kích cỡ</title>
 
     <link rel="stylesheet"
     href="${pageContext.request.contextPath}/css/style2.css">
@@ -16,38 +17,68 @@
 
 <body>
 
-<div class="form-box">
+<div class="nhanvien-box">
 
-    <h2>SỬA KÍCH CỠ</h2>
+    <h2>QUẢN LÝ KÍCH CỠ</h2>
 
-    <form action="editKichCo" method="post">
+    <a class="add-btn" href="addKichCo">
 
-        <input type="hidden"
-               name="maSize"
-               value="${kc.maSize}">
+        ➕ Thêm kích cỡ
 
-        <label>Tên kích cỡ</label>
+    </a>
 
-        <input type="text"
-               name="tenSize"
-               value="${kc.tenSize}"
-               required>
+    <table>
 
-        <br><br>
+        <tr>
 
-        <button type="submit">
+            <th>Mã Size</th>
 
-            Cập nhật
+            <th>Tên Size</th>
 
-        </button>
+            <th>Chức năng</th>
 
-        <a href="kichco">
+        </tr>
 
-            Quay lại
+        <c:forEach items="${list}" var="kc">
 
-        </a>
+            <tr>
 
-    </form>
+                <td>${kc.maSize}</td>
+
+                <td>${kc.tenSize}</td>
+
+                <td>
+
+                    <a class="action-btn edit-btn"
+                       href="editKichCo?id=${kc.maSize}">
+
+                        Sửa
+
+                    </a>
+
+                    <a class="action-btn delete-btn"
+                       href="deleteKichCo?id=${kc.maSize}"
+                       onclick="return confirm('Bạn có chắc muốn xóa?')">
+
+                        Xóa
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+        </c:forEach>
+
+    </table>
+
+    <br>
+
+    <a class="back-btn" href="home.jsp">
+
+        ← Quay lại Trang chủ
+
+    </a>
 
 </div>
 

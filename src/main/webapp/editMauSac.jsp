@@ -9,47 +9,73 @@
 
     <title>Sửa màu sắc</title>
 
-    <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/css/style2.css">
+    <link rel="stylesheet" href="/DATN-nhom2/css/admin.css">
 
 </head>
 
 <body>
 
-<div class="form-box">
+<div class="sidebar">
 
-    <h2>SỬA MÀU SẮC</h2>
+    <h2>BO THẰNG CHÁ</h2>
 
-    <form action="editMauSac" method="post">
+    <a href="admin">🏠 Dashboard</a>
 
-        <input
-                type="hidden"
-                name="maMau"
-                value="${ms.maMau}">
+    <a href="sanpham" class="active">👕 Quản lý sản phẩm</a>
 
-        <label>Tên màu</label>
+    <a href="nhanvien">👨 Quản lý nhân viên</a>
 
-        <input
-                type="text"
-                name="tenMau"
-                value="${ms.tenMau}"
-                required>
+    <a href="khachhang">👤 Quản lý khách hàng</a>
 
-        <br><br>
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
-        <button type="submit">
+    <a href="/DATN-nhom2/logout">🚪 Đăng xuất</a>
 
-            Cập nhật
+</div>
 
-        </button>
+<div class="content">
 
-        <a href="mausac">
+    <h1>Sửa màu sắc</h1>
 
-            Quay lại
+    <div class="table-box">
 
-        </a>
+        <form action="editMauSac" method="post">
 
-    </form>
+            <input type="hidden"
+                   name="maMau"
+                   value="${ms.maMau}">
+
+            <table>
+
+                <tr>
+                    <td><b>Tên màu sắc</b></td>
+                    <td>
+                        <input type="text"
+                               name="tenMau"
+                               value="${ms.tenMau}"
+                               required>
+                    </td>
+                </tr>
+
+            </table>
+
+            <br>
+
+            <button type="submit" class="btn btn-success">
+
+                💾 Cập nhật
+
+            </button>
+
+            <a href="mausac" class="btn btn-gray">
+
+                ↩ Quay lại
+
+            </a>
+
+        </form>
+
+    </div>
 
 </div>
 

@@ -1,32 +1,56 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=UTF-8"
+         pageEncoding="UTF-8"
+         isELIgnored="false"%>
+
+<%@ taglib prefix="c"
+           uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<title>Chi tiết nhân viên</title>
+    <title>Chi tiết nhân viên</title>
 
-<link rel="stylesheet"
-href="${pageContext.request.contextPath}/css/style2.css">
+    <link rel="stylesheet" href="/DATN-nhom2/css/admin.css">
 
 </head>
 
 <body>
 
-<div class="profile-box">
+<div class="sidebar">
 
-    <div class="logo">👔</div>
+    <h2>BO THẰNG CHÁ</h2>
 
-    <h1>SHOP ÁO CHO NAM</h1>
+    <a href="admin">🏠 Dashboard</a>
 
-    <h2>CHI TIẾT NHÂN VIÊN</h2>
+    <a href="sanpham">👕 Quản lý sản phẩm</a>
 
-    <table>
+    <a href="nhanvien" class="active">👨 Quản lý nhân viên</a>
 
+    <a href="khachhang">👤 Quản lý khách hàng</a>
+
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
+
+    <a href="logout">🚪 Đăng xuất</a>
+
+</div>
+
+<div class="content">
+
+    <h1>👤 Chi tiết nhân viên</h1>
+
+    <div class="table-box">
+
+        <table class="form-table">
+
+            <tr>
+                <th colspan="2">Thông tin cá nhân</th>
+            </tr>
+
+   <table class="form-table">
         <tr>
             <th colspan="2">Thông tin cá nhân</th>
         </tr>
@@ -90,6 +114,35 @@ href="${pageContext.request.contextPath}/css/style2.css">
         <tr>
             <td><b>Email</b></td>
             <td>${nv.email}</td>
+        </tr>
+
+        <tr>
+            <td><b>Tên đăng nhập</b></td>
+            <td>${account.username}</td>
+        </tr>
+
+        <tr>
+            <td><b>Mật khẩu</b></td>
+            <td>${account.password}</td>
+        </tr>
+
+        <tr>
+            <td><b>Vai trò</b></td>
+            <td>
+                <c:choose>
+                    <c:when test="${account.roleID == 1}">
+                        Quản lý
+                    </c:when>
+
+                    <c:when test="${account.roleID == 2}">
+                        Nhân viên
+                    </c:when>
+
+                    <c:otherwise>
+                        Khách hàng
+                    </c:otherwise>
+                </c:choose>
+            </td>
         </tr>
 
         <tr>
@@ -183,15 +236,18 @@ href="${pageContext.request.contextPath}/css/style2.css">
 
     <br>
 
-    <a class="back-btn"
-       href="nhanVien">
+    <div style="text-align:center;">
 
-        ⬅ Quay lại
+        <a href="nhanvien" class="btn">
+            ⬅ Quay lại
+        </a>
 
-    </a>
+    </div>
 
-</div>
+    </div>
 
-</body>
+    </div>
 
-</html>
+    </body>
+
+    </html>

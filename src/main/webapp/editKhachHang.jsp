@@ -9,69 +9,94 @@
 
     <title>Sửa khách hàng</title>
 
-    <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/css/style2.css">
+    <link rel="stylesheet" href="/DATN-nhom2/css/admin.css">
 
 </head>
 
 <body>
 
-<div class="form-box">
+<div class="sidebar">
 
-    <h2>SỬA KHÁCH HÀNG</h2>
+    <h2>BO THẰNG CHÁ</h2>
 
-    <form action="editKhachHang" method="post">
+    <a href="admin">🏠 Dashboard</a>
 
-        <input
-                type="hidden"
-                name="maKH"
-                value="${kh.maKH}">
+    <a href="sanpham">👕 Quản lý sản phẩm</a>
 
-        <label>Họ tên</label>
+    <a href="nhanvien">👨 Quản lý nhân viên</a>
 
-        <input
-                type="text"
-                name="hoTen"
-                value="${kh.hoTen}"
-                required>
+    <a href="khachhang" class="active">👤 Quản lý khách hàng</a>
 
-        <label>Số điện thoại</label>
+    <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
-        <input
-                type="text"
-                name="soDienThoai"
-                value="${kh.soDienThoai}"
-                required>
+    <a href="/DATN-nhom2/logout">🚪 Đăng xuất</a>
 
-        <label>Email</label>
+</div>
 
-        <input
-                type="email"
-                name="email"
-                value="${kh.email}">
+<div class="content">
 
-        <label>Địa chỉ</label>
+    <h1>Sửa khách hàng</h1>
 
-        <input
-                type="text"
-                name="diaChi"
-                value="${kh.diaChi}">
+    <div class="table-box">
 
-        <br><br>
+        <form action="editKhachHang" method="post">
 
-        <button type="submit">
+            <input type="hidden"
+                   name="maKH"
+                   value="${kh.maKH}">
 
-            Cập nhật
+            <table>
 
-        </button>
+                <tr>
+                    <td><b>Họ tên</b></td>
+                    <td>
+                        <input type="text"
+                               name="hoTen"
+                               value="${kh.hoTen}"
+                               required>
+                    </td>
+                </tr>
 
-        <a href="khachhang">
+                <tr>
+                    <td><b>Số điện thoại</b></td>
+                    <td>
+                        <input type="text"
+                               name="soDienThoai"
+                               value="${kh.soDienThoai}"
+                               required>
+                    </td>
+                </tr>
 
-            Quay lại
+                <tr>
+                    <td><b>Email</b></td>
+                    <td>
+                        <input type="email"
+                               name="email"
+                               value="${kh.email}">
+                    </td>
+                </tr>
 
-        </a>
+            </table>
 
-    </form>
+            <br>
+
+            <button type="submit"
+                    class="btn btn-success">
+
+                💾 Cập nhật
+
+            </button>
+
+            <a href="khachhang"
+               class="btn btn-gray">
+
+                ↩ Quay lại
+
+            </a>
+
+        </form>
+
+    </div>
 
 </div>
 

@@ -76,6 +76,9 @@ public class AddNhanVienController extends HttpServlet {
         String email =
                 request.getParameter("email");
 
+        String password =
+                request.getParameter("password");
+
         String coSo =
                 request.getParameter("coSo");
 
@@ -104,6 +107,7 @@ public class AddNhanVienController extends HttpServlet {
         cccd = cccd.trim();
         soDienThoai = soDienThoai.trim();
         email = email.trim().toLowerCase();
+        password = password.trim();
         noiCapCCCD = noiCapCCCD.trim();
         diaChiChiTiet = diaChiChiTiet.trim();
 
@@ -137,6 +141,18 @@ public class AddNhanVienController extends HttpServlet {
 
             request.setAttribute("error",
                     "Email không hợp lệ.");
+
+            request.getRequestDispatcher("addNhanVien.jsp")
+                    .forward(request, response);
+
+            return;
+
+        }
+
+        if (password.length() < 6) {
+
+            request.setAttribute("error",
+                    "Mật khẩu phải có ít nhất 6 ký tự.");
 
             request.getRequestDispatcher("addNhanVien.jsp")
                     .forward(request, response);
