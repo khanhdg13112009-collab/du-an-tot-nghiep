@@ -20,6 +20,8 @@
 
     <a href="admin">🏠 Dashboard</a>
 
+    <a href="banHang">🛒 Bán hàng</a>
+
     <a href="sanpham">👕 Quản lý sản phẩm</a>
 
     <a href="nhanvien">👨 Quản lý nhân viên</a>
@@ -27,8 +29,6 @@
     <a href="khachhang">👤 Quản lý khách hàng</a>
 
     <a href="hoaDon">🧾 Quản lý hóa đơn</a>
-
-
 
     <a href="/DATN-nhom2/logout">🚪 Đăng xuất</a>
 
@@ -47,6 +47,16 @@
             <p>Quản lý toàn bộ sản phẩm.</p>
 
             <a href="sanpham">Mở</a>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Bán hàng</h2>
+
+            <p>Tạo hóa đơn và thanh toán.</p>
+
+            <a href="banHang">Mở</a>
 
         </div>
 
