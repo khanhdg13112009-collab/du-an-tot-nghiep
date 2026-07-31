@@ -17,7 +17,7 @@ public class AdminController extends HttpServlet {
 
         HttpSession session = request.getSession(false);
 
-        // Chưa đăng nhập
+
         if (session == null) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
@@ -25,13 +25,13 @@ public class AdminController extends HttpServlet {
 
         Account account = (Account) session.getAttribute("account");
 
-        // Không có tài khoản hoặc không phải quản lý
+
         if (account == null || account.getRoleID() != 1) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
 
-        // Đăng nhập thành công
+
         request.getRequestDispatcher("admin.jsp")
                 .forward(request, response);
     }

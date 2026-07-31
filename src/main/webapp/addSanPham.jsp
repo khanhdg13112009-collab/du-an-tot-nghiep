@@ -40,6 +40,12 @@
 
     <div class="table-box" style="padding:30px;max-width:700px;">
 
+        <c:if test="${not empty error}">
+            <p style="color:red;font-weight:bold;margin-bottom:15px;">
+                ${error}
+            </p>
+        </c:if>
+
         <form action="addSanPham" method="post">
 
             <label>Tên sản phẩm</label>

@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @WebServlet("/banHang")
@@ -52,6 +53,20 @@ public class BanHangController extends HttpServlet {
             dsSP = sanPhamChiTietService.getAll();
 
         }
+
+        LinkedHashMap<Integer, ArrayList<SanPhamChiTiet>> dsTheoSP =
+                new LinkedHashMap<>();
+
+        for (SanPhamChiTiet sp : dsSP) {
+
+            if (!dsTheoSP.containsKey(sp.getMaSP())) {
+                dsTheoSP.put(sp.getMaSP(), new ArrayList<>());
+            }
+
+            dsTheoSP.get(sp.getMaSP()).add(sp);
+        }
+
+        request.setAttribute("dsTheoSP", dsTheoSP);
 
         if (action == null) {
 

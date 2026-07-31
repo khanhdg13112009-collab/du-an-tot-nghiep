@@ -5,6 +5,7 @@ import Models.SanPhamChiTiet;
 import Services.KichCoService;
 import Services.MauSacService;
 import Services.SanPhamChiTietService;
+import Services.SanPhamService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -91,6 +92,16 @@ public class EditSanPhamChiTietController extends HttpServlet {
         );
 
         service.updateSanPhamChiTiet(spct);
+
+        SanPhamService sanPhamService = new SanPhamService();
+
+        int tongSoLuong = sanPhamService.getTongSoLuong(spct.getMaSP());
+
+        if (tongSoLuong == 0) {
+            sanPhamService.capNhatTrangThai(spct.getMaSP(), false);
+        } else {
+            sanPhamService.capNhatTrangThai(spct.getMaSP(), true);
+        }
 
         response.sendRedirect(
                 "sanphamchitiet?id=" + spct.getMaSP()

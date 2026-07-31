@@ -134,11 +134,7 @@
                         Chi tiết
                     </a>
 
-                    <a class="btn delete"
-                       onclick="return confirm('Xóa hóa đơn này?')"
-                       href="hoaDon?action=delete&maHD=${hd.maHD}">
-                        Xóa
-                    </a>
+
 
                 </td>
 

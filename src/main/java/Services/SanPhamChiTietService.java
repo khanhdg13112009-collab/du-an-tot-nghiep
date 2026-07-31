@@ -55,7 +55,6 @@ public class SanPhamChiTietService {
                 spct.setTenSize(rs.getString("TenSize"));
 
                 list.add(spct);
-
             }
 
             rs.close();
@@ -63,13 +62,10 @@ public class SanPhamChiTietService {
             conn.close();
 
         } catch (Exception e) {
-
             e.printStackTrace();
-
         }
 
         return list;
-
     }
 
     public SanPhamChiTiet getById(int id) {
@@ -219,6 +215,7 @@ public class SanPhamChiTietService {
         return false;
 
     }
+
     public boolean updateSanPhamChiTiet(SanPhamChiTiet spct) {
 
         if (spct.getGia() < 0) {
@@ -261,6 +258,7 @@ public class SanPhamChiTietService {
         return false;
 
     }
+
     public void deleteSanPhamChiTiet(int id) {
 
         String sql =
@@ -351,7 +349,6 @@ public class SanPhamChiTietService {
 
     }
 
-
     public boolean giamSoLuong(int maSPCT, int soLuong) {
 
         if (soLuong <= 0) {
@@ -390,68 +387,4 @@ public class SanPhamChiTietService {
         return false;
 
     }
-    public ArrayList<SanPhamChiTiet> search(String keyword) {
-
-        ArrayList<SanPhamChiTiet> list = new ArrayList<>();
-
-        String sql =
-                "SELECT " +
-                        "spct.MaSPCT," +
-                        "spct.MaSP," +
-                        "spct.MaMau," +
-                        "spct.MaSize," +
-                        "spct.Gia," +
-                        "spct.SoLuong," +
-                        "sp.TenSP," +
-                        "ms.TenMau," +
-                        "kc.TenSize " +
-                        "FROM SanPhamChiTiet spct " +
-                        "INNER JOIN SanPham sp ON spct.MaSP = sp.MaSP " +
-                        "INNER JOIN MauSac ms ON spct.MaMau = ms.MaMau " +
-                        "INNER JOIN KichCo kc ON spct.MaSize = kc.MaSize " +
-                        "WHERE sp.TenSP LIKE ?";
-
-        try {
-
-            Connection conn = connect.myConnection();
-
-            PreparedStatement ps = conn.prepareStatement(sql);
-
-            ps.setString(1, "%" + keyword + "%");
-
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-
-                SanPhamChiTiet spct = new SanPhamChiTiet();
-
-                spct.setMaSPCT(rs.getInt("MaSPCT"));
-                spct.setMaSP(rs.getInt("MaSP"));
-                spct.setMaMau(rs.getInt("MaMau"));
-                spct.setMaSize(rs.getInt("MaSize"));
-                spct.setGia(rs.getDouble("Gia"));
-                spct.setSoLuong(rs.getInt("SoLuong"));
-
-                spct.setTenSP(rs.getString("TenSP"));
-                spct.setTenMau(rs.getString("TenMau"));
-                spct.setTenSize(rs.getString("TenSize"));
-
-                list.add(spct);
-
-            }
-
-            rs.close();
-            ps.close();
-            conn.close();
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-
-        return list;
-
-    }
-
 }

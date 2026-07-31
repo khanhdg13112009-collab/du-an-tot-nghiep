@@ -3,6 +3,8 @@
 <%@ page import="java.math.BigDecimal"%>
 <%@ page import="Models.SanPhamChiTiet"%>
 <%@ page import="Models.CartItem"%>
+<%@ page import="java.util.LinkedHashMap"%>
+<%@ page import="java.util.Map"%>
 
 <%
 ArrayList<SanPhamChiTiet> dsSP =
@@ -13,6 +15,9 @@ ArrayList<CartItem> cart =
 
 BigDecimal tongTien =
         (BigDecimal) request.getAttribute("tongTien");
+
+        LinkedHashMap<Integer, ArrayList<SanPhamChiTiet>> dsTheoSP =
+                (LinkedHashMap<Integer, ArrayList<SanPhamChiTiet>>) request.getAttribute("dsTheoSP");
 
 if(dsSP == null){
     dsSP = new ArrayList<SanPhamChiTiet>();
@@ -179,73 +184,112 @@ input[type=text]{
 <table>
 
 <tr>
-
-    <th>Tên</th>
+    <th>Sản phẩm</th>
     <th>Màu</th>
     <th>Size</th>
     <th>Giá</th>
     <th>Tồn</th>
     <th></th>
-
 </tr>
 
 <%
+for(Map.Entry<Integer, ArrayList<SanPhamChiTiet>> entry : dsTheoSP.entrySet()){
 
-for(SanPhamChiTiet sp : dsSP){
+    ArrayList<SanPhamChiTiet> list = entry.getValue();
 
+    SanPhamChiTiet first = list.get(0);
 %>
 
 <tr>
 
-    <td><%=sp.getTenSP()%></td>
+<td>
 
-    <td><%=sp.getTenMau()%></td>
+    <b><%=first.getTenSP()%></b>
 
-    <td><%=sp.getTenSize()%></td>
+</td>
 
-    <td><%=String.format("%,.0f",sp.getGia())%> đ</td>
+<td>
 
-    <td><%=sp.getSoLuong()%></td>
+<select class="mauSelect">
 
-    <td>
+<%
+for(SanPhamChiTiet sp : list){
+%>
 
-        <% if(sp.getSoLuong()>0){ %>
+<option value="<%=sp.getMaSPCT()%>">
 
-        <form action="banHang" method="post">
+    <%=sp.getTenMau()%>
 
-            <input
-                    type="hidden"
-                    name="maSPCT"
-                    value="<%=sp.getMaSPCT()%>">
+</option>
 
-            <button
-                    type="submit"
-                    class="btn them">
+<%
+}
+%>
 
-                Thêm
+</select>
 
-            </button>
+</td>
 
-        </form>
+<td>
 
-        <% }else{ %>
+<select class="sizeSelect">
 
-        <span style="color:red;font-weight:bold">
+<%
+for(SanPhamChiTiet sp : list){
+%>
 
-            Hết hàng
+<option value="<%=sp.getMaSPCT()%>">
 
-        </span>
+    <%=sp.getTenSize()%>
 
-        <% } %>
+</option>
 
-    </td>
+<%
+}
+%>
+
+</select>
+
+</td>
+
+<td class="giaCell">
+
+    <%=String.format("%,.0f",first.getGia())%> đ
+
+</td>
+
+<td class="tonCell">
+
+    <%=first.getSoLuong()%>
+
+</td>
+
+<td>
+
+<form action="banHang" method="post">
+
+<input
+        type="hidden"
+        name="maSPCT"
+        class="maSPCTInput"
+        value="<%=first.getMaSPCT()%>">
+
+<button
+        type="submit"
+        class="btn them">
+
+    Thêm
+
+</button>
+
+</form>
+
+</td>
 
 </tr>
 
 <%
-
 }
-
 %>
 
 </table>

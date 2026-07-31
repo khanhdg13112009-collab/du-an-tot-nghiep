@@ -69,6 +69,7 @@ public class EditNhanVienController extends HttpServlet {
         String email = request.getParameter("email");
         String coSo = request.getParameter("coSo");
         String ngayCapCCCD = request.getParameter("ngayCapCCCD");
+        String ngayHetHanCCCD = request.getParameter("ngayHetHanCCCD");
         String noiCapCCCD = request.getParameter("noiCapCCCD");
 
         String tinhThanhPho = request.getParameter("tinhThanhPho");
@@ -155,11 +156,26 @@ public class EditNhanVienController extends HttpServlet {
 
         Date ngaySinhDate = Date.valueOf(ngaySinh);
         Date ngayCap = Date.valueOf(ngayCapCCCD);
+        Date ngayHetHan = Date.valueOf(ngayHetHanCCCD);
 
         if (ngayCap.before(ngaySinhDate)) {
 
             request.setAttribute("error",
                     "Ngày cấp CCCD không hợp lệ.");
+
+            request.setAttribute("nv",
+                    service.getNhanVienById(Integer.parseInt(maNV)));
+
+            request.getRequestDispatcher("editNhanVien.jsp")
+                    .forward(request, response);
+
+            return;
+        }
+
+        if (ngayHetHan.before(ngayCap)) {
+
+            request.setAttribute("error",
+                    "Ngày hết hạn CCCD phải sau ngày cấp.");
 
             request.setAttribute("nv",
                     service.getNhanVienById(Integer.parseInt(maNV)));
@@ -179,6 +195,7 @@ public class EditNhanVienController extends HttpServlet {
         nv.setCccd(cccd);
 
         nv.setNgayCapCCCD(Date.valueOf(ngayCapCCCD));
+        nv.setNgayHetHanCCCD(Date.valueOf(ngayHetHanCCCD));
         nv.setNoiCapCCCD(noiCapCCCD);
 
         nv.setNgaySinh(Date.valueOf(ngaySinh));

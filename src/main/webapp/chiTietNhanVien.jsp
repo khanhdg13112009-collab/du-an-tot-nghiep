@@ -50,204 +50,208 @@
                 <th colspan="2">Thông tin cá nhân</th>
             </tr>
 
-   <table class="form-table">
-        <tr>
-            <th colspan="2">Thông tin cá nhân</th>
-        </tr>
+            <tr>
+                <td><b>Mã nhân viên</b></td>
+                <td>${nv.maNV}</td>
+            </tr>
 
-        <tr>
-            <td><b>Mã nhân viên</b></td>
-            <td>${nv.maNV}</td>
-        </tr>
+            <tr>
+                <td><b>Họ tên</b></td>
+                <td>${nv.hoTen}</td>
+            </tr>
 
-        <tr>
-            <td><b>Họ tên</b></td>
-            <td>${nv.hoTen}</td>
-        </tr>
+            <tr>
+                <td><b>CCCD</b></td>
+                <td>${nv.cccd}</td>
+            </tr>
 
-        <tr>
-            <td><b>CCCD</b></td>
-            <td>${nv.cccd}</td>
-        </tr>
+            <tr>
+                <td><b>Ngày cấp</b></td>
+                <td>${nv.ngayCapCCCD}</td>
+            </tr>
 
-        <tr>
-            <td><b>Ngày cấp</b></td>
-            <td>${nv.ngayCapCCCD}</td>
-        </tr>
+            <tr>
+                <td><b>Ngày hết hạn</b></td>
+                <td>${nv.ngayHetHanCCCD}</td>
+            </tr>
 
-        <tr>
-            <td><b>Nơi cấp</b></td>
-            <td>${nv.noiCapCCCD}</td>
-        </tr>
+            <tr>
+                <td><b>Nơi cấp</b></td>
+                <td>${nv.noiCapCCCD}</td>
+            </tr>
 
-        <tr>
-            <td><b>Ngày sinh</b></td>
-            <td>${nv.ngaySinh}</td>
-        </tr>
+            <tr>
+                <td><b>Ngày sinh</b></td>
+                <td>${nv.ngaySinh}</td>
+            </tr>
 
-        <tr>
-            <td><b>Giới tính</b></td>
+            <tr>
+                <td><b>Giới tính</b></td>
 
-            <td>
+                <td>
 
-                <c:choose>
+                    <c:choose>
 
-                    <c:when test="${nv.gioiTinh}">
-                        Nam
-                    </c:when>
+                        <c:when test="${nv.gioiTinh}">
+                            Nam
+                        </c:when>
 
-                    <c:otherwise>
-                        Nữ
-                    </c:otherwise>
+                        <c:otherwise>
+                            Nữ
+                        </c:otherwise>
 
-                </c:choose>
+                    </c:choose>
 
-            </td>
+                </td>
 
-        </tr>
+            </tr>
 
-        <tr>
-            <td><b>Số điện thoại</b></td>
-            <td>${nv.soDienThoai}</td>
-        </tr>
+            <tr>
+                <td><b>Số điện thoại</b></td>
+                <td>${nv.soDienThoai}</td>
+            </tr>
 
-        <tr>
-            <td><b>Email</b></td>
-            <td>${nv.email}</td>
-        </tr>
+            <tr>
+                <td><b>Email</b></td>
+                <td>${nv.email}</td>
+            </tr>
 
-        <tr>
-            <td><b>Tên đăng nhập</b></td>
-            <td>${account.username}</td>
-        </tr>
+            <tr>
+                <td><b>Tên đăng nhập</b></td>
+                <td>${account.username}</td>
+            </tr>
 
-        <tr>
-            <td><b>Mật khẩu</b></td>
-            <td>${account.password}</td>
-        </tr>
+            <tr>
+                <td><b>Mật khẩu</b></td>
+                <td>${account.password}</td>
+            </tr>
 
-        <tr>
-            <td><b>Vai trò</b></td>
-            <td>
-                <c:choose>
-                    <c:when test="${account.roleID == 1}">
-                        Quản lý
-                    </c:when>
+            <tr>
+                <td><b>Vai trò</b></td>
+                <td>
 
-                    <c:when test="${account.roleID == 2}">
-                        Nhân viên
-                    </c:when>
+                    <c:choose>
 
-                    <c:otherwise>
-                        Khách hàng
-                    </c:otherwise>
-                </c:choose>
-            </td>
-        </tr>
+                        <c:when test="${account.roleID == 1}">
+                            Quản lý
+                        </c:when>
 
-        <tr>
-            <td><b>Cơ sở</b></td>
-            <td>${nv.coSo}</td>
-        </tr>
+                        <c:when test="${account.roleID == 2}">
+                            Nhân viên
+                        </c:when>
 
-        <tr>
-            <td><b>Địa chỉ</b></td>
+                        <c:otherwise>
+                            Khách hàng
+                        </c:otherwise>
 
-            <td>
+                    </c:choose>
 
-                ${nv.diaChiChiTiet},
+                </td>
+            </tr>
 
-                ${nv.phuongXa},
+            <tr>
+                <td><b>Cơ sở</b></td>
+                <td>${nv.coSo}</td>
+            </tr>
 
-                ${nv.tinhThanhPho}
+            <tr>
+                <td><b>Địa chỉ</b></td>
 
-            </td>
+                <td>
 
-        </tr>
+                    ${nv.diaChiChiTiet},
 
-        <tr>
-            <td><b>Trạng thái</b></td>
+                    ${nv.phuongXa},
 
-            <td>
+                    ${nv.tinhThanhPho}
 
-                <c:choose>
+                </td>
 
-                    <c:when test="${nv.trangThaiID==1}">
-                        <span style="color:green;font-weight:bold;">
-                            🟢 Đang làm
-                        </span>
-                    </c:when>
+            </tr>
 
-                    <c:otherwise>
-                        <span style="color:red;font-weight:bold;">
-                            🔴 Nghỉ việc
-                        </span>
-                    </c:otherwise>
+            <tr>
+                <td><b>Trạng thái</b></td>
 
-                </c:choose>
+                <td>
 
-            </td>
+                    <c:choose>
 
-        </tr>
+                        <c:when test="${nv.trangThaiID==1}">
+                            <span style="color:green;font-weight:bold;">
+                                🟢 Đang làm
+                            </span>
+                        </c:when>
 
-    </table>
+                        <c:otherwise>
+                            <span style="color:red;font-weight:bold;">
+                                🔴 Nghỉ việc
+                            </span>
+                        </c:otherwise>
 
-    <br>
+                    </c:choose>
 
-    <h2>ẢNH CCCD</h2>
+                </td>
 
-    <table>
+            </tr>
 
-        <tr>
+        </table>
 
-            <th>CCCD mặt trước</th>
+        <br>
 
-            <th>CCCD mặt sau</th>
+        <h2>ẢNH CCCD</h2>
 
-        </tr>
+        <table>
 
-        <tr>
+            <tr>
 
-            <td align="center">
+                <th>CCCD mặt trước</th>
 
-                <c:if test="${not empty nv.anhCCCDTruoc}">
+                <th>CCCD mặt sau</th>
 
-                    <img src="${pageContext.request.contextPath}/${nv.anhCCCDTruoc}"
-                         class="cccd-img">
+            </tr>
 
-                </c:if>
+            <tr>
 
-            </td>
+                <td align="center">
 
-            <td align="center">
+                    <c:if test="${not empty nv.anhCCCDTruoc}">
 
-                <c:if test="${not empty nv.anhCCCDSau}">
+                        <img src="${pageContext.request.contextPath}/${nv.anhCCCDTruoc}"
+                             class="cccd-img">
 
-                    <img src="${pageContext.request.contextPath}/${nv.anhCCCDSau}"
-                         class="cccd-img">
+                    </c:if>
 
-                </c:if>
+                </td>
 
-            </td>
+                <td align="center">
 
-        </tr>
+                    <c:if test="${not empty nv.anhCCCDSau}">
 
-    </table>
+                        <img src="${pageContext.request.contextPath}/${nv.anhCCCDSau}"
+                             class="cccd-img">
 
-    <br>
+                    </c:if>
 
-    <div style="text-align:center;">
+                </td>
 
-        <a href="nhanvien" class="btn">
-            ⬅ Quay lại
-        </a>
+            </tr>
+
+        </table>
+
+        <br>
+
+        <div style="text-align:center;">
+
+            <a href="nhanvien" class="btn">
+                ⬅ Quay lại
+            </a>
+
+        </div>
 
     </div>
 
-    </div>
+</div>
 
-    </div>
+</body>
 
-    </body>
-
-    </html>
+</html>

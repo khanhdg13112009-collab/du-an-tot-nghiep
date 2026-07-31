@@ -61,6 +61,9 @@ public class AddNhanVienController extends HttpServlet {
         String ngayCapCCCD =
                 request.getParameter("ngayCapCCCD");
 
+        String ngayHetHanCCCD =
+                request.getParameter("ngayHetHanCCCD");
+
         String noiCapCCCD =
                 request.getParameter("noiCapCCCD");
 
@@ -102,7 +105,6 @@ public class AddNhanVienController extends HttpServlet {
 
         String anhCCCDSau =
                 request.getParameter("anhCCCDSau");
-
         hoTen = hoTen.trim();
         cccd = cccd.trim();
         soDienThoai = soDienThoai.trim();
@@ -196,6 +198,7 @@ public class AddNhanVienController extends HttpServlet {
             return;
 
         }
+
         LocalDate birth = LocalDate.parse(ngaySinh);
 
         int tuoi = Period.between(
@@ -213,8 +216,10 @@ public class AddNhanVienController extends HttpServlet {
             return;
 
         }
+
         Date ngaySinhDate = Date.valueOf(ngaySinh);
         Date ngayCap = Date.valueOf(ngayCapCCCD);
+        Date ngayHetHan = Date.valueOf(ngayHetHanCCCD);
 
         if (ngayCap.before(ngaySinhDate)) {
 
@@ -225,8 +230,20 @@ public class AddNhanVienController extends HttpServlet {
                     .forward(request, response);
 
             return;
+
         }
 
+        if (ngayHetHan.before(ngayCap)) {
+
+            request.setAttribute("error",
+                    "Ngày hết hạn CCCD phải sau ngày cấp.");
+
+            request.getRequestDispatcher("addNhanVien.jsp")
+                    .forward(request, response);
+
+            return;
+
+        }
         NhanVien nv = new NhanVien();
 
         nv.setHoTen(hoTen);
@@ -234,6 +251,8 @@ public class AddNhanVienController extends HttpServlet {
         nv.setCccd(cccd);
 
         nv.setNgayCapCCCD(Date.valueOf(ngayCapCCCD));
+
+        nv.setNgayHetHanCCCD(Date.valueOf(ngayHetHanCCCD));
 
         nv.setNoiCapCCCD(noiCapCCCD);
 
@@ -273,5 +292,4 @@ public class AddNhanVienController extends HttpServlet {
         response.sendRedirect("nhanvien");
 
     }
-
 }

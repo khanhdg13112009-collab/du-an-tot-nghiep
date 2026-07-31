@@ -30,6 +30,8 @@
 
     <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
+    <a href="thongKe">📊 Thống kê doanh thu</a>
+
     <a href="/DATN-nhom2/logout">🚪 Đăng xuất</a>
 
 </div>
@@ -87,6 +89,16 @@
             <p>Quản lý hóa đơn.</p>
 
             <a href="hoaDon">Mở</a>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Thống kê doanh thu</h2>
+
+            <p>Xem doanh thu theo ngày, tháng và năm.</p>
+
+            <a href="thongKe">Mở</a>
 
         </div>
 

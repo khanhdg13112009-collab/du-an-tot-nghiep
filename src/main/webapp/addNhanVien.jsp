@@ -83,6 +83,15 @@
             </tr>
 
             <tr>
+                <td>Ngày hết hạn CCCD</td>
+                <td>
+                    <input type="date"
+                           name="ngayHetHanCCCD"
+                           required>
+                </td>
+            </tr>
+
+            <tr>
                 <td>Nơi cấp CCCD</td>
                 <td>
 

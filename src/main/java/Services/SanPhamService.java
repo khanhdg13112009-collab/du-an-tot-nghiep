@@ -221,4 +221,93 @@ public class SanPhamService {
 
     }
 
+    public boolean isExistSanPham(String tenSP,
+                                  String thuongHieu,
+                                  String chatLieu) {
+
+        String sql =
+                "SELECT COUNT(*) FROM SanPham " +
+                        "WHERE TenSP=? AND ThuongHieu=? AND ChatLieu=?";
+
+        try {
+
+            Connection conn = connect.myConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, tenSP);
+            ps.setString(2, thuongHieu);
+            ps.setString(3, chatLieu);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+
+            rs.close();
+            ps.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public int getTongSoLuong(int maSP) {
+
+        int tong = 0;
+
+        String sql = "SELECT ISNULL(SUM(SoLuong),0) FROM SanPhamChiTiet WHERE MaSP=?";
+
+        try {
+
+            Connection conn = connect.myConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, maSP);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                tong = rs.getInt(1);
+            }
+
+            rs.close();
+            ps.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return tong;
+    }
+
+    public void capNhatTrangThai(int maSP, boolean trangThai) {
+
+        String sql = "UPDATE SanPham SET TrangThai=? WHERE MaSP=?";
+
+        try {
+
+            Connection conn = connect.myConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setBoolean(1, trangThai);
+            ps.setInt(2, maSP);
+
+            ps.executeUpdate();
+
+            ps.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

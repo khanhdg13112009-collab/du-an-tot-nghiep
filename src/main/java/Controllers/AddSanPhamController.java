@@ -85,6 +85,25 @@ public class AddSanPhamController extends HttpServlet {
                 Integer.parseInt(request.getParameter("soLuong"))
         );
 
+        if (service.isExistSanPham(
+                sp.getTenSP(),
+                sp.getThuongHieu(),
+                sp.getChatLieu())) {
+
+            request.setAttribute("error",
+                    "Sản phẩm đã tồn tại!");
+
+            request.setAttribute("mauSacList",
+                    new MauSacService().getAll());
+
+            request.setAttribute("kichCoList",
+                    new KichCoService().getAll());
+
+            request.getRequestDispatcher("addSanPham.jsp")
+                    .forward(request, response);
+            return;
+        }
+
         service.addSanPham(sp);
 
         response.sendRedirect("sanpham");

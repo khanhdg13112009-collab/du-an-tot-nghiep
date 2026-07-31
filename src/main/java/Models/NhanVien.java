@@ -20,12 +20,11 @@ public class NhanVien {
     private String phuongXa;
     private String diaChiChiTiet;
 
-
     private Date ngayCapCCCD;
+    private Date ngayHetHanCCCD;
     private String noiCapCCCD;
 
     private int trangThaiID;
-
 
     private String tenTrangThai;
     private int roleID;
@@ -49,6 +48,7 @@ public class NhanVien {
                     String phuongXa,
                     String diaChiChiTiet,
                     Date ngayCapCCCD,
+                    Date ngayHetHanCCCD,
                     String noiCapCCCD,
                     int trangThaiID,
                     String tenTrangThai,
@@ -73,6 +73,7 @@ public class NhanVien {
         this.diaChiChiTiet = diaChiChiTiet;
 
         this.ngayCapCCCD = ngayCapCCCD;
+        this.ngayHetHanCCCD = ngayHetHanCCCD;
         this.noiCapCCCD = noiCapCCCD;
 
         this.trangThaiID = trangThaiID;
@@ -82,163 +83,173 @@ public class NhanVien {
         this.anhCCCDSau = anhCCCDSau;
     }
 
-    public int getMaNV() {
-        return maNV;
-    }
 
-    public void setMaNV(int maNV) {
-        this.maNV = maNV;
-    }
+public int getMaNV() {
+    return maNV;
+}
 
-    public String getHoTen() {
-        return hoTen;
-    }
+public void setMaNV(int maNV) {
+    this.maNV = maNV;
+}
 
-    public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
-    }
+public String getHoTen() {
+    return hoTen;
+}
 
-    public String getCccd() {
-        return cccd;
-    }
+public void setHoTen(String hoTen) {
+    this.hoTen = hoTen;
+}
 
-    public void setCccd(String cccd) {
-        this.cccd = cccd;
-    }
+public String getCccd() {
+    return cccd;
+}
 
-    public Date getNgaySinh() {
-        return ngaySinh;
-    }
+public void setCccd(String cccd) {
+    this.cccd = cccd;
+}
 
-    public void setNgaySinh(Date ngaySinh) {
-        this.ngaySinh = ngaySinh;
-    }
+public Date getNgaySinh() {
+    return ngaySinh;
+}
 
-    public boolean isGioiTinh() {
-        return gioiTinh;
-    }
+public void setNgaySinh(Date ngaySinh) {
+    this.ngaySinh = ngaySinh;
+}
 
-    public void setGioiTinh(boolean gioiTinh) {
-        this.gioiTinh = gioiTinh;
-    }
+public boolean isGioiTinh() {
+    return gioiTinh;
+}
 
-    public String getSoDienThoai() {
-        return soDienThoai;
-    }
+public void setGioiTinh(boolean gioiTinh) {
+    this.gioiTinh = gioiTinh;
+}
 
-    public void setSoDienThoai(String soDienThoai) {
-        this.soDienThoai = soDienThoai;
-    }
+public String getSoDienThoai() {
+    return soDienThoai;
+}
 
-    public String getEmail() {
-        return email;
-    }
+public void setSoDienThoai(String soDienThoai) {
+    this.soDienThoai = soDienThoai;
+}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+public String getEmail() {
+    return email;
+}
 
-    public String getCoSo() {
-        return coSo;
-    }
+public void setEmail(String email) {
+    this.email = email;
+}
 
-    public void setCoSo(String coSo) {
-        this.coSo = coSo;
-    }
+public String getCoSo() {
+    return coSo;
+}
 
-    public String getDiaChi() {
-        return diaChi;
-    }
+public void setCoSo(String coSo) {
+    this.coSo = coSo;
+}
 
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
-    }
+public String getDiaChi() {
+    return diaChi;
+}
 
-    public String getTinhThanhPho() {
-        return tinhThanhPho;
-    }
+public void setDiaChi(String diaChi) {
+    this.diaChi = diaChi;
+}
 
-    public void setTinhThanhPho(String tinhThanhPho) {
-        this.tinhThanhPho = tinhThanhPho;
-    }
+public String getTinhThanhPho() {
+    return tinhThanhPho;
+}
 
-    public String getQuanHuyen() {
-        return quanHuyen;
-    }
+public void setTinhThanhPho(String tinhThanhPho) {
+    this.tinhThanhPho = tinhThanhPho;
+}
 
-    public void setQuanHuyen(String quanHuyen) {
-        this.quanHuyen = quanHuyen;
-    }
+public String getQuanHuyen() {
+    return quanHuyen;
+}
 
-    public String getPhuongXa() {
-        return phuongXa;
-    }
+public void setQuanHuyen(String quanHuyen) {
+    this.quanHuyen = quanHuyen;
+}
 
-    public void setPhuongXa(String phuongXa) {
-        this.phuongXa = phuongXa;
-    }
+public String getPhuongXa() {
+    return phuongXa;
+}
 
-    public String getDiaChiChiTiet() {
-        return diaChiChiTiet;
-    }
+public void setPhuongXa(String phuongXa) {
+    this.phuongXa = phuongXa;
+}
 
-    public void setDiaChiChiTiet(String diaChiChiTiet) {
-        this.diaChiChiTiet = diaChiChiTiet;
-    }
+public String getDiaChiChiTiet() {
+    return diaChiChiTiet;
+}
 
-    public Date getNgayCapCCCD() {
-        return ngayCapCCCD;
-    }
+public void setDiaChiChiTiet(String diaChiChiTiet) {
+    this.diaChiChiTiet = diaChiChiTiet;
+}
 
-    public void setNgayCapCCCD(Date ngayCapCCCD) {
-        this.ngayCapCCCD = ngayCapCCCD;
-    }
+public Date getNgayCapCCCD() {
+    return ngayCapCCCD;
+}
 
-    public String getNoiCapCCCD() {
-        return noiCapCCCD;
-    }
+public void setNgayCapCCCD(Date ngayCapCCCD) {
+    this.ngayCapCCCD = ngayCapCCCD;
+}
 
-    public void setNoiCapCCCD(String noiCapCCCD) {
-        this.noiCapCCCD = noiCapCCCD;
-    }
+public Date getNgayHetHanCCCD() {
+    return ngayHetHanCCCD;
+}
 
-    public int getTrangThaiID() {
-        return trangThaiID;
-    }
+public void setNgayHetHanCCCD(Date ngayHetHanCCCD) {
+    this.ngayHetHanCCCD = ngayHetHanCCCD;
+}
 
-    public void setTrangThaiID(int trangThaiID) {
-        this.trangThaiID = trangThaiID;
-    }
+public String getNoiCapCCCD() {
+    return noiCapCCCD;
+}
 
-    public String getTenTrangThai() {
-        return tenTrangThai;
-    }
+public void setNoiCapCCCD(String noiCapCCCD) {
+    this.noiCapCCCD = noiCapCCCD;
+}
 
-    public void setTenTrangThai(String tenTrangThai) {
-        this.tenTrangThai = tenTrangThai;
-    }
+public int getTrangThaiID() {
+    return trangThaiID;
+}
 
-    public int getRoleID() {
-        return roleID;
-    }
+public void setTrangThaiID(int trangThaiID) {
+    this.trangThaiID = trangThaiID;
+}
 
-    public void setRoleID(int roleID) {
-        this.roleID = roleID;
-    }
+public String getTenTrangThai() {
+    return tenTrangThai;
+}
 
-    public String getAnhCCCDTruoc() {
-        return anhCCCDTruoc;
-    }
+public void setTenTrangThai(String tenTrangThai) {
+    this.tenTrangThai = tenTrangThai;
+}
 
-    public void setAnhCCCDTruoc(String anhCCCDTruoc) {
-        this.anhCCCDTruoc = anhCCCDTruoc;
-    }
+public int getRoleID() {
+    return roleID;
+}
 
-    public String getAnhCCCDSau() {
-        return anhCCCDSau;
-    }
+public void setRoleID(int roleID) {
+    this.roleID = roleID;
+}
 
-    public void setAnhCCCDSau(String anhCCCDSau) {
-        this.anhCCCDSau = anhCCCDSau;
-    }
+public String getAnhCCCDTruoc() {
+    return anhCCCDTruoc;
+}
+
+public void setAnhCCCDTruoc(String anhCCCDTruoc) {
+    this.anhCCCDTruoc = anhCCCDTruoc;
+}
+
+public String getAnhCCCDSau() {
+    return anhCCCDSau;
+}
+
+public void setAnhCCCDSau(String anhCCCDSau) {
+    this.anhCCCDSau = anhCCCDSau;
+}
+
 }
