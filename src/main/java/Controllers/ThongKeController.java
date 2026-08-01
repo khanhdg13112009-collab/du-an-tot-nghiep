@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 @WebServlet("/thongKe")
 public class ThongKeController extends HttpServlet {
@@ -17,41 +18,65 @@ public class ThongKeController extends HttpServlet {
     private ThongKeService service = new ThongKeService();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request,
+                         HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.getRequestDispatcher("thongke.jsp").forward(request, response);
+        LocalDate today = LocalDate.now();
+
+        ThongKe tk = service.thongKeTheoNgay(today.toString());
+
+        request.setAttribute("tk", tk);
+
+        request.setAttribute(
+                "chartData",
+                service.getDoanhThu12Thang(today.getYear())
+        );
+
+        request.getRequestDispatcher("thongke.jsp")
+                .forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request,
+                          HttpServletResponse response)
             throws ServletException, IOException {
 
         String loai = request.getParameter("loai");
 
         ThongKe tk = null;
 
+        int namChart = LocalDate.now().getYear();
+
         if ("ngay".equals(loai)) {
 
             String ngay = request.getParameter("ngay");
+
             tk = service.thongKeTheoNgay(ngay);
 
         } else if ("thang".equals(loai)) {
 
             int thang = Integer.parseInt(request.getParameter("thang"));
-            int nam = Integer.parseInt(request.getParameter("nam"));
+            namChart = Integer.parseInt(request.getParameter("nam"));
 
-            tk = service.thongKeTheoThang(thang, nam);
+            tk = service.thongKeTheoThang(thang, namChart);
 
         } else if ("nam".equals(loai)) {
 
-            int nam = Integer.parseInt(request.getParameter("nam"));
+            namChart = Integer.parseInt(request.getParameter("nam"));
 
-            tk = service.thongKeTheoNam(nam);
+            tk = service.thongKeTheoNam(namChart);
 
         }
 
         request.setAttribute("tk", tk);
-        request.getRequestDispatcher("thongke.jsp").forward(request, response);
+
+        request.setAttribute(
+                "chartData",
+                service.getDoanhThu12Thang(namChart)
+        );
+
+        request.getRequestDispatcher("thongke.jsp")
+                .forward(request, response);
     }
 }

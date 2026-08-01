@@ -7,14 +7,20 @@ public class ThongKe {
     private BigDecimal doanhThu;
     private int soHoaDon;
     private int soSanPham;
+    private int soKhachHang;
 
     public ThongKe() {
     }
 
-    public ThongKe(BigDecimal doanhThu, int soHoaDon, int soSanPham) {
+    public ThongKe(BigDecimal doanhThu,
+                   int soHoaDon,
+                   int soSanPham,
+                   int soKhachHang) {
+
         this.doanhThu = doanhThu;
         this.soHoaDon = soHoaDon;
         this.soSanPham = soSanPham;
+        this.soKhachHang = soKhachHang;
     }
 
     public BigDecimal getDoanhThu() {
@@ -39,5 +45,13 @@ public class ThongKe {
 
     public void setSoSanPham(int soSanPham) {
         this.soSanPham = soSanPham;
+    }
+
+    public int getSoKhachHang() {
+        return soKhachHang;
+    }
+
+    public void setSoKhachHang(int soKhachHang) {
+        this.soKhachHang = soKhachHang;
     }
 }

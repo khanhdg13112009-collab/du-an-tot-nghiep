@@ -3,6 +3,7 @@ package Services;
 import Models.HoaDon;
 import Models.HoaDonChiTiet;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -226,5 +227,96 @@ public class HoaDonService {
 
         return false;
     }
+    public BigDecimal getDoanhThuTheoNgay(Date ngay) {
+
+        String sql =
+                "SELECT ISNULL(SUM(TongTien),0) FROM HoaDon WHERE CAST(NgayDat AS DATE)=?";
+
+        try (
+                Connection conn = connectService.myConnection();
+                PreparedStatement ps = conn.prepareStatement(sql)
+        ) {
+
+            ps.setDate(1, ngay);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                return rs.getBigDecimal(1);
+
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+        return BigDecimal.ZERO;
+    }
+
+    public int getTongHoaDonTheoNgay(Date ngay) {
+
+        String sql =
+                "SELECT COUNT(*) FROM HoaDon WHERE CAST(NgayDat AS DATE)=?";
+
+        try (
+                Connection conn = connectService.myConnection();
+                PreparedStatement ps = conn.prepareStatement(sql)
+        ) {
+
+            ps.setDate(1, ngay);
+
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()){
+
+                return rs.getInt(1);
+
+            }
+
+        }catch(Exception e){
+
+            e.printStackTrace();
+
+        }
+
+        return 0;
+    }
+
+    public int getTongSanPhamTheoNgay(Date ngay){
+
+        String sql =
+                "SELECT ISNULL(SUM(ct.SoLuong),0) " +
+                        "FROM HoaDonChiTiet ct " +
+                        "JOIN HoaDon hd ON ct.MaHD=hd.MaHD " +
+                        "WHERE CAST(hd.NgayDat AS DATE)=?";
+
+        try(
+                Connection conn=connectService.myConnection();
+                PreparedStatement ps=conn.prepareStatement(sql)
+        ){
+
+            ps.setDate(1,ngay);
+
+            ResultSet rs=ps.executeQuery();
+
+            if(rs.next()){
+
+                return rs.getInt(1);
+
+            }
+
+        }catch(Exception e){
+
+            e.printStackTrace();
+
+        }
+
+        return 0;
+
+    }
+
 
 }

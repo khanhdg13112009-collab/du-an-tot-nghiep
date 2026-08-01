@@ -21,6 +21,10 @@ public class ChiTietHoaDonController extends HttpServlet {
                          HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+
         int maHD =
                 Integer.parseInt(request.getParameter("maHD"));
 

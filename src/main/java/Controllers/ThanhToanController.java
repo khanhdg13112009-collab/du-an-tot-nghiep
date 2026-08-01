@@ -34,6 +34,10 @@ public class ThanhToanController extends HttpServlet {
                           HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+
         HttpSession session = request.getSession();
 
         Account account =
@@ -66,6 +70,10 @@ public class ThanhToanController extends HttpServlet {
 
         String ghiChu =
                 request.getParameter("ghiChu");
+
+        System.out.println("=================================");
+        System.out.println("GhiChu nhận được: " + ghiChu);
+        System.out.println("=================================");
 
         BigDecimal tongTien = BigDecimal.ZERO;
 

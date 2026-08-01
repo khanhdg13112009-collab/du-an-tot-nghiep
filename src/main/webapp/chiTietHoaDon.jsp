@@ -1,7 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8"
+         pageEncoding="UTF-8"
          language="java"
-         isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+         isELIgnored="false"%>
+
+<%@ taglib prefix="c"
+           uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -198,6 +201,41 @@ table th{
 
 Tổng tiền:
 ${hoaDon.tongTien} VNĐ
+
+</div>
+
+<div style="margin-top:30px;
+display:flex;
+justify-content:space-between;
+align-items:center;">
+
+    <div>
+
+        <h3>Thanh toán chuyển khoản</h3>
+
+        <p><b>Ngân hàng:</b> MB Bank</p>
+
+        <p><b>STK:</b> 123456789</p>
+
+        <p><b>Chủ TK:</b> BO THẰNG CHÁ</p>
+
+    </div>
+
+    <div>
+
+        <img
+                src="images/qr.png"
+                width="180">
+
+        <br>
+
+        <center>
+
+            Quét QR để thanh toán
+
+        </center>
+
+    </div>
 
 </div>
 
