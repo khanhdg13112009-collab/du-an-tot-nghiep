@@ -17,13 +17,13 @@
 
 <body>
 
-<div class="login-box">
+<div class="banner-box">
 
-    <div class="logo">👔</div>
+    <img
+        src="${pageContext.request.contextPath}/images/banner.png"
+        alt="BO THẰNG CHÁ">
 
-    <h1>SHOP ÁO CHO NAM</h1>
-
-    <h2>Đăng nhập hệ thống</h2>
+</div>
 
     <c:if test="${not empty error}">
         <p class="error">${error}</p>

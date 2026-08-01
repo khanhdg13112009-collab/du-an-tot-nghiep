@@ -56,7 +56,13 @@ public class HoaDonService {
         List<HoaDon> list = new ArrayList<>();
 
         String sql =
-                "SELECT * FROM HoaDon ORDER BY NgayDat DESC";
+                "SELECT hd.*, " +
+                        "kh.HoTen AS TenKhachHang, " +
+                        "nv.HoTen AS TenNhanVien " +
+                        "FROM HoaDon hd " +
+                        "INNER JOIN KhachHang kh ON hd.MaKH = kh.MaKH " +
+                        "INNER JOIN NhanVien nv ON hd.MaNV = nv.MaNV " +
+                        "ORDER BY hd.NgayDat DESC";
 
         try (
                 Connection conn = connectService.myConnection();
@@ -75,6 +81,12 @@ public class HoaDonService {
                 hd.setTongTien(rs.getBigDecimal("TongTien"));
                 hd.setTrangThai(rs.getString("TrangThai"));
                 hd.setGhiChu(rs.getString("GhiChu"));
+
+                hd.setTenKhachHang(
+                        rs.getString("TenKhachHang"));
+
+                hd.setTenNhanVien(
+                        rs.getString("TenNhanVien"));
 
                 list.add(hd);
 

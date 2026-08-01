@@ -1,3 +1,5 @@
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -22,11 +24,15 @@
 
     <a href="banHang">🛒 Bán hàng</a>
 
-    <a href="sanpham">👕 Quản lý sản phẩm</a>
+   <c:if test="${sessionScope.account.roleID == 1}">
 
-    <a href="nhanvien">👨 Quản lý nhân viên</a>
+       <a href="sanpham">👕 Quản lý sản phẩm</a>
 
-    <a href="khachhang">👤 Quản lý khách hàng</a>
+       <a href="nhanvien">👨 Quản lý nhân viên</a>
+
+       <a href="khachhang">👤 Quản lý khách hàng</a>
+
+   </c:if>
 
     <a href="hoaDon">🧾 Quản lý hóa đơn</a>
 
@@ -39,6 +45,44 @@
 <div class="content">
 
     <h1>Dashboard</h1>
+
+    <h3 style="color:#9ca3af;margin-top:-5px;">
+
+    Xin chào,
+
+    ${sessionScope.account.username}
+
+    👋
+
+    </h3>
+
+    <div class="dashboard-cards">
+
+        <div class="card">
+            <div class="icon">👕</div>
+            <h3>Sản phẩm</h3>
+            <p>${tongSanPham}</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">👤</div>
+            <h3>Khách hàng</h3>
+            <p>${tongKhachHang}</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">👨</div>
+            <h3>Nhân viên</h3>
+            <p>${tongNhanVien}</p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🧾</div>
+            <h3>Hóa đơn</h3>
+            <p>${tongHoaDon}</p>
+        </div>
+
+    </div>
 
     <div class="card-container">
 

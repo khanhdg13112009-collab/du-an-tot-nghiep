@@ -97,9 +97,9 @@
 
             <th>Mã HD</th>
 
-            <th>Mã KH</th>
+           <th>Khách hàng</th>
 
-            <th>Mã NV</th>
+           <th>Nhân viên</th>
 
             <th>Ngày đặt</th>
 
@@ -117,9 +117,9 @@
 
                 <td>${hd.maHD}</td>
 
-                <td>${hd.maKH}</td>
+                <td>${hd.tenKhachHang}</td>
 
-                <td>${hd.maNV}</td>
+                <td>${hd.tenNhanVien}</td>
 
                 <td>${hd.ngayDat}</td>
 

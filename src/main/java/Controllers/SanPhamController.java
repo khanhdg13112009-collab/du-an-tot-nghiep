@@ -20,20 +20,23 @@ public class SanPhamController extends HttpServlet {
                          HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession(false);
+        HttpSession session=request.getSession(false);
 
-        if (session == null) {
+        Account account=
+                (Account)session.getAttribute("account");
 
-            response.sendRedirect("login.jsp");
+        if(account==null){
+
+            response.sendRedirect("login");
+
             return;
 
         }
 
-        Account account = (Account) session.getAttribute("account");
+        if(account.getRoleID()!=1){
 
-        if (account == null) {
+            response.sendRedirect("admin");
 
-            response.sendRedirect("login.jsp");
             return;
 
         }

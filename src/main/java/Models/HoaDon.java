@@ -15,6 +15,7 @@ public class HoaDon {
     private String tenKhachHang;
     private String tenNhanVien;
 
+
     public HoaDon() {
     }
 

@@ -1,10 +1,19 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page
+contentType="text/html;charset=UTF-8"
+language="java"
+isELIgnored="false"%>
+
+<%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.math.BigDecimal"%>
 <%@ page import="Models.SanPhamChiTiet"%>
 <%@ page import="Models.CartItem"%>
 <%@ page import="java.util.LinkedHashMap"%>
 <%@ page import="java.util.Map"%>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
 ArrayList<SanPhamChiTiet> dsSP =
@@ -216,7 +225,10 @@ for(Map.Entry<Integer, ArrayList<SanPhamChiTiet>> entry : dsTheoSP.entrySet()){
 for(SanPhamChiTiet sp : list){
 %>
 
-<option value="<%=sp.getMaSPCT()%>">
+<option
+        value="<%=sp.getMaSPCT()%>"
+        data-gia="<%=sp.getGia()%>"
+        data-ton="<%=sp.getSoLuong()%>">
 
     <%=sp.getTenMau()%>
 
@@ -238,12 +250,14 @@ for(SanPhamChiTiet sp : list){
 for(SanPhamChiTiet sp : list){
 %>
 
-<option value="<%=sp.getMaSPCT()%>">
+<option
+        value="<%=sp.getMaSPCT()%>"
+        data-gia="<%=sp.getGia()%>"
+        data-ton="<%=sp.getSoLuong()%>">
 
     <%=sp.getTenSize()%>
 
 </option>
-
 <%
 }
 %>
@@ -417,6 +431,22 @@ for(CartItem item : cart){
 
         <tr>
 
+        <tr>
+
+            <td style="text-align:left;">
+
+                <b>Nhân viên</b>
+
+            </td>
+
+            <td>
+
+                ${sessionScope.account.username}
+
+            </td>
+
+        </tr>
+
             <td style="text-align:left;">
 
                 <b>Khách hàng</b>
@@ -424,18 +454,75 @@ for(CartItem item : cart){
             </td>
 
             <td>
+<select
+        name="maKH"
+        style="width:100%;padding:8px;">
 
-                <select
-                        name="maKH"
+    <option value="1">
+        Khách lẻ
+    </option>
+
+    <c:forEach items="${listKhachHang}" var="kh">
+
+        <c:if test="${kh.maKH != 1}">
+
+            <option value="${kh.maKH}">
+                ${kh.hoTen} - ${kh.soDienThoai}
+            </option>
+
+        </c:if>
+
+    </c:forEach>
+
+</select>
+
+<br><br>
+
+<a href="khachhang?action=add"
+   class="btn them">
+
+    + Thêm khách hàng
+
+</a>
+
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td style="text-align:left;">
+
+                <b>Tiền khách đưa</b>
+
+            </td>
+
+            <td>
+
+                <input
+                        id="tienKhachDua"
+                        type="number"
                         style="width:100%;padding:8px;">
 
-                    <option value="1">
+            </td>
 
-                        Khách lẻ
+        </tr>
 
-                    </option>
+        <tr>
 
-                </select>
+            <td style="text-align:left;">
+
+                <b>Tiền thừa</b>
+
+            </td>
+
+            <td>
+
+                <span id="tienThua">
+
+                    0 đ
+
+                </span>
 
             </td>
 
@@ -478,6 +565,91 @@ for(CartItem item : cart){
 </div>
 
 </div>
+
+<script>
+
+document.querySelectorAll("tr").forEach(function(row){
+
+    let mau=row.querySelector(".mauSelect");
+    let size=row.querySelector(".sizeSelect");
+
+    if(!mau || !size) return;
+
+    function capNhat(){
+
+        let option=size.options[size.selectedIndex];
+
+        row.querySelector(".tonCell").innerHTML=
+                option.dataset.ton;
+
+        row.querySelector(".giaCell").innerHTML=
+                Number(option.dataset.gia).toLocaleString("vi-VN")+" đ";
+
+        row.querySelector(".maSPCTInput").value=
+                option.value;
+
+    }
+
+    size.onchange=capNhat;
+
+    mau.onchange=function(){
+
+        let id=mau.value;
+
+        for(let i=0;i<size.options.length;i++){
+
+            if(size.options[i].value==id){
+
+                size.selectedIndex=i;
+
+                break;
+
+            }
+
+        }
+
+        capNhat();
+
+    };
+
+    capNhat();
+
+});
+
+</script>
+
+<script>
+
+const tongTien =
+<%=tongTien.intValue()%>;
+
+let input =
+document.getElementById("tienKhachDua");
+
+let span =
+document.getElementById("tienThua");
+
+input.onkeyup=function(){
+
+    let tien =
+    Number(this.value);
+
+    let thua =
+    tien-tongTien;
+
+    if(thua<0){
+
+        thua=0;
+
+    }
+
+    span.innerHTML=
+    thua.toLocaleString("vi-VN")
+    +" đ";
+
+};
+
+</script>
 
 </body>
 

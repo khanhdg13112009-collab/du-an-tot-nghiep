@@ -58,8 +58,11 @@ public class ThanhToanController extends HttpServlet {
 
         }
 
-        int maKH =
-                Integer.parseInt(request.getParameter("maKH"));
+        int maKH = Integer.parseInt(request.getParameter("maKH"));
+
+        if (maKH == 0) {
+
+        }
 
         String ghiChu =
                 request.getParameter("ghiChu");

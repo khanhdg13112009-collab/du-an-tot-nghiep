@@ -3,6 +3,8 @@ package Controllers;
 import Models.CartItem;
 import Models.SanPhamChiTiet;
 import Services.SanPhamChiTietService;
+import Services.KhachHangService;
+import Services.NhanVienService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +22,8 @@ public class BanHangController extends HttpServlet {
 
     private SanPhamChiTietService sanPhamChiTietService =
             new SanPhamChiTietService();
+    private KhachHangService khachHangService =
+            new KhachHangService();
 
     @Override
     protected void doGet(HttpServletRequest request,
@@ -67,6 +71,9 @@ public class BanHangController extends HttpServlet {
         }
 
         request.setAttribute("dsTheoSP", dsTheoSP);
+        request.setAttribute(
+                "listKhachHang",
+                khachHangService.getAll());
 
         if (action == null) {
 

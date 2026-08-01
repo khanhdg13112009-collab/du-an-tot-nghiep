@@ -26,7 +26,7 @@ public class AdminController extends HttpServlet {
         Account account = (Account) session.getAttribute("account");
 
 
-        if (account == null || account.getRoleID() != 1) {
+        if (account == null) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
