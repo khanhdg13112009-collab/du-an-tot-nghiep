@@ -287,7 +287,21 @@ public class AddNhanVienController extends HttpServlet {
 
         nv.setTrangThaiID(Integer.parseInt(trangThai));
 
-        service.addNhanVien(nv);
+        boolean success =
+                service.addNhanVien(nv, password);
+
+        if (!success) {
+
+            request.setAttribute(
+                    "error",
+                    "Thêm nhân viên thất bại. Vui lòng kiểm tra lại dữ liệu."
+            );
+
+            request.getRequestDispatcher("addNhanVien.jsp")
+                    .forward(request, response);
+
+            return;
+        }
 
         response.sendRedirect("nhanvien");
 

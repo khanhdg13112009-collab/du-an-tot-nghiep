@@ -6,7 +6,9 @@ import Services.HoaDonService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
 @WebServlet("/chiTietHoaDon")
 public class ChiTietHoaDonController extends HttpServlet {
 
-    HoaDonService service = new HoaDonService();
+    private HoaDonService service = new HoaDonService();
 
     @Override
     protected void doGet(HttpServletRequest request,
@@ -25,21 +27,19 @@ public class ChiTietHoaDonController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
 
-        int maHD =
-                Integer.parseInt(request.getParameter("maHD"));
+        int maHD = Integer.parseInt(
+                request.getParameter("maHD")
+        );
 
-        HoaDon hd =
-                service.getHoaDonById(maHD);
+        HoaDon hd = service.getHoaDonById(maHD);
 
         List<HoaDonChiTiet> list =
                 service.getChiTietHoaDon(maHD);
 
-        request.setAttribute("hoaDon",hd);
-        request.setAttribute("listCT",list);
+        request.setAttribute("hoaDon", hd);
+        request.setAttribute("listCT", list);
 
         request.getRequestDispatcher("/chiTietHoaDon.jsp")
-                .forward(request,response);
-
+                .forward(request, response);
     }
-
 }
