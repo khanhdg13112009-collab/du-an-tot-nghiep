@@ -64,3 +64,4 @@ public class AddKhachHangController extends HttpServlet {
     }
 
 }
+//commit 1
