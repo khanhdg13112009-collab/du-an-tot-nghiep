@@ -19,7 +19,7 @@
 <!-- Sidebar -->
 <div class="sidebar">
 
-    <h2>BO THẰNG CHÁ</h2>
+    <h2>BTC</h2>
 
     <a href="admin">🏠 Dashboard</a>
 

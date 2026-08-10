@@ -21,7 +21,7 @@
 
     <img
         src="${pageContext.request.contextPath}/images/banner.png"
-        alt="BO THẰNG CHÁ">
+        alt="BTC">
 
 </div>
 

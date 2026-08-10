@@ -139,7 +139,7 @@ table th{
 
 <div class="invoice">
 
-<h1>BO THẰNG CHÁ</h1>
+<h1>BTC</h1>
 
 <h2 style="text-align:center;">HÓA ĐƠN</h2>
 
@@ -217,7 +217,7 @@ align-items:center;">
 
         <p><b>STK:</b> 123456789</p>
 
-        <p><b>Chủ TK:</b> BO THẰNG CHÁ</p>
+        <p><b>Chủ TK:</b> BTC</p>
 
     </div>
 

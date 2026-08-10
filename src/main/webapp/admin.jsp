@@ -8,7 +8,7 @@
 
     <meta charset="UTF-8">
 
-    <title>BO THẰNG CHÁ - ADMIN</title>
+    <title>BTC - ADMIN</title>
 
     <link rel="stylesheet" href="/DATN-nhom2/css/admin.css">
 
@@ -18,7 +18,7 @@
 
 <div class="sidebar">
 
-    <h2>BO THẰNG CHÁ</h2>
+    <h2>BTC</h2>
 
     <a href="admin">🏠 Dashboard</a>
 
