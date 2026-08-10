@@ -12,26 +12,41 @@ public class ThongKeService {
 
         ThongKe tk = new ThongKe();
 
-        String sql = "SELECT "
-                + "ISNULL(SUM(hd.TongTien),0) AS DoanhThu, "
-                + "COUNT(DISTINCT hd.MaHD) AS SoHoaDon, "
-                + "ISNULL(SUM(ct.SoLuong),0) AS SoSanPham, "
-                + "COUNT(DISTINCT hd.MaKH) AS SoKhachHang "
-                + "FROM HoaDon hd "
-                + "LEFT JOIN HoaDonChiTiet ct ON hd.MaHD = ct.MaHD "
-                + "WHERE CAST(hd.NgayDat AS DATE)=?";
+        String sql =
+                "SELECT " +
+                        "ISNULL((SELECT SUM(hd.TongTien) " +
+                        "        FROM HoaDon hd " +
+                        "        WHERE CAST(hd.NgayDat AS DATE)=?), 0) AS DoanhThu, " +
+
+                        "(SELECT COUNT(*) " +
+                        " FROM HoaDon hd " +
+                        " WHERE CAST(hd.NgayDat AS DATE)=?) AS SoHoaDon, " +
+
+                        "ISNULL((SELECT SUM(ct.SoLuong) " +
+                        "        FROM HoaDon hd " +
+                        "        INNER JOIN HoaDonChiTiet ct ON hd.MaHD = ct.MaHD " +
+                        "        WHERE CAST(hd.NgayDat AS DATE)=?), 0) AS SoSanPham, " +
+
+                        "(SELECT COUNT(DISTINCT hd.MaKH) " +
+                        " FROM HoaDon hd " +
+                        " WHERE CAST(hd.NgayDat AS DATE)=?) AS SoKhachHang";
 
         try (Connection con = new ConnectService().myConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, ngay);
+            ps.setString(2, ngay);
+            ps.setString(3, ngay);
+            ps.setString(4, ngay);
 
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+
                 tk.setDoanhThu(rs.getBigDecimal("DoanhThu"));
                 tk.setSoHoaDon(rs.getInt("SoHoaDon"));
                 tk.setSoSanPham(rs.getInt("SoSanPham"));
+                tk.setSoKhachHang(rs.getInt("SoKhachHang"));
             }
 
         } catch (Exception e) {
@@ -45,16 +60,29 @@ public class ThongKeService {
 
         ThongKe tk = new ThongKe();
 
-        String sql = "SELECT "
-                + "ISNULL(SUM(hd.TongTien),0) AS DoanhThu, "
-                + "COUNT(DISTINCT hd.MaHD) AS SoHoaDon, "
-                + "ISNULL(SUM(ct.SoLuong),0) AS SoSanPham, "
-                + "COUNT(DISTINCT hd.MaKH) AS SoKhachHang "
+        String sql =
+                "SELECT " +
 
-                + "FROM HoaDon hd "
-                + "LEFT JOIN HoaDonChiTiet ct ON hd.MaHD = ct.MaHD "
-                + "WHERE MONTH(hd.NgayDat)=? "
-                + "AND YEAR(hd.NgayDat)=?";
+                        "ISNULL((SELECT SUM(hd.TongTien) " +
+                        "        FROM HoaDon hd " +
+                        "        WHERE MONTH(hd.NgayDat)=? " +
+                        "        AND YEAR(hd.NgayDat)=?), 0) AS DoanhThu, " +
+
+                        "(SELECT COUNT(*) " +
+                        " FROM HoaDon hd " +
+                        " WHERE MONTH(hd.NgayDat)=? " +
+                        " AND YEAR(hd.NgayDat)=?) AS SoHoaDon, " +
+
+                        "ISNULL((SELECT SUM(ct.SoLuong) " +
+                        "        FROM HoaDon hd " +
+                        "        INNER JOIN HoaDonChiTiet ct ON hd.MaHD = ct.MaHD " +
+                        "        WHERE MONTH(hd.NgayDat)=? " +
+                        "        AND YEAR(hd.NgayDat)=?), 0) AS SoSanPham, " +
+
+                        "(SELECT COUNT(DISTINCT hd.MaKH) " +
+                        " FROM HoaDon hd " +
+                        " WHERE MONTH(hd.NgayDat)=? " +
+                        " AND YEAR(hd.NgayDat)=?) AS SoKhachHang";
 
         try (Connection con = new ConnectService().myConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -62,9 +90,19 @@ public class ThongKeService {
             ps.setInt(1, thang);
             ps.setInt(2, nam);
 
+            ps.setInt(3, thang);
+            ps.setInt(4, nam);
+
+            ps.setInt(5, thang);
+            ps.setInt(6, nam);
+
+            ps.setInt(7, thang);
+            ps.setInt(8, nam);
+
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+
                 tk.setDoanhThu(rs.getBigDecimal("DoanhThu"));
                 tk.setSoHoaDon(rs.getInt("SoHoaDon"));
                 tk.setSoSanPham(rs.getInt("SoSanPham"));
@@ -82,23 +120,38 @@ public class ThongKeService {
 
         ThongKe tk = new ThongKe();
 
-        String sql = "SELECT "
-                + "ISNULL(SUM(hd.TongTien),0) AS DoanhThu, "
-                + "COUNT(DISTINCT hd.MaHD) AS SoHoaDon, "
-                + "ISNULL(SUM(ct.SoLuong),0) AS SoSanPham, "
-                + "COUNT(DISTINCT hd.MaKH) AS SoKhachHang "
-                + "FROM HoaDon hd "
-                + "LEFT JOIN HoaDonChiTiet ct ON hd.MaHD = ct.MaHD "
-                + "WHERE YEAR(hd.NgayDat)=?";
+        String sql =
+                "SELECT " +
+
+                        "ISNULL((SELECT SUM(hd.TongTien) " +
+                        "        FROM HoaDon hd " +
+                        "        WHERE YEAR(hd.NgayDat)=?), 0) AS DoanhThu, " +
+
+                        "(SELECT COUNT(*) " +
+                        " FROM HoaDon hd " +
+                        " WHERE YEAR(hd.NgayDat)=?) AS SoHoaDon, " +
+
+                        "ISNULL((SELECT SUM(ct.SoLuong) " +
+                        "        FROM HoaDon hd " +
+                        "        INNER JOIN HoaDonChiTiet ct ON hd.MaHD = ct.MaHD " +
+                        "        WHERE YEAR(hd.NgayDat)=?), 0) AS SoSanPham, " +
+
+                        "(SELECT COUNT(DISTINCT hd.MaKH) " +
+                        " FROM HoaDon hd " +
+                        " WHERE YEAR(hd.NgayDat)=?) AS SoKhachHang";
 
         try (Connection con = new ConnectService().myConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, nam);
+            ps.setInt(2, nam);
+            ps.setInt(3, nam);
+            ps.setInt(4, nam);
 
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+
                 tk.setDoanhThu(rs.getBigDecimal("DoanhThu"));
                 tk.setSoHoaDon(rs.getInt("SoHoaDon"));
                 tk.setSoSanPham(rs.getInt("SoSanPham"));

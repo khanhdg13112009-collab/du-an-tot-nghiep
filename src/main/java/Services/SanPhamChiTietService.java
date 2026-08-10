@@ -259,31 +259,7 @@ public class SanPhamChiTietService {
 
     }
 
-    public void deleteSanPhamChiTiet(int id) {
 
-        String sql =
-                "DELETE FROM SanPhamChiTiet WHERE MaSPCT=?";
-
-        try {
-
-            Connection conn = connect.myConnection();
-
-            PreparedStatement ps = conn.prepareStatement(sql);
-
-            ps.setInt(1, id);
-
-            ps.executeUpdate();
-
-            ps.close();
-            conn.close();
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-
-    }
 
     public ArrayList<SanPhamChiTiet> getBySanPham(int maSP) {
 
@@ -407,15 +383,18 @@ public class SanPhamChiTietService {
                         "INNER JOIN SanPham sp ON spct.MaSP = sp.MaSP " +
                         "INNER JOIN MauSac ms ON spct.MaMau = ms.MaMau " +
                         "INNER JOIN KichCo kc ON spct.MaSize = kc.MaSize " +
-                        "WHERE sp.TenSP LIKE ?";
+                        "WHERE sp.TenSP LIKE ? " +
+                        "OR CAST(spct.MaSP AS VARCHAR) LIKE ?";
 
         try {
 
             Connection conn = connect.myConnection();
 
-            PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement ps =
+                    conn.prepareStatement(sql);
 
             ps.setString(1, "%" + keyword + "%");
+            ps.setString(2, "%" + keyword + "%");
 
             ResultSet rs = ps.executeQuery();
 
@@ -435,7 +414,6 @@ public class SanPhamChiTietService {
                 spct.setTenSize(rs.getString("TenSize"));
 
                 list.add(spct);
-
             }
 
             rs.close();
@@ -445,7 +423,6 @@ public class SanPhamChiTietService {
         } catch (Exception e) {
 
             e.printStackTrace();
-
         }
 
         return list;

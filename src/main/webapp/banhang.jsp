@@ -1,17 +1,16 @@
-<%@ page
-contentType="text/html;charset=UTF-8"
-language="java"
-isELIgnored="false"%>
+<%@ page contentType="text/html;charset=UTF-8"
+         language="java"
+         isELIgnored="false" %>
 
 <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%>
+           uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="java.math.BigDecimal"%>
-<%@ page import="Models.SanPhamChiTiet"%>
-<%@ page import="Models.CartItem"%>
-<%@ page import="java.util.LinkedHashMap"%>
-<%@ page import="java.util.Map"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.math.BigDecimal" %>
+<%@ page import="Models.SanPhamChiTiet" %>
+<%@ page import="Models.CartItem" %>
+<%@ page import="java.util.LinkedHashMap" %>
+<%@ page import="java.util.Map" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -175,18 +174,27 @@ input[type=text]{
 
 <form action="banHang" method="get">
 
-    <input
-            type="text"
-            name="keyword"
-            placeholder="Nhập tên sản phẩm...">
+   <form action="banHang" method="get">
 
-    <button
-            class="btn them"
-            type="submit">
+       <form action="banHang" method="get">
 
-        Tìm
+           <input
+                   type="text"
+                   name="keyword"
+                   value="${keyword}"
+                   placeholder="Nhập tên hoặc mã sản phẩm...">
 
-    </button>
+           <button
+                   class="btn them"
+                   type="submit">
+               Tìm
+           </button>
+
+       </form>
+
+
+
+   </form>
 
 </form>
 

@@ -79,6 +79,9 @@ public class AddNhanVienController extends HttpServlet {
         String email =
                 request.getParameter("email");
 
+        String username =
+                request.getParameter("username");
+
         String password =
                 request.getParameter("password");
 
@@ -90,6 +93,10 @@ public class AddNhanVienController extends HttpServlet {
 
         String quanHuyen =
                 request.getParameter("quanHuyen");
+
+        if (quanHuyen == null || quanHuyen.trim().isEmpty()) {
+            quanHuyen = "Không áp dụng";
+        }
 
         String phuongXa =
                 request.getParameter("phuongXa");
@@ -110,6 +117,33 @@ public class AddNhanVienController extends HttpServlet {
         soDienThoai = soDienThoai.trim();
         email = email.trim().toLowerCase();
         password = password.trim();
+        username = username.trim();
+
+        if (password.length() < 6) {
+
+            request.setAttribute(
+                    "error",
+                    "Mật khẩu phải có ít nhất 6 ký tự."
+            );
+
+            request.getRequestDispatcher("addNhanVien.jsp")
+                    .forward(request, response);
+
+            return;
+        }
+
+        if (username.length() < 3) {
+
+            request.setAttribute(
+                    "error",
+                    "Tên đăng nhập phải có ít nhất 3 ký tự."
+            );
+
+            request.getRequestDispatcher("addNhanVien.jsp")
+                    .forward(request, response);
+
+            return;
+        }
         noiCapCCCD = noiCapCCCD.trim();
         diaChiChiTiet = diaChiChiTiet.trim();
 
@@ -287,8 +321,7 @@ public class AddNhanVienController extends HttpServlet {
 
         nv.setTrangThaiID(Integer.parseInt(trangThai));
 
-        boolean success =
-                service.addNhanVien(nv, password);
+        boolean success = service.addNhanVien(nv, username, password);
 
         if (!success) {
 

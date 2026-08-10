@@ -47,6 +47,15 @@ public class EditNhanVienController extends HttpServlet {
 
         request.setAttribute("nv", nv);
 
+        Account nvAccount = service.getAccountByMaNV(maNV);
+
+        request.setAttribute("account", nvAccount);
+
+        request.getRequestDispatcher("editNhanVien.jsp")
+                .forward(request, response);
+
+
+
         request.getRequestDispatcher("editNhanVien.jsp")
                 .forward(request, response);
     }
@@ -67,6 +76,10 @@ public class EditNhanVienController extends HttpServlet {
         String gioiTinh = request.getParameter("gioiTinh");
         String soDienThoai = request.getParameter("soDienThoai");
         String email = request.getParameter("email");
+
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
         String coSo = request.getParameter("coSo");
         String ngayCapCCCD = request.getParameter("ngayCapCCCD");
         String ngayHetHanCCCD = request.getParameter("ngayHetHanCCCD");
@@ -88,8 +101,48 @@ public class EditNhanVienController extends HttpServlet {
         cccd = cccd.trim();
         soDienThoai = soDienThoai.trim();
         email = email.trim().toLowerCase();
+
+        username = username.trim();
+        password = password.trim();
+
         noiCapCCCD = noiCapCCCD.trim();
         diaChiChiTiet = diaChiChiTiet.trim();
+
+        if (username.length() < 3) {
+
+            request.setAttribute(
+                    "error",
+                    "Tên đăng nhập phải có ít nhất 3 ký tự."
+            );
+
+            request.setAttribute(
+                    "nv",
+                    service.getNhanVienById(Integer.parseInt(maNV))
+            );
+
+            request.getRequestDispatcher("editNhanVien.jsp")
+                    .forward(request, response);
+
+            return;
+        }
+
+        if (password.length() < 6) {
+
+            request.setAttribute(
+                    "error",
+                    "Mật khẩu phải có ít nhất 6 ký tự."
+            );
+
+            request.setAttribute(
+                    "nv",
+                    service.getNhanVienById(Integer.parseInt(maNV))
+            );
+
+            request.getRequestDispatcher("editNhanVien.jsp")
+                    .forward(request, response);
+
+            return;
+        }
 
         if (!cccd.matches("\\d{12}")) {
 
@@ -232,7 +285,23 @@ public class EditNhanVienController extends HttpServlet {
 
         nv.setRoleID(old.getRoleID());
 
-        service.updateNhanVien(nv);
+        boolean success =
+                service.updateNhanVien(nv, username, password);
+
+        if (!success) {
+
+            request.setAttribute(
+                    "error",
+                    "Cập nhật nhân viên thất bại. Vui lòng kiểm tra lại dữ liệu."
+            );
+
+            request.setAttribute("nv", nv);
+
+            request.getRequestDispatcher("editNhanVien.jsp")
+                    .forward(request, response);
+
+            return;
+        }
 
         response.sendRedirect("nhanvien");
 

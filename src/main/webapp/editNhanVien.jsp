@@ -197,6 +197,19 @@
                            required>
                 </td>
             </tr>
+
+            <tr>
+                <td>Tên đăng nhập</td>
+                <td>
+                    <input type="text"
+                           name="username"
+                           value="${account.username}"
+                           minlength="3"
+                           maxlength="50"
+                           required>
+                </td>
+            </tr>
+
 <tr>
     <td>Mật khẩu</td>
     <td>

@@ -1,5 +1,6 @@
 package Services;
 
+import Models.Account;
 import Models.NhanVien;
 
 import java.sql.Connection;
@@ -83,6 +84,7 @@ public class NhanVienService {
         return list;
 
     }
+
     public NhanVien getNhanVienById(int maNV) {
 
         NhanVien nv = null;
@@ -156,15 +158,32 @@ public class NhanVienService {
         return nv;
     }
 
-    public boolean addNhanVien(NhanVien nv, String password) {
+    public boolean addNhanVien(
+            NhanVien nv,
+            String username,
+            String password) {
 
         String sqlNhanVien =
                 "INSERT INTO NhanVien(" +
-                        "HoTen,CCCD,NgayCapCCCD,NoiCapCCCD,NgaySinh," +
-                        "GioiTinh,SoDienThoai,Email,CoSo,TinhThanhPho," +
-                        "QuanHuyen,PhuongXa,DiaChiChiTiet,TrangThaiID," +
-                        "AnhCCCDTruoc,AnhCCCDSau" +
-                        ") VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        "HoTen," +
+                        "CCCD," +
+                        "NgayCapCCCD," +
+                        "NgayHetHanCCCD," +
+                        "NoiCapCCCD," +
+                        "NgaySinh," +
+                        "GioiTinh," +
+                        "SoDienThoai," +
+                        "Email," +
+                        "CoSo," +
+                        "TinhThanhPho," +
+                        "QuanHuyen," +
+                        "PhuongXa," +
+                        "DiaChiChiTiet," +
+                        "DiaChi," +
+                        "TrangThaiID," +
+                        "AnhCCCDTruoc," +
+                        "AnhCCCDSau" +
+                        ") VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         String sqlAccount =
                 "INSERT INTO Account(Username,Password,RoleID,MaNV,MaKH) " +
@@ -176,11 +195,10 @@ public class NhanVienService {
 
             conn = connect.myConnection();
 
-            // Bắt đầu transaction
             conn.setAutoCommit(false);
 
             // =========================
-            // 1. THÊM NHÂN VIÊN
+            // THÊM NHÂN VIÊN
             // =========================
 
             PreparedStatement psNV =
@@ -190,26 +208,62 @@ public class NhanVienService {
                     );
 
             psNV.setString(1, nv.getHoTen());
+
             psNV.setString(2, nv.getCccd());
+
             psNV.setDate(3, nv.getNgayCapCCCD());
-            psNV.setString(4, nv.getNoiCapCCCD());
-            psNV.setDate(5, nv.getNgaySinh());
-            psNV.setBoolean(6, nv.isGioiTinh());
-            psNV.setString(7, nv.getSoDienThoai());
-            psNV.setString(8, nv.getEmail());
-            psNV.setString(9, nv.getCoSo());
-            psNV.setString(10, nv.getTinhThanhPho());
-            psNV.setString(11, nv.getQuanHuyen());
-            psNV.setString(12, nv.getPhuongXa());
-            psNV.setString(13, nv.getDiaChiChiTiet());
-            psNV.setInt(14, nv.getTrangThaiID());
-            psNV.setString(15, nv.getAnhCCCDTruoc());
-            psNV.setString(16, nv.getAnhCCCDSau());
+
+            psNV.setDate(4, nv.getNgayHetHanCCCD());
+
+            psNV.setString(5, nv.getNoiCapCCCD());
+
+            psNV.setDate(6, nv.getNgaySinh());
+
+            psNV.setBoolean(7, nv.isGioiTinh());
+
+            psNV.setString(8, nv.getSoDienThoai());
+
+            psNV.setString(9, nv.getEmail());
+
+            psNV.setString(10, nv.getCoSo());
+
+            psNV.setString(11, nv.getTinhThanhPho());
+
+            psNV.setString(12, nv.getQuanHuyen());
+
+            psNV.setString(13, nv.getPhuongXa());
+
+            psNV.setString(14, nv.getDiaChiChiTiet());
+
+            // DiaChi bắt buộc NOT NULL
+            psNV.setString(
+                    15,
+                    nv.getDiaChi()
+            );
+
+            psNV.setInt(
+                    16,
+                    nv.getTrangThaiID()
+            );
+
+            psNV.setString(
+                    17,
+                    nv.getAnhCCCDTruoc()
+            );
+
+            psNV.setString(
+                    18,
+                    nv.getAnhCCCDSau()
+            );
 
             psNV.executeUpdate();
 
+            // =========================
+            // LẤY MaNV
+            // =========================
 
-            ResultSet keys = psNV.getGeneratedKeys();
+            ResultSet keys =
+                    psNV.getGeneratedKeys();
 
             int maNV;
 
@@ -224,25 +278,42 @@ public class NhanVienService {
                 );
             }
 
+            // =========================
+            // TẠO ACCOUNT
+            // =========================
 
             PreparedStatement psAccount =
                     conn.prepareStatement(sqlAccount);
 
+            psAccount.setString(
+                    1,
+                    username
+            );
 
-            psAccount.setString(1, nv.getEmail());
-            psAccount.setString(2, password);
+            psAccount.setString(
+                    2,
+                    password
+            );
+
+            // 2 = Nhân viên
             psAccount.setInt(3, 2);
-            psAccount.setInt(4, maNV);
+
+            psAccount.setInt(
+                    4,
+                    maNV
+            );
 
             psAccount.executeUpdate();
 
+            // =========================
+            // HOÀN TẤT
+            // =========================
 
             conn.commit();
 
             psAccount.close();
             keys.close();
             psNV.close();
-            conn.close();
 
             return true;
 
@@ -257,15 +328,20 @@ public class NhanVienService {
                 }
 
             } catch (Exception ex) {
+
                 ex.printStackTrace();
             }
 
             return false;
         }
     }
-    public void updateNhanVien(NhanVien nv) {
 
-        String sql =
+    public boolean updateNhanVien(
+            NhanVien nv,
+            String username,
+            String password) {
+
+        String sqlNhanVien =
                 "UPDATE NhanVien SET " +
                         "HoTen=?," +
                         "CCCD=?," +
@@ -286,46 +362,93 @@ public class NhanVienService {
                         "AnhCCCDSau=? " +
                         "WHERE MaNV=?";
 
+        String sqlAccount =
+                "UPDATE Account SET " +
+                        "Username=?," +
+                        "Password=? " +
+                        "WHERE MaNV=?";
+
+        Connection conn = null;
+
         try {
 
-            Connection conn = connect.myConnection();
+            conn = connect.myConnection();
 
-            PreparedStatement ps = conn.prepareStatement(sql);
+            conn.setAutoCommit(false);
 
-            ps.setString(1, nv.getHoTen());
-            ps.setString(2, nv.getCccd());
-            ps.setDate(3, nv.getNgayCapCCCD());
-            ps.setDate(4, nv.getNgayHetHanCCCD());
-            ps.setString(5, nv.getNoiCapCCCD());
-            ps.setDate(6, nv.getNgaySinh());
-            ps.setBoolean(7, nv.isGioiTinh());
-            ps.setString(8, nv.getSoDienThoai());
-            ps.setString(9, nv.getEmail());
-            ps.setString(10, nv.getCoSo());
+            // =========================
+            // CẬP NHẬT NHÂN VIÊN
+            // =========================
 
-            ps.setString(11, nv.getTinhThanhPho());
-            ps.setString(12, nv.getQuanHuyen());
-            ps.setString(13, nv.getPhuongXa());
-            ps.setString(14, nv.getDiaChiChiTiet());
+            PreparedStatement psNV =
+                    conn.prepareStatement(sqlNhanVien);
 
-            ps.setInt(15, nv.getTrangThaiID());
+            psNV.setString(1, nv.getHoTen());
+            psNV.setString(2, nv.getCccd());
+            psNV.setDate(3, nv.getNgayCapCCCD());
+            psNV.setDate(4, nv.getNgayHetHanCCCD());
+            psNV.setString(5, nv.getNoiCapCCCD());
+            psNV.setDate(6, nv.getNgaySinh());
+            psNV.setBoolean(7, nv.isGioiTinh());
+            psNV.setString(8, nv.getSoDienThoai());
+            psNV.setString(9, nv.getEmail());
+            psNV.setString(10, nv.getCoSo());
 
-            ps.setString(16, nv.getAnhCCCDTruoc());
-            ps.setString(17, nv.getAnhCCCDSau());
+            psNV.setString(11, nv.getTinhThanhPho());
+            psNV.setString(12, nv.getQuanHuyen());
+            psNV.setString(13, nv.getPhuongXa());
+            psNV.setString(14, nv.getDiaChiChiTiet());
 
-            ps.setInt(18, nv.getMaNV());
+            psNV.setInt(15, nv.getTrangThaiID());
 
-            ps.executeUpdate();
+            psNV.setString(16, nv.getAnhCCCDTruoc());
+            psNV.setString(17, nv.getAnhCCCDSau());
 
-            ps.close();
-            conn.close();
+            psNV.setInt(18, nv.getMaNV());
+
+            psNV.executeUpdate();
+
+            // =========================
+            // CẬP NHẬT ACCOUNT
+            // =========================
+
+            PreparedStatement psAccount =
+                    conn.prepareStatement(sqlAccount);
+
+            psAccount.setString(1, username);
+            psAccount.setString(2, password);
+            psAccount.setInt(3, nv.getMaNV());
+
+            psAccount.executeUpdate();
+
+            // =========================
+            // HOÀN TẤT
+            // =========================
+
+            conn.commit();
+
+            psAccount.close();
+            psNV.close();
+
+            return true;
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
-        }
+            try {
 
+                if (conn != null) {
+                    conn.rollback();
+                }
+
+            } catch (Exception ex) {
+
+                ex.printStackTrace();
+            }
+
+            return false;
+        }
     }
 
     public boolean isExistCCCD(String cccd) {
@@ -420,4 +543,64 @@ public class NhanVienService {
 
         return false;
     }
+
+    public Account getAccountByMaNV(int maNV) {
+
+        String sql =
+                "SELECT AccountID, Username, Password, RoleID, MaNV, MaKH " +
+                        "FROM Account " +
+                        "WHERE MaNV = ?";
+
+        try {
+
+            Connection conn = connect.myConnection();
+
+            PreparedStatement ps =
+                    conn.prepareStatement(sql);
+
+            ps.setInt(1, maNV);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                Account account = new Account();
+
+                account.setAccountID(
+                        rs.getInt("AccountID")
+                );
+
+                account.setUsername(
+                        rs.getString("Username")
+                );
+
+                account.setPassword(
+                        rs.getString("Password")
+                );
+
+                account.setRoleID(
+                        rs.getInt("RoleID")
+                );
+
+                account.setMaNV(
+                        rs.getInt("MaNV")
+                );
+
+                int maKH = rs.getInt("MaKH");
+
+                if (!rs.wasNull()) {
+                    account.setMaKH(maKH);
+                }
+
+                return account;
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 }

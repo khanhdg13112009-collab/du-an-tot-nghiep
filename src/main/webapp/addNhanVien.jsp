@@ -187,6 +187,17 @@
             </tr>
 
             <tr>
+                <td>Tên đăng nhập</td>
+                <td>
+                    <input type="text"
+                           name="username"
+                           placeholder="Nhập tên đăng nhập"
+                           maxlength="50"
+                           required>
+                </td>
+            </tr>
+
+            <tr>
                 <td>Mật khẩu</td>
                 <td>
                    <div class="password-box">

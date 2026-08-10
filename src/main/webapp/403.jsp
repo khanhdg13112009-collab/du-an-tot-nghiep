@@ -17,7 +17,9 @@
 
 <br>
 
-<a href="home.jsp">Quay lại Trang chủ</a>
+<a href="${pageContext.request.contextPath}/admin">
+    Quay lại Trang chủ
+</a>
 
 </body>
 </html>

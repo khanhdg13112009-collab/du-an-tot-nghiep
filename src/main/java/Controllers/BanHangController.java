@@ -30,9 +30,19 @@ public class BanHangController extends HttpServlet {
                          HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         String action = request.getParameter("action");
         String keyword = request.getParameter("keyword");
 
+        if (keyword != null) {
+            keyword = new String(
+                    keyword.getBytes("ISO-8859-1"),
+                    "UTF-8"
+            );
+        }
+        request.setAttribute("keyword", keyword);
         HttpSession session = request.getSession();
 
         List<CartItem> cart =
@@ -129,6 +139,9 @@ public class BanHangController extends HttpServlet {
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response)
             throws ServletException, IOException {
+
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
         HttpSession session = request.getSession();
 
