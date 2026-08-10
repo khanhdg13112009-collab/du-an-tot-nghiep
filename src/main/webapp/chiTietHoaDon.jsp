@@ -209,33 +209,7 @@ display:flex;
 justify-content:space-between;
 align-items:center;">
 
-    <div>
-
-        <h3>Thanh toán chuyển khoản</h3>
-
-        <p><b>Ngân hàng:</b> MB Bank</p>
-
-        <p><b>STK:</b> 123456789</p>
-
-        <p><b>Chủ TK:</b> BTC</p>
-
-    </div>
-
-    <div>
-
-        <img
-                src="images/qr.png"
-                width="180">
-
-        <br>
-
-        <center>
-
-            Quét QR để thanh toán
-
-        </center>
-
-    </div>
+    
 
 </div>
 

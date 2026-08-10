@@ -509,11 +509,33 @@ for(CartItem item : cart){
 
                 <input
                         id="tienKhachDua"
+                        name="tienKhachDua"
                         type="number"
-                        style="width:100%;padding:8px;">
+                        min="0"
+                        style="width:100%;padding:8px;"
+                        placeholder="Nhập tiền khách đưa">
 
             </td>
 
+        </tr>
+
+        <tr>
+            <td style="text-align:left;">
+                <b>Thanh toán QR</b>
+            </td>
+
+            <td style="text-align:center;">
+
+                <img
+                    src="${pageContext.request.contextPath}/images/QR.jpg"
+                    alt="QR thanh toán"
+                    style="width:180px;height:180px;object-fit:contain;">
+
+                <div style="margin-top:8px;">
+                    <small>Quét mã QR để thanh toán</small>
+                </div>
+
+            </td>
         </tr>
 
         <tr>
@@ -558,6 +580,7 @@ for(CartItem item : cart){
     </table>
 
     <button
+            id="btnThanhToan"
             class="thanhtoan"
             type="submit"
             <%= cart.isEmpty() ? "disabled" : "" %>>
@@ -625,37 +648,161 @@ document.querySelectorAll("tr").forEach(function(row){
 });
 
 </script>
+<script>
+
+    const tienKhachDua =
+        document.getElementById("tienKhachDua");
+
+    const tienThua =
+        document.getElementById("tienThua");
+
+    const btnThanhToan =
+        document.getElementById("btnThanhToan");
+
+    const tongTien =
+        <%=tongTien%>;
+
+    function kiemTraTien() {
+
+        const tien =
+            Number(tienKhachDua.value) || 0;
+
+        if (tien >= tongTien && tongTien > 0) {
+
+            btnThanhToan.disabled = false;
+
+            tienThua.textContent =
+                new Intl.NumberFormat("vi-VN")
+                    .format(tien - tongTien)
+                    + " đ";
+
+        } else {
+
+            btnThanhToan.disabled = true;
+
+            if (tien === 0) {
+
+                tienThua.textContent = "0 đ";
+
+            } else {
+
+                tienThua.textContent = "Chưa đủ tiền";
+
+            }
+        }
+    }
+
+    tienKhachDua.addEventListener(
+        "input",
+        kiemTraTien
+    );
+
+    kiemTraTien();
+
+</script>
+<script>
+
+
+        document.getElementById("tienKhachDua");
+
+    const tienThua =
+        document.getElementById("tienThua");
+
+    const btnThanhToan =
+        document.getElementById("btnThanhToan");
+
+    const tongTien =
+        <%=tongTien%>;
+
+    function kiemTraTien() {
+
+        const tien =
+            Number(tienKhachDua.value) || 0;
+
+        if (tien >= tongTien && tongTien > 0) {
+
+            btnThanhToan.disabled = false;
+
+            tienThua.textContent =
+                new Intl.NumberFormat("vi-VN")
+                    .format(tien - tongTien)
+                    + " đ";
+
+        } else {
+
+            btnThanhToan.disabled = true;
+
+            if (tien === 0) {
+
+                tienThua.textContent = "0 đ";
+
+            } else {
+
+                tienThua.textContent = "Chưa đủ tiền";
+
+            }
+        }
+    }
+
+    tienKhachDua.addEventListener(
+        "input",
+        kiemTraTien
+    );
+
+    kiemTraTien();
+
+</script>
 
 <script>
 
-const tongTien =
-<%=tongTien.intValue()%>;
+    const tienKhachDua =
+        document.getElementById("tienKhachDua");
 
-let input =
-document.getElementById("tienKhachDua");
+    const tienThua =
+        document.getElementById("tienThua");
 
-let span =
-document.getElementById("tienThua");
+    const btnThanhToan =
+        document.getElementById("btnThanhToan");
 
-input.onkeyup=function(){
+    const tongTien =
+        <%=tongTien%>;
 
-    let tien =
-    Number(this.value);
+    function kiemTraTien() {
 
-    let thua =
-    tien-tongTien;
+        const tien =
+            Number(tienKhachDua.value) || 0;
 
-    if(thua<0){
+        if (tien >= tongTien && tongTien > 0) {
 
-        thua=0;
+            btnThanhToan.disabled = false;
 
+            tienThua.textContent =
+                new Intl.NumberFormat("vi-VN")
+                    .format(tien - tongTien)
+                    + " đ";
+
+        } else {
+
+            btnThanhToan.disabled = true;
+
+            if (tien === 0) {
+
+                tienThua.textContent = "0 đ";
+
+            } else {
+
+                tienThua.textContent = "Chưa đủ tiền";
+
+            }
+        }
     }
 
-    span.innerHTML=
-    thua.toLocaleString("vi-VN")
-    +" đ";
+    tienKhachDua.addEventListener(
+        "input",
+        kiemTraTien
+    );
 
-};
+    kiemTraTien();
 
 </script>
 

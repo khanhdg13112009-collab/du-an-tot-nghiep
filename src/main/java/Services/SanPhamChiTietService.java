@@ -29,7 +29,8 @@ public class SanPhamChiTietService {
                         "FROM SanPhamChiTiet spct " +
                         "INNER JOIN SanPham sp ON spct.MaSP = sp.MaSP " +
                         "INNER JOIN MauSac ms ON spct.MaMau = ms.MaMau " +
-                        "INNER JOIN KichCo kc ON spct.MaSize = kc.MaSize";
+                        "INNER JOIN KichCo kc ON spct.MaSize = kc.MaSize " +
+                        "WHERE sp.TrangThai = 1";
 
         try {
 
@@ -131,7 +132,8 @@ public class SanPhamChiTietService {
                         "INNER JOIN SanPham sp ON spct.MaSP = sp.MaSP " +
                         "INNER JOIN MauSac ms ON spct.MaMau = ms.MaMau " +
                         "INNER JOIN KichCo kc ON spct.MaSize = kc.MaSize " +
-                        "WHERE spct.MaSPCT=?";
+                        "WHERE spct.MaSPCT=? " +
+                        "AND sp.TrangThai = 1";
 
         try {
 
@@ -383,8 +385,9 @@ public class SanPhamChiTietService {
                         "INNER JOIN SanPham sp ON spct.MaSP = sp.MaSP " +
                         "INNER JOIN MauSac ms ON spct.MaMau = ms.MaMau " +
                         "INNER JOIN KichCo kc ON spct.MaSize = kc.MaSize " +
-                        "WHERE sp.TenSP LIKE ? " +
-                        "OR CAST(spct.MaSP AS VARCHAR) LIKE ?";
+                        "WHERE sp.TrangThai = 1 " +
+                        "AND (sp.TenSP LIKE ? " +
+                        "OR CAST(spct.MaSP AS VARCHAR) LIKE ?)";
 
         try {
 
