@@ -7,11 +7,14 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import Models.NhanVien;
+import Services.NhanVienService;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 
     AccountService accountService = new AccountService();
+    NhanVienService nhanVienService = new NhanVienService();
 
     @Override
     protected void doGet(HttpServletRequest request,
@@ -41,6 +44,27 @@ public class LoginController extends HttpServlet {
         System.out.println("Account = " + account);
 
         if (account != null) {
+
+
+            if (account.getMaNV() > 0) {
+
+                NhanVien nv =
+                        nhanVienService.getNhanVienById(account.getMaNV());
+
+
+                if (nv != null && nv.getTrangThaiID() == 2) {
+
+                    request.setAttribute(
+                            "error",
+                            "Tài khoản nhân viên đã nghỉ việc, không thể đăng nhập."
+                    );
+
+                    request.getRequestDispatcher("login.jsp")
+                            .forward(request, response);
+
+                    return;
+                }
+            }
 
             HttpSession session = request.getSession();
 
